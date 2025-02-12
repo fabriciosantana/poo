@@ -51,6 +51,11 @@ Finalizada as devidas introduções, vamos seguir para a instalação das ferram
     * (opcional) [Instalação do OpenJDK 21 no Linux via SDKMAN!](#-instalação-do-openjdk-21-via-sdkman)
 * [Instalação do VS Code no Linux via apt](#️-instalar-o-vs-code-via-apt)
     * (opcional) [Instalação manual do VS Code no Linux](#️-instalação-manual-do-vs-code-no-linux)
+* Instalação dos seguintes plugins no VS Code
+    * Java Platform Extension for Visual Code
+    * Extension Pack for Java
+    * GitHub Copilot
+    * GitHub Copilot Chat
 
 Se tudo isso é muito novo para você, invista um tempo em fortalecer sua base de conhecimento com os seguintes recursos:
 * [Introduction to Linux](https://training.linuxfoundation.org/training/introduction-to-linux/)

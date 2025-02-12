@@ -13,6 +13,19 @@ mkdir poo/assignments/00-hello/submissions/fabricio-santana/src
 * Submeter link do pull request no [ambiente virtual](https://ambientevirtual.idp.edu.br/)
 * Cumprir prazo de entrega
 
+### Instruções gerais para testes locais das atividades
+
+ ada atividade é acompanhada de testes unitários. Para avaliar seu código antes de submetê-lo, execute os seguintes comandos a partir de seu diretório pessoal de cada atividade
+ ```bash
+ mkdir -p lib
+
+ curl -L -o lib/junit-platform-console-standalone-1.11.4.jar https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.11.4/junit-platform-console-standalone-1.11.4.jar
+
+ javac -cp "lib/*" -d bin src/*.java ../../test/*.java
+ 
+ java -jar lib/junit-platform-console-standalone-1.11.4.jar --class-path bin --scan-class-path
+ ```
+
 ### Lista de atividades
 
 <details>
