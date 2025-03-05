@@ -1,4 +1,4 @@
-public class LogicalOperators {
+public class OperatorLogical {
     public static void main(String[] args) {
         System.out.printf("%s%n%s: %b%n%s: %b%n%s: %b%n%s: %b%n%n",
                 "Conditional AND (&&)", "false && false", (false && false),
