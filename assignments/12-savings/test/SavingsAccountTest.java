@@ -14,14 +14,14 @@ class SavingsAccountTest {
     @Test
     void testCalculateMonthlyInterest() {
         account.calculateMonthlyInterest();
-        assertEquals(1009.49, account.getBalance(), 0.01);
+        assertEquals(1009.49, account.getSavingsBalance(), 0.01);
     }
 
     @Test
     void testModifyInterestRate() {
         SavingsAccount.setAnnualInterestRate(10);
         account.calculateMonthlyInterest();
-        assertEquals(1007.97, account.getBalance(), 0.01);
+        assertEquals(1007.97, account.getSavingsBalance(), 0.01);
     }
 
     @Test
@@ -29,7 +29,7 @@ class SavingsAccountTest {
         for (int i = 0; i < 12; i++) {
             account.calculateMonthlyInterest();
         }
-        assertEquals(1120.00, account.getBalance(), 0.01);
+        assertEquals(1120.00, account.getSavingsBalance(), 0.01);
     }
 
     @Test
@@ -39,7 +39,7 @@ class SavingsAccountTest {
         }
         SavingsAccount.setAnnualInterestRate(10);
         account.calculateMonthlyInterest();
-        assertEquals(1128.93, account.getBalance(), 0.01);
+        assertEquals(1128.93, account.getSavingsBalance(), 0.01);
     }
 
     @Test
