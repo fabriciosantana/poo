@@ -123,4 +123,4 @@ javap -cp bin/ -c HelloWorld
 |   | [Mediana de três](./10-median)  |
 | 3 | [Parking](./11-parking)  |
 |   | [Savings Account](./12-savings) |
-| 4 | [Perfect Number](./13-perfect)  |
+| 4 | [Books](./13-books)  |

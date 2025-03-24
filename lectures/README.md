@@ -10,8 +10,9 @@ Aqui você encontrará referência para os slides utilizados ao longo do curso.
 |4|[Aula 4 - Programação Orientada a Objetos em Java - classes, objetos e métodos](https://1drv.ms/p/s!Avnn2LcOmn0Y3z07tfmzQYKuLXJK?e=WDMEbX)| [Desafio: StringReverse](../challenges/01-reverse)|
 | 5 | [Aula 5 - Programação Orientada a Objetos em Java - classes, objetos, métodos, construtores, sobrecarga de construtores e métodos, modificadores de acesso, métodos get e set, encapsulamento, introdução ao tratamento de exceção, composição, membros de classe e instância](https://1drv.ms/p/s!Avnn2LcOmn0Y31s3uczqB-Lou_2O?e=q233L4)| [Quizz: estruturas de controle - seleção e iteração](https://idp2.vevox.com/#/share/URPMNU5HMDKBS9BH8YFK/meetingdata/717548/session/721485) |
 |  | [Estudo de caso: IDP Bank (Semana 1)](../challenges/02-bank/) | Desenvolvimento do estudo de caso: IDP Bank (Semana 1) |
-| 6 | [Aula 6 - Programação Orientada a Objetos em Java - herança, polimorfismo, encapsulamento](https://1drv.ms/p/s!Avnn2LcOmn0Y32GgrYpPTFA8lUHl?e=u7L4jb)| [Quizz: Introdução à programação orientada a objetos](https://idp2.vevox.com/#/share/JWELEXXZROTD8KL0Z1QT/meetingdata/720920/session/724857) <br> Análise de código do programa [payroll](./examples/09-inheritance/payroll/) |
-| 7 | [Aula 7 - Array e ArrayList](https://1drv.ms/p/s!Avnn2LcOmn0Y31mEsDxOHyKDT0OE?e=QwcIjL) |  |
+| 6 | [Aula 6 - Programação Orientada a Objetos em Java - herança, extends, override, super, abstract, polimorfismo, encapsulamento, package, import](https://1drv.ms/p/s!Avnn2LcOmn0Y32GgrYpPTFA8lUHl?e=u7L4jb)| [Quizz: Introdução à programação orientada a objetos](https://idp2.vevox.com/#/share/JWELEXXZROTD8KL0Z1QT/meetingdata/720920/session/724857) <br> Análise de código do programa [payroll](./examples/09-inheritance/payroll/) | 
+| 10 | Continuação: Programação Orientada a Objetos em Java - herança, extends, override, super, abstract, polimorfismo, encapsulamento, package, import   | [Estudo de caso: IDP Bank (Semana 1)](../challenges/02-bank/) | Desenvolvimento do estudo de caso: IDP Bank (Semana 2)  |
+|  | [Aula 7 - Array e ArrayList](https://1drv.ms/p/s!Avnn2LcOmn0Y31mEsDxOHyKDT0OE?e=QwcIjL) |  |
 
 ### Referências
 
