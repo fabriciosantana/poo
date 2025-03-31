@@ -1,4 +1,3 @@
-import java.util.Scanner;
 
 class Customer{
     private String firstName;
@@ -15,8 +14,8 @@ class Customer{
     
     public String getFirstName() {
         return firstName;
-    }
-    
+    }    
+       
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -24,7 +23,7 @@ class Customer{
     public String getLastName() {
         return lastName;
     }
-    
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -32,25 +31,28 @@ class Customer{
     public String getCpf() {
         return cpf;
     }
-    
+
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public Account getAccount(){
+        return this.accounts;
+    }
+    
+    public void setAccount(Account account){
+         this.accounts = account;
     }
     
     public boolean addAccount(Account accounts){
         this.accounts = accounts;
     return true;
-}
+    }
 
-public Account getAccount(){
-    return accounts;
-}
-
-public String displayInformation(){
+    public String displayInformation(){
     return "Nome: " + firstName + " " + lastName + "\n"+
            "CPF: " + cpf + "\n" +
            "Número da Conta: " + accounts.getId() + "\n" +
-           "Saldo: R$ " + accounts.getBalance();
-}
-
+           "Saldo: R$ " + String.format("%.2f", accounts.getBalance());
+    }
 }

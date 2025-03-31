@@ -44,6 +44,11 @@ public class Main {
         System.out.printf("%s%n%s: $%,.2f%n%n", 
             basePlusCommissionEmployee, "earned", basePlusCommissionEmployee.earnings());
     
+
+        Employee employee1 = salariedEmployee;
+
+        System.out.println(employee1);
+
         Employee[] employees = new Employee[4];
         employees[0] = salariedEmployee;
         employees[1] = hourlyEmployee;

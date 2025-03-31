@@ -23,6 +23,7 @@ public class IDPBank {
                             break;
                     case 5: Functions.clearTerminal();
                             System.out.println("Saindo...");
+                            scanner.close();
                             System.exit(0);
                     default:    Functions.clearTerminal();
                                 System.out.println("Opção inválida. Tente novamente. \n");
@@ -34,7 +35,6 @@ public class IDPBank {
                 scanner.nextLine();
             }
         }
-
     }
 
 /*   public static Customer createCustomer(String firstName, String lastName, String CPF) {

@@ -20,9 +20,9 @@ O sistema deverá permitir:
 
 O projeto será implementado em 4 semanas, cada uma focada em um conjunto de funcionalidades específicas:
 
-| Semana | Funcionalidade | Objetivo |
-|---|---|--- |
-| 1 | [Cadastro e abertura de contas](#semana-1-cadastro-e-abertura-de-contas) | Aplicar os conceitos de classe, objeto, atributos, métodos, atributos e métodos de classe (static), modificadores de acesso, get e set, sobrecarga (_overload_) de métodos e construtores, palavra reservada _this_ |
+| Semana | Funcionalidade | Objetivo | Passo a passo |
+|---|---|--- | --- |
+| 1 | [Cadastro e abertura de contas](#semana-1-cadastro-e-abertura-de-contas) | Aplicar os conceitos de classe, objeto, atributos, métodos, atributos e métodos de classe (static), modificadores de acesso, get e set, sobrecarga (_overload_) de métodos e construtores, palavra reservada _this_ | [1. Criando estrutura do projeto](https://www.loom.com/share/c73ab9d62c37401fa459efb0aed976a5?sid=dd1790a9-5f66-4c21-949e-f7aed289a0b1) <br> [2. Criando classe IDP Bank](https://www.loom.com/share/0067cbcf3ce4403fafc95d2b726992ec?sid=2f97e15d-b962-4fcc-b613-b429d12666c9) <br> [3. Criando classe Customer](https://www.loom.com/share/8e4158403ab545f6803ab947e54bd9bb?sid=47477420-2df7-4441-a3ac-1f548811bb6e) <br> [4. Criando classe customer](https://www.loom.com/share/9fc26bf91b2c4942ae6de09aef97a15a?sid=2f446d93-143a-47af-bdce-3c7f5fbd039b) <br> [5. Criando classe Account](https://www.loom.com/share/f2478425042f4893b84c33ef2f370ce2?sid=ad0ce712-b63c-475f-a709-b57ecf23d063) <br>|
 | 2 | [Possibilitar a abertura de diferentes tipos de contas](#semana-2-possibilitar-a-abertura-de-diferentes-tipos-de-contas) | Aplicar conceitos de herança, superclasses, subclasses e métodos sobrescritos (override) |
 
 ### Semana 1: Cadastro e abertura de contas

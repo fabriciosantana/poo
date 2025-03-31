@@ -29,7 +29,7 @@ public class ParkingGarage {
         double preco;
 
         if(hours <= 3) preco = 2.0;
-        else preco = 2.0 + (hours - 3) * 0.5;
+        else preco = 2.0 + Math.ceil(hours - 3) * 0.5; 
         
         if(preco > 10.0) preco = 10.0;
 
