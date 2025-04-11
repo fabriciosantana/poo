@@ -4,6 +4,7 @@ public class IDPBank {
     static Scanner scanner = new Scanner(System.in);
     static Customer currentCustomer;
     static Account currentAccount;
+    static int respostaConta = 0;
 
     public static void main(String[] args) {
         while (true) {
@@ -20,18 +21,12 @@ public class IDPBank {
 
             switch (resposta) {
                 case 1:
-                    System.out.print("Primeiro nome: ");
-                    String firstName = scanner.nextLine();
-                    System.out.print("Sobrenome: ");
-                    String lastName = scanner.nextLine();
-                    System.out.print("CPF: ");
-                    String cpf = scanner.nextLine();
-
-                    currentCustomer = createCustomer(firstName, lastName, cpf);
-                    currentAccount = openAccount(currentCustomer);
-
-                    System.out.println("Conta criada com sucesso! Número da conta: " + currentAccount.getId());
-                    break;
+                    System.out.println("Qual tipo de conta deseja abrir? ");
+                    System.out.println("1. Conta corrente");
+                    System.out.println("2. Conta poupança");
+                    System.out.println("3. Conta salário");
+                    int respostaConta = scanner.nextInt();
+                    scanner.nextLine();
 
                 case 2:
                     displayCustomerInfo();
@@ -50,6 +45,8 @@ public class IDPBank {
                     break;
 
                 case 5:
+
+                case 6:
                     System.out.println("Até logo!");
                     scanner.close();
                     return;
@@ -65,9 +62,22 @@ public class IDPBank {
     }
 
     public static Account openAccount(Customer customer) {
-        Account newAccount = new Account();
-        customer.addAccount(newAccount);
-        return newAccount;
+        Account account = null;
+        switch (respostaConta) {
+            case 1:
+                account = new CheckingAccount();
+                break;
+            case 2:
+                account = new SavingsAccount();
+                break;
+            case 3:
+                account = new SalaryAccount();
+                break;
+            default:
+                System.out.println("Erro");
+            
+        }
+return openAccount(customer);
     }
 
     public static void deposit(double amount) {
@@ -105,4 +115,6 @@ public class IDPBank {
         System.out.println("\nInformações do Cliente:");
         System.out.println(currentCustomer.displayInformation());
     }
+
+
 }

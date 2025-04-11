@@ -1,10 +1,14 @@
-public class Custumer {
+package models;
+public class Customer {
   private String firstName;
   private String lastName;
   private String cpf;
+  private CheckingAccount checkingAccount;
+  private SavingsAccount savingsAccount;
+  private SalaryAccount salaryAccount; 
   private Account accounts;
 
-  public Custumer(String firstName, String lastName, String cpf) {
+  public Customer(String firstName, String lastName, String cpf) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.cpf = cpf;
@@ -12,7 +16,7 @@ public class Custumer {
 
   public boolean addAccount(Account account){
     this.accounts = account;
-    return  true;
+    return true;
   }
 
   public String displayInformation(){

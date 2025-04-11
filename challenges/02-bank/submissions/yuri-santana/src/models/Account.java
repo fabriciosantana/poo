@@ -1,8 +1,10 @@
+package models;
 
-public class Account {
+
+public abstract class Account {
   private  int id;
   private double saldo;
-  private static int accountcounter;
+  private static int accountcounter = 0;
 
   public Account() {
     this.id = ++accountcounter;
@@ -39,6 +41,4 @@ public class Account {
   public void setSaldo(double saldo) {
     this.saldo = saldo;
   }
-
-  
 }
