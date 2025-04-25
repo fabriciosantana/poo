@@ -1,5 +1,5 @@
 public class Motorcycle extends Vehicle {
-    float tarifaHora = 3f;   
+    private float tarifaHora = 3f;   
 
     public Motorcycle(String plate, String brand, String model) {
         super(plate, brand, model);

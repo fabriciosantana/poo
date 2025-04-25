@@ -9,16 +9,14 @@ public abstract class Vehicle {
         this.modelo = modelo;
     }
 
-    public float calculateParkingFee(int hours) {
-        return 10f;
-    }
+    public abstract float calculateParkingFee(int hours);
 
     @Override
     public String toString() {
         String nomeClasse = getClass().getName(), nomePtbr;
-        if(nomeClasse == "Car") nomePtbr = "Carro";
-        else if(nomeClasse == "Motorcycle") nomePtbr = "Moto";
-        else if(nomeClasse == "Truck") nomePtbr = "Caminhão";
+        if(nomeClasse.equals("Car")) nomePtbr = "Carro";
+        else if(nomeClasse.equals("Motorcycle")) nomePtbr = "Moto";
+        else if(nomeClasse.equals("Truck")) nomePtbr = "Caminhão";
         else nomePtbr = "Desconhecido";
 
         return "Veículo: " + nomePtbr +
