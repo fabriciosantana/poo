@@ -3,9 +3,13 @@ public class Account {
     private double balance;
     public static int accountCounter;
 
-    public Account() {
-        id += 1;
+    public Account(int id) {
+        this.id = id;
         balance = 0;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public double getBalance() {

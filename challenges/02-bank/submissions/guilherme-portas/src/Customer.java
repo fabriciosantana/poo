@@ -1,10 +1,10 @@
 public class Customer {
-    String firstName, lastName, CPF;
+    String firstName, lastName, cpf;
     Account accounts;
 
-    public void customer(String firstName, String lastName, String CPF) {
+    public Customer(String firstName, String lastName, String cpf) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.CPF = CPF;
+        this.cpf = cpf;
     }
 }
