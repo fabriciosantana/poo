@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class ArrayListCollection {
-    public static void main(String[] args){
-        ArrayList<String> items = new ArrayList<String>();
+    public static void main(String... args){
+        ArrayList<String> items = new ArrayList<>();
 
         items.add("red");
         items.add(0, "yellow");

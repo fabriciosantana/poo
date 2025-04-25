@@ -1,178 +1,200 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class IDPBank {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Customer customer = null;
+        List<Customer> customers = new ArrayList<>();
 
         while (true) {
-            System.out.println("\nSeja bem-vindo ao IDP Bank! Escolha uma das opções abaixo:");
+            System.out.println("\n=== Bem-vindo ao IDP Bank ===");
             System.out.println("1. Abrir conta");
             System.out.println("2. Consultar cliente");
             System.out.println("3. Depositar");
             System.out.println("4. Sacar");
             System.out.println("5. Transferir");
-            System.out.println("6. Sair");
-            System.out.print("Digite o número correspondente à opção desejada: ");
+            System.out.println("6. Histórico de transações");
+            System.out.println("7. Sair");
+            System.out.print("Escolha uma opção: ");
 
-            int option;
-            if (scanner.hasNextInt()) {
-                option = scanner.nextInt();
-                scanner.nextLine();
-            } else {
-                System.out.println("Opção inválida. Tente novamente.");
-                scanner.nextLine();
-                continue;
-            }
+            int option = scanner.hasNextInt() ? scanner.nextInt() : -1;
+            scanner.nextLine();
 
             switch (option) {
                 case 1:
-                    if (customer == null) {
-                        System.out.println("\nDigite os dados para a abertura da conta.");
-                        System.out.print("Primeiro nome: ");
-                        String firstName = scanner.nextLine();
-                        System.out.print("Sobrenome: ");
-                        String lastName = scanner.nextLine();
-                        System.out.print("CPF: ");
-                        String cpf = scanner.nextLine();
+                    System.out.println("\nDigite os dados para a abertura da conta.");
+                    System.out.print("Primeiro nome: ");
+                    String firstName = scanner.nextLine();
+                    System.out.print("Sobrenome: ");
+                    String lastName = scanner.nextLine();
+                    System.out.print("CPF: ");
+                    String cpf = scanner.nextLine();
 
-                        customer = new Customer(firstName, lastName, cpf);
-                    }
+                    Customer existing = findCustomerByCpf(customers, cpf);
+                    Customer customer = (existing != null) ? existing : new Customer(firstName, lastName, cpf);
 
                     System.out.println("\nQual tipo de conta deseja abrir?");
                     System.out.println("1. Conta Corrente");
                     System.out.println("2. Conta Poupança");
                     System.out.println("3. Conta Salário");
-                    System.out.print("Digite o número da opção desejada: ");
-
-                    int accountType = scanner.nextInt();
+                    System.out.print("Digite a opção: ");
+                    int accType = scanner.nextInt();
                     scanner.nextLine();
 
-                    Account newAccount = null;
-                    switch (accountType) {
-                        case 1:
-                            newAccount = new CheckingAccount();
-                            break;
-                        case 2:
-                            newAccount = new SavingsAccount();
-                            break;
-                        case 3:
-                            newAccount = new SalaryAccount();
-                            break;
-                        default:
-                            System.out.println("Tipo de conta inválido.");
-                            break;
-                    }
+                    Account newAccount = switch (accType) {
+                        case 1 -> new CheckingAccount();
+                        case 2 -> new SavingsAccount();
+                        case 3 -> new SalaryAccount();
+                        default -> null;
+                    };
 
                     if (newAccount != null) {
                         customer.addAccount(newAccount);
-                        System.out.println("\nConta criada com sucesso! Pressione Enter para continuar...");
-                        scanner.nextLine();
+                        if (existing == null) customers.add(customer);
+                        System.out.println("Conta criada com sucesso!");
+                    } else {
+                        System.out.println("Tipo de conta inválido.");
                     }
                     break;
 
                 case 2:
+                    customer = selectCustomer(customers, scanner);
                     if (customer != null) {
                         System.out.println(customer.displayInformation());
-                    } else {
-                        System.out.println("Nenhum cliente cadastrado ainda.");
                     }
-                    System.out.println("\nPressione Enter para continuar...");
-                    scanner.nextLine();
                     break;
 
                 case 3:
+                    customer = selectCustomer(customers, scanner);
                     if (customer != null) {
-                        System.out.print("Digite o número da conta (1 - Corrente, 2 - Poupança, 3 - Salário): ");
-                        int accountTypeDeposit = scanner.nextInt();
-                        scanner.nextLine();
-
-                        Account account = customer.getAccount(accountTypeDeposit);
+                        Account account = selectAccount(customer, scanner);
                         if (account != null) {
-                            System.out.print("Digite o valor que deseja depositar: ");
+                            System.out.print("Valor do depósito: ");
                             double amount = scanner.nextDouble();
                             scanner.nextLine();
                             account.deposit(amount);
-                            System.out.println("\nValor depositado com sucesso na conta do cliente " + customer.getFullName() + ".");
-                            System.out.println(customer.displayInformation());
-                        } else {
-                            System.out.println("Conta inválida.");
+                            System.out.println("Depósito realizado com sucesso!");
                         }
-                    } else {
-                        System.out.println("Nenhum cliente cadastrado ainda.");
                     }
-                    System.out.println("\nPressione Enter para continuar...");
-                    scanner.nextLine();
                     break;
 
                 case 4:
+                    customer = selectCustomer(customers, scanner);
                     if (customer != null) {
-                        System.out.print("Digite o número da conta (1 - Corrente, 2 - Poupança, 3 - Salário): ");
-                        int accountTypeWithdraw = scanner.nextInt();
-                        scanner.nextLine();
-
-                        Account account = customer.getAccount(accountTypeWithdraw);
+                        Account account = selectAccount(customer, scanner);
                         if (account != null) {
-                            System.out.print("Digite o valor que deseja sacar: ");
+                            System.out.print("Valor do saque: ");
                             double amount = scanner.nextDouble();
                             scanner.nextLine();
                             if (account.withdraw(amount)) {
-                                System.out.println("\nValor sacado com sucesso da conta do cliente " + customer.getFullName() + ".");
-                                System.out.println(customer.displayInformation());
+                                System.out.println("Saque realizado com sucesso!");
                             } else {
-                                System.out.println("Saldo insuficiente ou valor inválido.");
+                                System.out.println("Saldo insuficiente.");
                             }
-                        } else {
-                            System.out.println("Conta inválida.");
                         }
-                    } else {
-                        System.out.println("Nenhum cliente cadastrado ainda.");
                     }
-                    System.out.println("\nPressione Enter para continuar...");
-                    scanner.nextLine();
                     break;
 
                 case 5:
-                    if (customer != null) {
-                        System.out.print("Digite o número da conta de origem (1 - Corrente, 2 - Poupança, 3 - Salário): ");
-                        int fromAccountType = scanner.nextInt();
-                        scanner.nextLine();
-                        System.out.print("Digite o número da conta de destino (1 - Corrente, 2 - Poupança, 3 - Salário): ");
-                        int toAccountType = scanner.nextInt();
-                        scanner.nextLine();
-
-                        Account fromAccount = customer.getAccount(fromAccountType);
-                        Account toAccount = customer.getAccount(toAccountType);
-
-                        if (fromAccount != null && toAccount != null) {
-                            System.out.print("Digite o valor que deseja transferir: ");
-                            double amount = scanner.nextDouble();
-                            scanner.nextLine();
-                            if (fromAccount.withdraw(amount)) {
-                                toAccount.deposit(amount);
-                                System.out.println("\nTransferência realizada com sucesso.");
-                                System.out.println(customer.displayInformation());
-                            } else {
-                                System.out.println("Saldo insuficiente ou valor inválido.");
+                    System.out.println("Transferência - Cliente de origem:");
+                    Customer sender = selectCustomer(customers, scanner);
+                    if (sender != null) {
+                        Account from = selectAccount(sender, scanner);
+                        if (from != null) {
+                            System.out.println("Transferência - Cliente de destino:");
+                            Customer receiver = selectCustomer(customers, scanner);
+                            if (receiver != null) {
+                                Account to = selectAccount(receiver, scanner);
+                                if (to != null) {
+                                    System.out.print("Valor a transferir: ");
+                                    double amount = scanner.nextDouble();
+                                    scanner.nextLine();
+                                    if (from.withdraw(amount)) {
+                                        to.deposit(amount);
+                                        System.out.println("Transferência realizada!");
+                                    } else {
+                                        System.out.println("Saldo insuficiente.");
+                                    }
+                                }
                             }
-                        } else {
-                            System.out.println("Conta de origem ou destino inválida.");
                         }
-                    } else {
-                        System.out.println("Nenhum cliente cadastrado ainda.");
                     }
-                    System.out.println("\nPressione Enter para continuar...");
-                    scanner.nextLine();
                     break;
 
                 case 6:
-                    System.out.println("Obrigado por usar o IDP Bank. Até logo!");
+                    customer = selectCustomer(customers, scanner);
+                    if (customer != null) {
+                        Account account = selectAccount(customer, scanner);
+                        if (account != null) {
+                            System.out.println("\n=== Histórico de Transações ===");
+                            for (Transaction entry : account.getTransactionHistory()) {
+                                System.out.println(entry.toString()); 
+                            }
+                        }
+                    }
+                    break;
+
+                case 7:
+                    System.out.println("Obrigado por usar o IDP Bank!");
                     scanner.close();
                     return;
 
                 default:
-                    System.out.println("Opção inválida. Tente novamente.");
+                    System.out.println("Opção inválida.");
             }
+        }
+    }
+
+    private static Customer findCustomerByCpf(List<Customer> customers, String cpf) {
+        for (Customer c : customers) {
+            if (c.getCPF().equals(cpf)) return c;
+        }
+        return null;
+    }
+
+    private static Customer selectCustomer(List<Customer> customers, Scanner scanner) {
+        if (customers.isEmpty()) {
+            System.out.println("Nenhum cliente cadastrado.");
+            return null;
+        }
+
+        System.out.println("\nClientes disponíveis:");
+        for (int i = 0; i < customers.size(); i++) {
+            System.out.println((i + 1) + ". " + customers.get(i).getFullName() + " - CPF: " + customers.get(i).getCPF());
+        }
+        System.out.print("Escolha o cliente (número): ");
+        int index = scanner.nextInt() - 1;
+        scanner.nextLine();
+
+        if (index >= 0 && index < customers.size()) {
+            return customers.get(index);
+        } else {
+            System.out.println("Cliente inválido.");
+            return null;
+        }
+    }
+
+    private static Account selectAccount(Customer customer, Scanner scanner) {
+        List<Account> accounts = customer.getAccounts();
+        if (accounts.isEmpty()) {
+            System.out.println("O cliente não possui contas.");
+            return null;
+        }
+
+        System.out.println("\nContas disponíveis:");
+        for (int i = 0; i < accounts.size(); i++) {
+            System.out.println((i + 1) + ". " + accounts.get(i).getClass().getSimpleName() + " - Saldo: R$ " + accounts.get(i).getBalance());
+        }
+        System.out.print("Escolha a conta (número): ");
+        int accIndex = scanner.nextInt() - 1;
+        scanner.nextLine();
+
+        if (accIndex >= 0 && accIndex < accounts.size()) {
+            return accounts.get(accIndex);
+        } else {
+            System.out.println("Conta inválida.");
+            return null;
         }
     }
 }

@@ -2,6 +2,12 @@ public class SavingsAccount extends Account {
     private static final double INTEREST_RATE = 0.005;
 
     @Override
+public String getType() {
+    return "Poupança";
+}
+
+
+    @Override
     public void deposit(double amount) {
         if (amount > 0) {
             balance += amount;

@@ -24,6 +24,7 @@ O projeto será implementado em 4 semanas, cada uma focada em um conjunto de fun
 |---|---|--- | --- |
 | 1 | [Cadastro e abertura de contas](#semana-1-cadastro-e-abertura-de-contas) | Aplicar os conceitos de classe, objeto, atributos, métodos, atributos e métodos de classe (static), modificadores de acesso, get e set, sobrecarga (_overload_) de métodos e construtores, palavra reservada _this_ | [1. Criando estrutura do projeto](https://www.loom.com/share/c73ab9d62c37401fa459efb0aed976a5?sid=dd1790a9-5f66-4c21-949e-f7aed289a0b1) <br> [2. Criando classe IDP Bank](https://www.loom.com/share/0067cbcf3ce4403fafc95d2b726992ec?sid=2f97e15d-b962-4fcc-b613-b429d12666c9) <br> [3. Criando classe Customer](https://www.loom.com/share/8e4158403ab545f6803ab947e54bd9bb?sid=47477420-2df7-4441-a3ac-1f548811bb6e) <br> [4. Criando classe customer](https://www.loom.com/share/9fc26bf91b2c4942ae6de09aef97a15a?sid=2f446d93-143a-47af-bdce-3c7f5fbd039b) <br> [5. Criando classe Account](https://www.loom.com/share/f2478425042f4893b84c33ef2f370ce2?sid=ad0ce712-b63c-475f-a709-b57ecf23d063) <br>|
 | 2 | [Possibilitar a abertura de diferentes tipos de contas](#semana-2-possibilitar-a-abertura-de-diferentes-tipos-de-contas) | Aplicar conceitos de herança, superclasses, subclasses e métodos sobrescritos (override) |
+| 3 | [Possibilidade de criar uma lista de contas e armazenar a lista de transações]() | Aplicar conceitos de Array e ArrayList |
 
 ### Semana 1: Cadastro e abertura de contas
 
@@ -248,3 +249,81 @@ Digite o número da opção desejada:
    - Implementar a lógica de escolha do tipo de conta.
    - Criar método `executeMonthlyProcessing()` que aplica taxas e rendimentos.
 1. Utilizar herança para que operações bancárias sejam tratadas de forma genérica, sem verificar manualmente o tipo da conta.
+
+
+Claro! Aqui está a **especificação da Semana 3 do projeto IDP Bank**, com foco no uso de **`Array` e `ArrayList`**, seguindo o estilo das semanas anteriores.
+
+---
+
+### Semana 3: Gerenciamento de múltiplas contas e histórico de transações
+
+O programa IDP Bank deve permitir que cada cliente tenha **várias contas bancárias**, além de armazenar e consultar o **histórico de transações realizadas**. Para isso, deve ser aplicado os  os conceitos de `Array` e `ArrayList`
+
+#### Cadastro de múltiplas contas por cliente
+
+1. O sistema deve permitir que **um mesmo cliente possua mais de uma conta** de tipos diferentes (Corrente, Poupança, Salário).
+2. Ao abrir uma nova conta, o cliente deve ser identificado por seu CPF.
+3. A nova conta criada deve ser associada corretamente ao cliente já existente.
+4. O programa deve armazenar todas as contas de um cliente em uma estrutura de dados apropriada (por exemplo, `ArrayList<Account>`).
+5. O programa deve exibir todas as contas do cliente ao consultar.
+
+#### Histórico de transações
+
+1. O sistema deve registrar cada operação bancária (depósito e saque) em um **histórico de transações** para cada conta.
+2. Cada transação deve conter:
+   - Tipo: `Depósito` ou `Saque`
+   - Valor
+   - Data e hora (use [LocalDateTime.now()](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDateTime.html#now()))
+3. As transações devem ser armazenadas em uma lista (`ArrayList<Transaction>`) dentro de cada conta.
+4. O sistema deve permitir que o usuário selecione uma conta e consulte o histórico completo de transações dela.
+
+#### Novo menu com opção de histórico
+
+```bash
+Seja bem-vindo ao IDP Bank! Escolha uma das opções abaixo:
+
+1. Abrir conta
+2. Consultar cliente
+3. Depositar
+4. Sacar
+5. Ver histórico de transações
+6. Sair
+```
+
+#### Exemplo de histórico de transações
+
+```bash
+Histórico de transações da conta 1001:
+
+[2024-04-15 10:32] Depósito de R$ 500,00
+[2024-04-15 14:50] Saque de R$ 200,00
+[2024-04-16 09:10] Depósito de R$ 750,00
+
+Pressione Enter para continuar...
+```
+
+#### Requisitos de implementação
+
+1. Atualizar a classe `Customer`:
+   - Alterar o atributo `accounts` de `Account` para `ArrayList<Account>`
+   - Permitir adicionar múltiplas contas com `addAccount(Account account)`
+   - Implementar `getAccounts()` que retorna todas as contas do cliente
+   - Atualizar o método `displayInformation()` para exibir todas as contas
+
+2. Atualizar a classe `Account`:
+   - Adicionar o atributo `transactions`, um `ArrayList<Transaction>`
+   - Criar método `addTransaction(Transaction transaction)`
+   - Criar método `getTransactionHistory()` que retorna as transações
+   - Alterar os métodos `deposit(double amount)` e `withdraw(double amount)` para adicionar automaticamente uma nova `Transaction` ao histórico
+
+3. Criar uma nova classe `Transaction`:
+   - Atributos:
+     - `type` (`String`) – tipo da transação ("Depósito" ou "Saque")
+     - `amount` (`double`) – valor
+     - `timestamp` (`LocalDateTime`) – data e hora
+   - Construtor e método `toString()` para formatar a transação
+
+4. Atualizar a classe `IDPBank` para:
+   - Listar contas existentes para que o usuário escolha com qual operar
+   - Permitir consultar o histórico de transações
+   - Manter todos os clientes em uma `ArrayList<Customer>`

@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class CalculadoraIMC{
+public class CalculadoraIMC {
     public static void main(String[] args) {
         //Cria um objeto Scanner chamado scanner para ler entradas do usuário
         Scanner scanner = new Scanner (System.in);
@@ -43,6 +43,6 @@ public class CalculadoraIMC{
             return "Obesidade grau III";
         }
     }
-
 }
+
 // adicionando comentario para ficar no mesmo comit que os outros

@@ -1,7 +1,6 @@
 
-import java.text.DecimalFormat;
 
-public class Account {
+public abstract class Account {
     private int id;
     private double balance;
     private double amount;
@@ -20,9 +19,8 @@ public class Account {
         this.id = id;
     }
 
-    public String getBalance() { // formatando o saldo
-        DecimalFormat df = new DecimalFormat("R$ 0.00");
-        return df.format(balance);
+    public double getBalance() { 
+        return this.balance;
     }
 
     public void setBalance(double balance) {
