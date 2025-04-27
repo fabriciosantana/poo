@@ -1,4 +1,4 @@
-public abstract class Account {
+class Account {
     private int id;
     private double balance;
     private static int accountCounter = 0;
@@ -24,7 +24,6 @@ public abstract class Account {
         this.id = id;
     }
 
-
     public void deposit(double amount) {
         if (amount > 0) {
             balance += amount;
@@ -33,7 +32,13 @@ public abstract class Account {
         }
     }
 
-    public abstract boolean withdraw(double amount);
+    public boolean withdraw(double amount) {
+        if (amount > 0 && balance >= amount) {
+            balance -= amount;
+            return true;
+        }
+        return false;
+    }
 }
 
 /*

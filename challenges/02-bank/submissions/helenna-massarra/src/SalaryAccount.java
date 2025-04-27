@@ -5,12 +5,6 @@ public class SalaryAccount extends Account {
     }
 
     @Override
-public String getType() {
-    return "Salário";
-}
-
-
-    @Override
     public boolean withdraw(double amount) {
         if (amount > 0 && balance >= amount) {
             balance -= amount;
