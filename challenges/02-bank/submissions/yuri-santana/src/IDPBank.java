@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 import models.Account;
 import models.CheckingAccount;
@@ -8,7 +9,8 @@ import models.SavingsAccount;
 public class IDPBank {
   public static void main(String[] args) {
     int n = 0;
-    while (n != 6) {
+    ArrayList<Customer> clientes = new ArrayList<>();
+    while (n != 7) {
       System.out.println("""
           Seja bem-vindo ao IDP Bank! Escolha uma das opções abaixo:\n
           1. Abrir conta
@@ -16,26 +18,41 @@ public class IDPBank {
           3. Depositar
           4. Sacar
           5. Tranferir
-          6. Sair
+          6. Historico
+          7. Sair
           Digite o número correspondente à opção desejada: 
           """);
 
-      @SuppressWarnings("resource")
       Scanner scanner = new Scanner(System.in);
       n = scanner.nextInt();
-      Customer customer = new Customer(null, null, null);
       switch (n) {
         case 1 -> {
-          customer = abrirConta(scanner);
+          String cpf = scanner.nextLine();
+          Customer customer = consultarClienteExiste(cpf,clientes);
+          if(!(customer == null)){
+            openAccount(customer);
+          }
+          else{
+            System.out.println("usuário não encontrado, crie uma conta: ");
+            System.out.println("primeiro nome: " );
+            String firstName = scanner.nextLine();
+            System.out.println("Segundo nome " );
+            String lastName = scanner.nextLine();
+            customer = createCustomer(firstName, lastName, cpf);
+          }
+          clientes.add(customer);
+          System.out.println("Sucesso");
         }
         case 2 -> {
-          customer.displayInformation();
+          String cpf = scanner.nextLine();
         }
         case 3 -> {
         }
         case 4 -> {
         }
         case 5 -> {
+        }
+        case 6 -> {
         }
         default -> System.out.println("Opção inválida. Tente novamente.");
       }
@@ -44,6 +61,7 @@ public class IDPBank {
 
   public static Customer createCustomer(String firstName, String lastName, String cpf) {
     Customer custumer = new Customer(firstName, lastName, cpf);
+    openAccount(custumer);
     return custumer;
   }
   
@@ -61,12 +79,18 @@ public class IDPBank {
       switch (tipo) {
         case 1 -> {
           CheckingAccount checkingAccount = new CheckingAccount();
+          customer.addAccount(checkingAccount);
+          return  checkingAccount;
         }
         case 2 -> {
           SavingsAccount savingsAccount = new SavingsAccount();
+          customer.addAccount(savingsAccount);
+          return savingsAccount;
         }
         case 3 -> {
           SalaryAccount salaryAccount = new SalaryAccount();
+          customer.addAccount(salaryAccount);
+          return salaryAccount;
         }
       }
       return null;
@@ -80,20 +104,13 @@ public class IDPBank {
       return false;
     }
 
-    private static Customer abrirConta(Scanner scanner) {
-      System.out.println("Digite os dados para a abertura da conta.\n");
-      System.out.println("Primeiro nome: ");
-      String firstName = scanner.next();
-      System.out.println("Sobrenome: ");
-      String lastName = scanner.next();
-      System.out.println("CPF: ");
-      String cpf = scanner.next();
-      System.out.println();
-      Customer custumer = createCustomer(firstName, lastName, cpf);
-      //openAccount(custumer);
-      System.out.println("Conta criada com sucesso!\n");
-      System.out.println(custumer.displayInformation());
-      return custumer;
+    public static Customer consultarClienteExiste(String cpf,ArrayList<Customer> clientes){
+          for (Customer customer : clientes) {
+            if(customer.getCpf().equals(cpf)){
+              return customer;
+            }
+          }
+          return null;
     }
   }
   

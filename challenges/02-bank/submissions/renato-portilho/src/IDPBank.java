@@ -18,6 +18,7 @@ public class IDPBank {
 
             int resposta = scanner.nextInt();
             scanner.nextLine();
+            int respostaConta;
 
             switch (resposta) {
                 case 1:
@@ -25,7 +26,7 @@ public class IDPBank {
                     System.out.println("1. Conta corrente");
                     System.out.println("2. Conta poupança");
                     System.out.println("3. Conta salário");
-                    int respostaConta = scanner.nextInt();
+                    respostaConta = scanner.nextInt();
                     scanner.nextLine();
 
                 case 2:
@@ -75,9 +76,9 @@ public class IDPBank {
                 break;
             default:
                 System.out.println("Erro");
-            
+
         }
-return openAccount(customer);
+        return openAccount(customer);
     }
 
     public static void deposit(double amount) {
@@ -116,5 +117,19 @@ return openAccount(customer);
         System.out.println(currentCustomer.displayInformation());
     }
 
+    public static void executeMonthlyProcessing() {
+        if (currentCustomer == null) {
+            System.out.println("Erro, voc^não tem nenhum cliente!");
+            return;
+        }
+        if (currentCustomer.getCheckingAccount() != null) {
+            currentCustomer.getCheckingAccount().applyMaitenanceFee();
+        }
+        if(currentCustomer.getSavingsAccount() != null){
+            currentCustomer.getSavingsAccount().applyMaitenanceFee();
+        }
+        System.out.println("Processe concluído");
+
+    }
 
 }

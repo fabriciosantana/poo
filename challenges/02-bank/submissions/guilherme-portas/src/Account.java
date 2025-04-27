@@ -8,6 +8,15 @@ public class Account {
         balance = 0;
     }
 
+    public Account(int id) {
+        this.id = id;
+        balance = 0;
+    }
+
+    public int getId() {
+        return id;
+    }
+
     public double getBalance() {
         return balance;
     }

@@ -3,7 +3,7 @@ public class Customer {
     private String lastName;
     private String cpf;
     private Account accounts;
-
+  
     public Customer(String firstName, String lastName, String cpf, Account accounts) {
         this.firstName = firstName;
         this.lastName = lastName;

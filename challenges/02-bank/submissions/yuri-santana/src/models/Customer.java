@@ -1,12 +1,12 @@
 package models;
+
+import java.util.ArrayList;
+
 public class Customer {
   private String firstName;
   private String lastName;
   private String cpf;
-  private CheckingAccount checkingAccount;
-  private SavingsAccount savingsAccount;
-  private SalaryAccount salaryAccount; 
-  private Account accounts;
+  private ArrayList<Account> accounts;
 
   public Customer(String firstName, String lastName, String cpf) {
     this.firstName = firstName;
@@ -15,15 +15,18 @@ public class Customer {
   }
 
   public boolean addAccount(Account account){
-    this.accounts = account;
+    accounts.add(account);
     return true;
   }
 
   public String displayInformation(){
-    return   "Nome: " + this.getFirstName() + " " + this.getLastName() +"\n"
-            +"CPF: " + this.getCpf() + "\n"
-            +"Número da Conta: " + this.accounts.getId() + "\n"
-            +"Saldo : " + this.accounts.getSaldo() + "\n";
+    String informacoes = "Nome: " + this.getFirstName() + " " + this.getLastName() +"\n"
+            +"CPF: " + this.getCpf() + "\n";
+    for (Account account : accounts) {
+      informacoes = informacoes.concat("Conta: " + account.getId() + "\n");
+      informacoes = informacoes.concat("Saldo: " + account.getSaldo() + "\n");
+    }
+    return informacoes;
   }
 
   public String getFirstName() {
@@ -43,13 +46,13 @@ public class Customer {
   }
   public void setCpf(String cpf) {
     this.cpf = cpf;
-  }
-  public Account getAccounts() {
-    return accounts;
-  }
-  public void setAccounts(Account accounts) {
-    this.accounts = accounts;
-  }
+  }  
 
-  
+    public ArrayList<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(ArrayList<Account> accounts) {
+        this.accounts = accounts;
+    }
 }
