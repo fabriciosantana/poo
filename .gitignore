@@ -33,8 +33,3 @@ bin/
 *.properties
 *.properties.local
 *.properties.supabase
-
-# IntelliJ IDEA
-.idea
-*.iml
-out

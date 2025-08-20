@@ -9,7 +9,7 @@ public class CalculadoraIMC {
 
         System.out.print("Digite sua altura em metros: ");
         double height = scanner.nextDouble();
-        
+
         scanner.close();
 
         double imc = calcularIMC(weight, height);
