@@ -6,6 +6,7 @@ public class Fibonacci {
 
         System.out.print("Digite um número inteiro não negativo: ");
         int number = scanner.nextInt();
+        scanner.close();
 
         System.out.println(formatarSaida(calcularFibonacci(number), number));
     }
