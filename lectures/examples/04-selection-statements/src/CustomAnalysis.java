@@ -1,5 +1,5 @@
 
-import java.util.Scanner;123
+import java.util.Scanner;
 
 public class CustomAnalysis {
     
