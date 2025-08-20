@@ -10,7 +10,7 @@ class SwitchMissingBreak {
             System.out.println("  5. for\n"); 
             System.out.println("Choose one:"); 
             choice = (char) System.in.read(); 
-            } while( choice < '1' || choice > '5'); 
+        } while( choice < '1' || choice > '5'); 
 
         System.out.println("\n"); 
 
