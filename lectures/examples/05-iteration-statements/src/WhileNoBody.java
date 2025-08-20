@@ -1,4 +1,4 @@
-class NoBody { 
+class WhileNoBody { 
     public static void main(String[] args) { 
         int i, j; 
         i = 100; 
