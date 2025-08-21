@@ -14,8 +14,8 @@ public class Fibonacci {
             return;
         }
 
-        long resultado = calcularFibonacci(n);                 // FUNÇÃO DE CÁLCULO
-        String saida = formatarSaida(n, resultado);            // FUNÇÃO DE FORMATAÇÃO
+        long resultado = calcularFibonacci(n);              // cálculo eficiente
+        String saida = formatarSaida(resultado, n);          // formatação conforme especificação
 
         System.out.println(saida);
 
@@ -36,8 +36,8 @@ public class Fibonacci {
         return b;
     }
 
-    // Formata saída
-    public static String formatarSaida(int n, long resultado) {
-        return String.format("O %dº número de Fibonacci é: %d", resultado, n);
+    // Formata saída (resultado primeiro, depois n)
+    public static String formatarSaida(long resultado, int n) {
+        return String.format("O %dº número de Fibonacci é: %d", n, resultado);
     }
 }
