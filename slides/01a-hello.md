@@ -63,10 +63,24 @@ layout: default
 
 ## Primeiro programa Java
 
+[Write Once, run everywhere](https://en.wikipedia.org/wiki/Write_once,_run_anywhere)
+
+<FigureWithCaption
+  src="images/hello.png"
+  alt="Desenvolvendo programa Java"
+  reference="SEDEGWICK, Robert; WAYNE, Kevin. Computer Science: An Interdisciplinary Approach. Boston: Addison-Wesley Professional, 2016."
+/>
+
+--- 
+
+## Primeiro programa Java
+
 Desenvolver código do programa HelloWorld
 ```java
 public class HelloWorld {
-  System.out.println("Hello, World!");
+  public static void main(String[] args) {
+    System.out.println("Hello, World!");
+  }
 }
 ```
 Compilar programa no terminal 
