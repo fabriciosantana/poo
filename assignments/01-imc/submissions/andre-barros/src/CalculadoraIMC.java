@@ -29,7 +29,7 @@ public class CalculadoraIMC {
         if (imc < 18.5) {
             return "Abaixo do peso";
         } else if (imc < 25.0) {
-            return "Normal";
+            return "Eutrófico";
         } else if (imc < 30.0) {
             return "Sobrepeso";
         } else if (imc < 35.0) {
