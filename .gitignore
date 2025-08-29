@@ -32,4 +32,5 @@ bin/
 .qodo/
 *.properties
 *.properties.local
-*.properties.supabase
+*.properties.supabase.DS_Store
+.DS_Store
