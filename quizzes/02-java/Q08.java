@@ -1,5 +1,5 @@
 public class Q08 {
-    public void main(String[] args) {
+    public static void main(String[] args) {
         op(false, false);
         op(true, false);
         op(false, true);
