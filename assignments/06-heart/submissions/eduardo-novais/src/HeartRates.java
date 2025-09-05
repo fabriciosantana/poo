@@ -15,45 +15,20 @@ public class HeartRates {
         this.yearOfBirth = year;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
+    public String getFirstName() { return firstName; }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    public String getLastName() { return lastName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
 
-    public String getLastName() {
-        return lastName;
-    }
+    public int getDayOfBirth() { return dayOfBirth; }
+    public void setDayOfBirth(int dayOfBirth) { this.dayOfBirth = dayOfBirth; }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    public int getMonthOfBirth() { return monthOfBirth; }
+    public void setMonthOfBirth(int monthOfBirth) { this.monthOfBirth = monthOfBirth; }
 
-    public int getDayOfBirth() {
-        return dayOfBirth;
-    }
-
-    public void setDayOfBirth(int dayOfBirth) {
-        this.dayOfBirth = dayOfBirth;
-    }
-
-    public int getMonthOfBirth() {
-        return monthOfBirth;
-    }
-
-    public void setMonthOfBirth(int monthOfBirth) {
-        this.monthOfBirth = monthOfBirth;
-    }
-
-    public int getYearOfBirth() {
-        return yearOfBirth;
-    }
-
-    public void setYearOfBirth(int yearOfBirth) {
-        this.yearOfBirth = yearOfBirth;
-    }
+    public int getYearOfBirth() { return yearOfBirth; }
+    public void setYearOfBirth(int yearOfBirth) { this.yearOfBirth = yearOfBirth; }
 
     public int calculateAge(int currentYear) {
         int age = currentYear - yearOfBirth;
@@ -90,15 +65,13 @@ public class HeartRates {
         int month = input.nextInt();
         int year = input.nextInt();
 
-
-
         HeartRates person = new HeartRates(firstName, lastName, day, month, year);
 
         System.out.printf("Nome: %s %s%n", person.getFirstName(), person.getLastName());
 
         System.out.printf("Data de nascimento: %d/%d/%d%n", person.getDayOfBirth(), person.getMonthOfBirth(), person.getYearOfBirth());
 
-        System.out.printf("Idade: %d anos%n", person.calculateAge(currentYear));
+        System.out.printf("Idade: %d anos%n", person.calculateAge(2025));
 
         System.out.printf("Frequência cardíaca máxima: %d bpm%n", person.calculateMaxHeartRate());
 
