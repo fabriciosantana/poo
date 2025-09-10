@@ -31,8 +31,18 @@ public class HealthProfile {
         System.out.print("Digite seu sobrenome: ");
         String lastName = scanner.nextLine();
 
-        System.out.print("Digite seu gênero (M/F): ");
-        char gender = scanner.nextLine().charAt(0);
+        String genderInput;
+        char gender;
+        while (true) {
+            System.out.print("Digite seu gênero (M/F): ");
+            genderInput = scanner.nextLine().trim();
+            if (!genderInput.isEmpty()) {
+                gender = Character.toUpperCase(genderInput.charAt(0));
+                if (gender == 'M' || gender == 'F') break;
+            }
+            System.out.println("Entrada inválida. Digite 'M' ou 'F'.");
+        }
+
 
         System.out.print("Digite sua data de nascimento (dia, mês e ano separados por espaço): ");
         int day = scanner.nextInt();
@@ -45,7 +55,15 @@ public class HealthProfile {
         System.out.print("Digite seu peso em libras: ");
         double weight = scanner.nextDouble();
 
-        HealthProfile patient = new HealthProfile(firstName, lastName, gender, day, month, year, height, weight);
+        try {
+            java.time.LocalDate.of(year, month, day);
+        } catch (java.time.DateTimeException e) {
+            System.out.println("Data de nascimento inválida.");
+            scanner.close();
+            return;
+        }
+
+         HealthProfile patient = new HealthProfile(firstName, lastName, gender, day, month, year, height, weight);
 
         System.out.println("\nNome: " + patient.getFirstName() + " " + patient.getLastName());
         System.out.println("Gênero: " + (patient.getGender() == 'M' ? "Masculino" : "Feminino"));
@@ -68,69 +86,93 @@ public class HealthProfile {
 
         scanner.close();
     }
+    
     public String getFirstName() {
         return firstName;
     }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
     public String getLastName() {
         return lastName;
     }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
     public char getGender() {
         return gender;
     }
+
     public void setGender(char gender) {
         this.gender = gender;
     }
+
     public int getDayOfBirth() {
         return dayOfBirth;
     }
+
     public void setDayOfBirth(int dayOfBirth) {
         this.dayOfBirth = dayOfBirth;
     }
+
     public int getMonthOfBirth() {
         return monthOfBirth;
     }
+
     public void setMonthOfBirth(int monthOfBirth) {
         this.monthOfBirth = monthOfBirth;
     }
+
     public int getYearOfBirth() {
         return yearOfBirth;
     }
+
+
     public void setYearOfBirth(int yearOfBirth) {
         this.yearOfBirth = yearOfBirth;
     }
+
     public double getHeightInInches() {
         return heightInInches;
     }
+
     public void setHeightInInches(double heightInInches) {
         this.heightInInches = heightInInches;
     }
+
     public double getWeightInPounds() {
         return weightInPounds;
     }
+
     public void setWeightInPounds(double weightInPounds) {
         this.weightInPounds = weightInPounds;
     }
+
     public int calculateAge() {
         LocalDate birthDate = LocalDate.of(yearOfBirth, monthOfBirth, dayOfBirth);
         LocalDate currentDate = LocalDate.now();
         return Period.between(birthDate, currentDate).getYears();
     }
+
     public int calculateMaxHeartRate() {
         return 220 - calculateAge();
     }
+
     public double[] calculateTargetHeartRate() {
         int maxHeartRate = calculateMaxHeartRate();
         double minTargetRate = maxHeartRate * 0.50;
         double maxTargetRate = maxHeartRate * 0.85;
         return new double[]{minTargetRate, maxTargetRate};
     }
+
     public double calculateBMI() {
+        if (heightInInches <= 0) {
+            throw new IllegalArgumentException("Altura deve ser maior que zero.");
+        }
         return (weightInPounds * 703) / (heightInInches * heightInInches);
     }
 }

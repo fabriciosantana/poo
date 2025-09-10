@@ -31,6 +31,14 @@ public class HeartRates {
         int month = scanner.nextInt();
         int year = scanner.nextInt();
 
+        try {
+            java.time.LocalDate.of(year, month, day);
+        } catch (java.time.DateTimeException e) {
+            System.out.println("Data de nascimento inválida.");
+            scanner.close();
+            return;
+        }
+
         HeartRates person = new HeartRates(firstName, lastName, day, month, year);
 
         System.out.println("\nNome: " + person.getFirstName() + " " + person.getLastName());
