@@ -1,0 +1,37 @@
+@startuml
+class Box {
+    double width
+    double height
+    double depth
+    Box(Box ob)
+    Box(double w, double h, double d)
+    Box()
+    Box(double len)
+    double volume()
+}
+
+class BoxWeight {
+    double weight
+    BoxWeight(BoxWeight ob)
+    BoxWeight(double w, double h, double d, double m)
+    BoxWeight()
+    BoxWeight(double len, double m)
+}
+
+class BoxShipment {
+    double cost
+    BoxShipment(BoxShipment ob)
+    BoxShipment(double w, double h, double d, double m, double c)
+    BoxShipment()
+    BoxShipment(double len, double m, double c)
+}
+
+class ColorBox {
+    int color
+    ColorBox(double w, double h, double d, int c)
+}
+
+Box <|-- BoxWeight
+BoxWeight <|-- BoxShipment
+Box <|-- ColorBox
+@enduml
