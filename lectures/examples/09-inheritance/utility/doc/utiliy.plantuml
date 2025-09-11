@@ -1,0 +1,28 @@
+@startuml
+class Light {
+    int noOfWatts
+    - boolean indicator
+    # String location
+    - static int counter
+    Light(int noOfWatts, boolean indicator, String location)
+    + void switchOn()
+    + void switchOff()
+    + boolean isOn()
+    - String getLocation()
+    + static int getCount()
+}
+
+class TubeLight {
+    - int tubeLength
+    - int tubeDiameter
+    TubeLight(int noOfWatts, boolean indicator, String location, int tubeLength, int tubeDiameter)
+    + int getTubeLength()
+    + void printInfo()
+}
+
+class UtilityApp {
+    + main(String[] args)
+}
+
+Light <|-- TubeLight
+@enduml
