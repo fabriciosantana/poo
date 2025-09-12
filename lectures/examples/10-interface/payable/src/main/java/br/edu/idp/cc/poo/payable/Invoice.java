@@ -1,4 +1,4 @@
-package br.edu.ipd.cc.poo.payable;
+package br.edu.idp.cc.poo.payable;
 
 public class Invoice implements Payable {
     private final String partNumber; 
@@ -22,7 +22,6 @@ public class Invoice implements Payable {
             this.partDescription = partDescription; 
             this.pricePerItem = pricePerItem; 
         } 
-
 
     public String getPartNumber() {return partNumber;} 
 

@@ -1,0 +1,35 @@
+@startuml
+interface IStack {
+    + void push(Object item)
+    + Object pop()
+}
+
+interface ISafeStack {
+    + boolean isEmpty()
+    + boolean isFull()
+}
+
+class Stack {
+    # Object[] elements
+    # int tos
+    + Stack(int capacity)
+    + void push(Object item)
+    + Object pop()
+    + Object peek()
+}
+
+class SafeStack {
+    + SafeStack(int capacity)
+    + boolean isEmpty()
+    + boolean isFull()
+}
+
+class StackApp {
+    + main(String[] args)
+}
+
+IStack <|.. Stack
+IStack <|-- ISafeStack
+ISafeStack <|.. SafeStack
+Stack <|-- SafeStack
+@enduml
