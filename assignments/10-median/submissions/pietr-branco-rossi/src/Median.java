@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
-class App {
+public class Median {
+
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
 
@@ -21,19 +22,15 @@ class App {
     }
 }
 
-public class MedianCalculator {
+class MedianCalculator {
 
     public static int findMedian(int a, int b, int c) {
-        //---- Verifica se 'a' é a mediana ----//
+        
         if ((a >= b && a <= c) || (a <= b && a >= c)) {
             return a;
-        }
-        //---- Condição: 'b' está entre 'a' e 'c' (ou é igual a um deles) ----//
-        else if ((b >= a && b <= c) || (b <= a && b >= c)) {
+        } else if ((b >= a && b <= c) || (b <= a && b >= c)) {
             return b;
-        }
-        //---- Se nem 'a' nem 'b' são a mediana, então 'c' deve ser ----//
-        else {
+        } else {
             return c;
         }
     }
