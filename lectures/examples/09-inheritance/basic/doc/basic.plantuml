@@ -1,0 +1,15 @@
+@startuml
+class A {
+    int i
+    int j
+    void showij()
+}
+
+class B {
+    int k
+    void showk()
+    void sum()
+}
+
+A <|-- B
+@enduml

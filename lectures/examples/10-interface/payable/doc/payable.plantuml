@@ -1,0 +1,81 @@
+@startuml
+interface IPayable {
+    + double getPaymentAmount()
+}
+
+abstract class Employee {
+    - String firstName
+    - String lastName
+    - String socialSecurityNumber
+    + Employee(String, String, String)
+    + String getFirstName()
+    + String getLastName()
+    + String getSocialSecurityNumber()
+    + double getPaymentAmount()
+    + String toString()
+    + abstract double earnings()
+}
+
+class SalariedEmployee {
+    - double weeklySalary
+    + SalariedEmployee(String, String, String, double)
+    + void setWeeklySalary(double)
+    + double getWeeklySalary()
+    + double earnings()
+    + String toString()
+}
+
+class HourlyEmployee {
+    - double wage
+    - double hours
+    + HourlyEmployee(String, String, String, double, double)
+    + void setWage(double)
+    + double getWage()
+    + void setHours(double)
+    + double getHours()
+    + double earnings()
+    + String toString()
+}
+
+class CommissionEmployee {
+    - double grossSales
+    - double commissionRate
+    + CommissionEmployee(String, String, String, double, double)
+    + void setGrossSales(double)
+    + double getGrossSales()
+    + void setCommissionRate(double)
+    + double getCommissionRate()
+    + double earnings()
+    + String toString()
+}
+
+class BasePlusCommissionEmployee {
+    - double baseSalary
+    + BasePlusCommissionEmployee(String, String, String, double, double, double)
+    + void setBaseSalary(double)
+    + double getBaseSalary()
+    + double earnings()
+    + String toString()
+}
+
+class Invoice {
+    - String partNumber
+    - String partDescription
+    - int quantity
+    - double pricePerItem
+    + Invoice(String, String, int, double)
+    + String getPartNumber()
+    + String getPartDescription()
+    + int getQuantity()
+    + double getPricePerItem()
+    + double getPaymentAmount()
+    + String toString()
+}
+
+IPayable <|.. Employee
+IPayable <|.. Invoice
+Employee <|-- SalariedEmployee
+Employee <|-- HourlyEmployee
+Employee <|-- CommissionEmployee
+CommissionEmployee <|-- BasePlusCommissionEmployee
+@enduml

@@ -16,13 +16,12 @@ Nesta página você encontra:
 |   | [Palíndromos](08-palindrome) |
 |   | [Conjectura de Collatz](./09-collatz) |
 |   | [Mediana de três](./10-median)  |
-
+| 3 | [Parking](./11-parking)  |
+|   | [Savings Account](./12-savings) |
 
 ### Lista de atividades (em revisão)
 
 |Semana| Atividades |
 |---|---|
-| 3 | [Parking](./11-parking)  |
-|   | [Savings Account](./12-savings) |
 | 4 | [Books](./13-books)  |
 | 5 | [Exception](./14-exception/) |
