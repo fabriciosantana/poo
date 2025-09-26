@@ -1,0 +1,81 @@
+@startuml
+
+interface Collection<E> {
+  +int size()
+  +boolean isEmpty()
+  +boolean contains(Object o)
+  +Object[] toArray()
+  +<T> T[] toArray(T[] a)
+  +boolean add(E e)
+  +boolean remove(Object o)
+  +boolean containsAll(Collection<?> c)
+  +boolean addAll(Collection<? extends E> c)
+  +boolean removeAll(Collection<?> c)
+  +boolean retainAll(Collection<?> c)
+  +void clear()
+  +boolean equals(Object o)
+  +int hashCode()
+  +boolean removeIf(Predicate<? super E> filter)
+}
+
+interface List<E> extends Collection<E> {
+  +void add(int index, E element)
+  +boolean addAll(int index, Collection<? extends E> c)
+  +E get(int index)
+  +E set(int index, E element)
+  +E remove(int index)
+  +int indexOf(Object o)
+  +int lastIndexOf(Object o)
+  +List<E> subList(int fromIndex, int toIndex)
+  +void replaceAll(UnaryOperator<E> operator)
+  +void sort(Comparator<? super E> c)
+  +boolean equals(Object o)
+  +int hashCode()
+}
+
+class ArrayList<E> implements List<E> {
+  +ArrayList()
+  +ArrayList(Collection<? extends E> c)
+  +ArrayList(int initialCapacity)
+  +void trimToSize()
+  +void ensureCapacity(int minCapacity)
+  +int size()
+  +boolean isEmpty()
+  +boolean contains(Object o)
+  +int indexOf(Object o)
+  +int lastIndexOf(Object o)
+  +Object clone()
+  +Object[] toArray()
+  +E get(int index)
+  +E set(int index, E element)
+  +boolean add(E e)
+  +void add(int index, E element)
+  +E remove(int index)
+  +boolean remove(Object o)
+  +void clear()
+  +boolean addAll(Collection<? extends E> c)
+  +boolean addAll(int index, Collection<? extends E> c)
+  +boolean removeAll(Collection<?> c)
+  +boolean retainAll(Collection<?> c)
+  +List<E> subList(int fromIndex, int toIndex)
+  +void forEach(Consumer<? super E> action)
+  +void replaceAll(UnaryOperator<E> operator)
+  +void sort(Comparator<? super E> c)
+  +boolean equals(Object o)
+  +int hashCode()
+}
+
+class Collections {
+  +static <T> void sort(List<T> list)
+  +static <T> int binarySearch(List<? extends Comparable<? super T>> list, T key)
+  +static <T> void reverse(List<T> list)
+  +static <T> void shuffle(List<T> list)
+  +static <T> void fill(List<? super T> list, T obj)
+  +static <T> void copy(List<? super T> dest, List<? extends T> src)
+  +static <T> boolean replaceAll(List<T> list, T oldVal, T newVal)
+  +static void swap(List<?> list, int i, int j)
+  +static <T> void rotate(List<T> list, int distance)
+  +static <T> List<T> emptyList()
+}
+
+@enduml

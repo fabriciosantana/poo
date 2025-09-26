@@ -1,5 +1,9 @@
 package br.edu.idp.cc.poo.payable;
 
 public interface Payable {
-    public abstract double getPaymentAmount();
+    double getPaymentAmount();
+
+    default String metodoDefault(){
+        return "Usando implementação default da interface";
+    }
 }

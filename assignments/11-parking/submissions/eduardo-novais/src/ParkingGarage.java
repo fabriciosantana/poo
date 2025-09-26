@@ -1,52 +1,63 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ParkingGarage {
-    public double calculateCharges(double hours) {
-        double tax, hoursExtra;
 
-        if(hours <= 3.00) {
-            tax = 2.00;
-
-            return tax;
+    public static double calculateCharges(double hours) {
+        if (hours <= 0) {
+            return 2.0;
         }
 
-        if(hours <= 24) {
-            hoursExtra -= hours;
-
-            tax = (hoursExtra * 0.50) + 2.00;
-
-            return tax;
+        if (hours <= 3.0) {
+            return 2.00;
         }
 
-        if(hours > 24) {
-            tax = 10.00;
-            
-            return tax;
+        if (hours >= 24) {
+            return 10.00;
         }
+
+        double hoursExtra = Math.ceil(hours - 3.0);
+        double tax = 2.00 + (hoursExtra * 0.50);
+
+        if (tax > 10.00) {
+            return 10.00;
+        }
+
+        return tax;
     }
 
     public static void main(String[] args) {
-        try {
-            double taxMax;
-            int count = 1;
+        double totalTax = 0.0;
 
-            Scanner input = new Scanner(System.in);
+        int count = 1;
 
-            while (hours != -1) {
-                double hours, tax;
+        Scanner input = new Scanner(System.in);
 
-                System.out.print("Digite o número de horas estacionadas para o cliente (ou -1 para sair): ");
+        double hours = 0;
+
+        while (hours != -1) {
+            try {
+                System.out.print("Digite o número de horas para o cliente " + count + " (ou -1 para sair): ");
+
                 hours = input.nextDouble();
 
-                tax = calculateCharges(hours);
+                if (hours != -1) {
+                    double tax = calculateCharges(hours);
 
-                System.out.printf("Cliente %d: Taxa de estacionamento: $%d", count, tax);
+                    System.out.printf("Cliente %d: Taxa de estacionamento: $%.2f%n%n", count, tax);
 
-                taxMax += tax;
-                count++;
+                    totalTax += tax;
+                    count++;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("\n[ERRO] Entrada inválida. Por favor, digite um número.\n");
+
+                input.next();
             }
-
-            System.out.printf("Total arrecadado ontem: $%d", taxMax);
         }
+
+        System.out.printf("Total arrecadado: $%.2f%n", totalTax);
+
+        input.close();
     }
 }

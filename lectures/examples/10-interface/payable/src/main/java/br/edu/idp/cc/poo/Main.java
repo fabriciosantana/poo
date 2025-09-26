@@ -19,6 +19,7 @@ public class Main {
         for (br.edu.idp.cc.poo.payable.Payable currentPayable : payableObjects) { 
             // output currentPayable and its appropriate payment amount 
             System.out.printf("%n%s %npayment due: $%,.2f%n", currentPayable.toString(), currentPayable.getPaymentAmount()); 
+            System.out.println(currentPayable.metodoDefault());
         } 
     } 
 } 
