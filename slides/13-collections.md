@@ -3,19 +3,103 @@ layout: frontcover
 transition: none
 title: IDP - POO
 id: aula13
-lesson: Coleções da biblioteca padrão
+lesson: Framework Collections
 goals:
-  - Escolher coleções adequadas para mapas, conjuntos, filas e listas
+  - Conhecer as das principais interfaces do Framework Collections
+  - Conhecer as principais classes do Framework Collections
   - Explorar algoritmos utilitários em `Collections`
   - Iterar elementos usando `Iterator`, `forEach` e `Spliterator`
 ---
 
 ---
 layout: default
-lesson: Mapas e conjuntos
+lesson: Framework Collections
 ---
 
-## `Map` e `Set`
+## Framework Collections
+
+- [Collections](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/doc-files/coll-index.html)
+  - É uma estrutura de dados que pode conter referências a outros objetos​
+  - Pode conter referências a objetos de qualquer tipo que tenham o relacionamento "é um" com o tipo de elemento da coleção
+- Generic
+  - Permitem especificar o tipo exato que será armazenado em uma coleção​
+  - Viabiliza verificação de tipo em tempo de compilação
+- [java.util.ArrayList](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html)
+  - Estrutura de dados semelhante a um array que pode ser redimensionado dinamicamente​
+  - Armazena referências a objetos de um tipo que você especifica ao criar o ArrayList
+
+<Reference
+  reference="DEITEL, Paul; DEITEL, Harvey. Java: How to Program, Early Objects. 11. ed. Boston: Pearson, 2017. ISBN 978-0-13-474335-6.​"
+/>
+
+---
+
+## Principais classes e interfaces
+
+<FigureWithCaption
+  src=images/collections-names.png
+  link=https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/doc-files/coll-index.html
+/>
+
+---
+
+## Principais classes e interfaces
+
+- [java.util.Collection](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html) (interface): contém métodos para realizar operações em toda a coleção​
+- [java.util.List](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html) (interface): é uma coleção de elementos em sequência que pode conter elementos duplicados.​
+- [java.util.ArrayList](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html): array redimensionável​
+- [java.util.LinkedList](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/LinkedList.html): permite a inserção (ou remoção) eficiente de elementos no meio de uma coleção, mas é muito menos eficiente que um ArrayList para pular para um elemento específico na coleção. ​
+- [java.util.Iterator](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Iterator.html) (interface):  permite percorrer um coleção e remover elementos durante a iteração.​
+- [java.util.ListIterator](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ListIterator.html) (interface):​
+
+<Reference
+  reference="DEITEL, Paul; DEITEL, Harvey. Java: How to Program, Early Objects. 11. ed. Boston: Pearson, 2017. ISBN 978-0-13-474335-6.​"
+/>
+
+--- 
+
+## Principais classes e interfaces
+
+- [java.util.Queue](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Queue.html) (interface)​
+- [java.util.PriorityQueue​](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/PriorityQueue.html)
+- [java.util.Set](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html) (interface)​
+- [java.util.HashSet​](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/HashSet.html)
+- [java.util.TreeSet​](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/TreeSet.html)
+- [java.util.Map](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html) (interface)​
+- [java.util.HashMap​](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/HashMap.html)
+- [java.uti.TreeMap](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/TreeMap.html)
+
+---
+
+## Principais classes e interfaces
+
+- [java.util.Collections](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collections.html): fornece métodos estáticos para pesquisar, ordenar e executar outras operações em coleções.​
+
+<div class="grid grid-cols-2">
+  <div>
+    <li>sort</li>
+    <li>binarySearch</li>
+    <li>reverse</li>
+    <li>shuffle</li>
+    <li>fill</li>
+    <li>copy</li>
+  </div>
+  <div>
+    <li>min</li>
+    <li>max</li>
+    <li>addAll</li>
+    <li>frequency</li>
+    <li>disjoint</li>
+  </div>
+</div>
+
+<Reference
+  reference="DEITEL, Paul; DEITEL, Harvey. Java: How to Program, Early Objects. 11. ed. Boston: Pearson, 2017. ISBN 978-0-13-474335-6.​"
+/>
+
+---
+
+## Exemplo HashMap
 
 ```java
 // HashMapDemo.java
@@ -29,16 +113,9 @@ for (Map.Entry<String, Double> entry : accounts.entrySet()) {
 double balance = accounts.get("John Doe");
 accounts.put("John Doe", balance + 1000);
 ```
-
-- `HashMap`: acesso `O(1)` médio, ordem não garantida
-- `TreeSet` mantém elementos ordenados automaticamente (`TreeSetDemo`)
-- `SetHashSetDemo`, `SetLinkedHashSetDemo` mostram diferenças de ordenação
-- Interfaces principais: `Collection`, `List`, `Set`, `Map`, `Queue`
-- Escolha baseia-se em ordenação, unicidade e custo de operações
-
 ---
 
-## Filas e pilhas
+## Exemplo PriorityQueue
 
 ```java
 // PriorityQueueTest.java
@@ -51,13 +128,6 @@ while (!queue.isEmpty()) {
     System.out.printf("%.1f ", queue.poll());
 }
 ```
-
-- `PriorityQueue` devolve o menor elemento primeiro (ordem natural)
-- `ArrayDequeDemo` compara deque com pilha/fila
-- Escolha estrutura conforme necessidade de prioridade ou dupla extremidade
-- Filas seguem política FIFO; pilhas usam LIFO
-- Prefira `Deque` para pilhas modernas ao invés de `Stack`
-
 ---
 
 ## Algoritmos utilitários
@@ -75,23 +145,6 @@ Collections.shuffle(numbers);
 System.out.println("Minimum: " + Collections.min(numbers));
 System.out.println("Maximum: " + Collections.max(numbers));
 ```
-
-- `Collections.binarySearch` exige lista ordenada
-- `Collections.frequency`, `disjoint`, `addAll` simplificam operações comuns
-- Explore `CollectionsReverseCopyFillMaxMinTest` para copiar, preencher e inverter listas
-- `Comparator` customiza critérios; `Comparable` define ordem natural
-- Métodos utilitários operam sobre interfaces, não implementações concretas
-
----
-
-## Iteradores e streams
-
-- `IteratorDemo`, `IteratorForEachDemo`: mostram uso explícito de `Iterator`
-- `ListLinkedListIteratorTest`: demonstra `ListIterator` bidirecional
-- `SpliteratorDemo`: divide a coleção para processamento paralelo
-- Prefira `forEach` ou streams quando a legibilidade for melhor
-- *Fail-fast iterators* disparam `ConcurrentModificationException` em alterações indevidas
-- Streams permitem operações declarativas (`filter`, `map`, `reduce`) sobre coleções
 
 ---
 layout: backcover

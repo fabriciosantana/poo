@@ -8,13 +8,15 @@ package "Framework Collections (java.util)" {
     }
 
     interface Collection<E> extends Iterable<E>{
+        Interface raiz para todas as coleções (exceto Maps)
     }
+    
 
     interface SequencedCollection<E> extends Collection<E>{
     }
 
     interface List<E> extends SequencedCollection<E> {
-
+        Coleção que mantém a ordem de insersão com acesso por índice e controle de posição
     }
 
     class Vector<E> implements List<E> { 
@@ -26,32 +28,31 @@ package "Framework Collections (java.util)" {
     }
 
     interface Set<E> extends Collection<E> {
-    }
-    note top: coleção que não permite elementos duplicados
+        Coleção que não permite elementos duplicados
+    } 
 
     interface SortedSet<E> extends Set<E> {
-
+        Mantém os elementos ordenados
     }
-    note top: coleção ordenada
 
     interface NavigableSet<E> extends SortedSet<E>{
-
+        Permite navegação adicional (ex: menor, maior, etc.)
     }
 
     interface Queue<E> extends Collection<E> {
-
+        Fila (primeiro a entrar é o primeiro a sair - first-in, first-out)
     }
-    note top: Fila (primeiro a entrar é o primeiro a sair - first-in, first-out)
 
     interface Deque<E> extends Queue<E> {
-
+        Fila duplamente encadeada, pode funcionar como fila ou pilha
     }
-    note top: fila duplamente encadeada, pode funcionar como fila ou pilha
 
     interface Map<K,V> {
+        Estrutura de pares chave-valor, com chaves únicas
     }
 
     interface SequencedMap<K,V> extends Map<K,V> {
+        Mantém um mapa ordenado pelas chaves
     }
 
     interface SortedMap<K,V> extends SequencedMap<K,V> {
@@ -62,28 +63,35 @@ package "Framework Collections (java.util)" {
     }
 
     class ArrayList<E> implements List<E>{
-
+        Array redimensionável, acesso rápido por índice, bom para leitura sequencial
     }
 
     class LinkedList<E> implements List, Deque<E>{
-
+        Lista duplamente encadeada, boa para inserções/remoções em qualquer posição
     }
 
     class HashSet<E> implements Set<E> {
-
+        Baseado em tabela hash, não garante ordem, não permite elementos duplicados
     }
 
     class LinkedHashSet<E> extends HashSet<E> {
-        
+        Mantém ordem de inserção, baseado em hash combinado com lista duplamente encadeada
     }
 
     class TreeSet<E> implements NavigableSet<E>{
+        Mantém elementos ordenados segundo a ordem natural ou comparador
     }
 
     class HashMap<K, V> implements Map<K, V> {
+        Baseado em tabela hash, não garante ordem das chaves
     }
 
     class TreeMap<K, V> implements NavigableMap<K, V> {
+        Mapa ordenado pelas chaves (natural ou por comparador)
+    }
+
+     class LinkedHashMap<K, V> implements Map<K, V> {
+        Mantém ordem de inserção das chaves, baseado em hash combinado com lista duplamente encadeada
     }
 
     class PriorityQueue<E> implements Queue<E>{

@@ -1,23 +1,15 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SensorMonitor {
-    // Armazena lista de temperaturas por sensor
+
     private final Map<String, List<Double>> readingsBySensor = new HashMap<>();
-    // Contadores para relatório
+
     private int totalValid = 0;
     private int totalInvalid = 0;
 
-    // Limites aceitos
     public static final double MIN_C = -30.0;
     public static final double MAX_C = 55.0;
 
-    /**
-     * Valida e armazena uma leitura no formato "SENSOR_ID;TEMPERATURA".
-     * @throws InvalidReadingException quando formato, id ou faixa estiverem incorretos.
-     */
     public void addReading(String rawInput) throws InvalidReadingException {
         if (rawInput == null) {
             totalInvalid++;
@@ -30,7 +22,7 @@ public class SensorMonitor {
             throw new InvalidReadingException("Linha em branco.");
         }
 
-        String[] parts = line.split(";", -1); // -1 preserva vazios
+        String[] parts = line.split(";", -1);
         if (parts.length != 2) {
             totalInvalid++;
             throw new InvalidReadingException("Formato inválido. Use SENSOR_ID;TEMPERATURA (ex.: S1;23.5).");
@@ -46,7 +38,7 @@ public class SensorMonitor {
 
         double temp;
         try {
-            temp = Double.parseDouble(tempStr.replace(',', '.')); // aceita vírgula
+            temp = Double.parseDouble(tempStr.replace(',', '.'));
         } catch (NumberFormatException e) {
             totalInvalid++;
             throw new InvalidReadingException("Temperatura inválida: não é um número.");
@@ -57,16 +49,9 @@ public class SensorMonitor {
             throw new InvalidReadingException(
                 String.format("Temperatura fora da faixa permitida (%.1f°C a %.1f°C).", MIN_C, MAX_C));
         }
-
-        // Se chegou até aqui, é válida
         readingsBySensor.computeIfAbsent(sensorId, k -> new ArrayList<>()).add(temp);
         totalValid++;
     }
-
-    /**
-     * Calcula a média de temperaturas de um sensor.
-     * @throws SensorNotFoundException quando não houver leituras para o sensor.
-     */
     public double averageFor(String sensorId) throws SensorNotFoundException {
         List<Double> temps = readingsBySensor.get(sensorId);
         if (temps == null || temps.isEmpty()) {

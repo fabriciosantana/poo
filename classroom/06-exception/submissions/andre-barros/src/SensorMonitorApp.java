@@ -5,9 +5,8 @@ public class SensorMonitorApp {
     public static void main(String[] args) {
         SensorMonitor monitor = new SensorMonitor();
 
-        // try-with-resources garante fechamento do Scanner
         try (Scanner sc = new Scanner(System.in)) {
-            sc.useLocale(Locale.US); // aceita ponto como decimal
+            sc.useLocale(Locale.US); 
 
             System.out.println("Monitor de Sensores — Digite leituras no formato SENSOR_ID;TEMPERATURA");
             System.out.println("Exemplos:  S1;23.5   ou   sala-01;19,8");
@@ -21,7 +20,6 @@ public class SensorMonitorApp {
                     monitor.addReading(line);
                     System.out.println("Leitura registrada com sucesso.");
                 } catch (InvalidReadingException e) {
-                    // Mensagem clara ao operador, sem encerrar o programa
                     System.out.println("Leitura ignorada: " + e.getMessage());
                 }
             }
@@ -29,7 +27,6 @@ public class SensorMonitorApp {
             System.out.printf("Coleta encerrada. Leituras válidas: %d | Ignoradas por erro: %d%n",
                     monitor.totalReadings(), monitor.totalIgnored());
 
-            // Consulta de média
             System.out.println();
             System.out.println("Consulta de média por sensor.");
             System.out.println("Informe o SENSOR_ID (ou pressione Enter para sair):");
@@ -49,7 +46,6 @@ public class SensorMonitorApp {
             }
 
         } finally {
-            // Exibido sempre, independentemente de erros
             System.out.println("Programa encerrado.");
         }
     }

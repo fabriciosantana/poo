@@ -1,0 +1,63 @@
+@startuml collections-interfaces
+
+set separator ::
+
+package "Framework Collections (java.util)" {
+
+    interface Iterable<E> {
+    }
+
+    interface Collection<E> extends Iterable<E>{
+        Interface raiz para todas as coleções (exceto Maps)
+    }
+    
+
+    interface SequencedCollection<E> extends Collection<E>{
+    }
+
+    interface List<E> extends SequencedCollection<E> {
+        Coleção que mantém a ordem de insersão com acesso por índice e controle de posição
+    }
+
+    interface Set<E> extends Collection<E> {
+        Coleção que não permite elementos duplicados
+    } 
+
+    interface SortedSet<E> extends Set<E> {
+        Mantém os elementos ordenados
+    }
+
+    interface NavigableSet<E> extends SortedSet<E>{
+        Permite navegação adicional (ex: menor, maior, etc.)
+    }
+
+    interface Queue<E> extends Collection<E> {
+        Fila (primeiro a entrar é o primeiro a sair - first-in, first-out)
+    }
+
+    interface Deque<E> extends Queue<E> {
+        Fila duplamente encadeada, pode funcionar como fila ou pilha
+    }
+
+    interface Map<K,V> {
+        Estrutura de pares chave-valor, com chaves únicas
+    }
+
+    interface SequencedMap<K,V> extends Map<K,V> {
+        Mantém um mapa ordenado pelas chaves
+    }
+
+    interface SortedMap<K,V> extends SequencedMap<K,V> {
+    }
+
+    interface NavigableMap<K,V> extends SortedMap<K,V>{
+
+    }
+
+    class Collections {
+
+    }
+    
+}
+
+@enduml

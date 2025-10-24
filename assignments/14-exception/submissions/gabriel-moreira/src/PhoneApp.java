@@ -1,33 +1,36 @@
-public class PhoneApp {
+ppublic class PhoneApp {
 
     public static void main(String[] args) {
+
         
-        System.out.println("--- Teste 1: Nome vazio ---");
         try {
+            System.out.println("Tentativa 1: Nome vazio...");
             Phone p1 = new Phone("", "1234567890123456");
-            System.out.println("Sucesso (não deveria ocorrer): " + p1.getName());
+            System.out.println("Sucesso: " + p1.getName()); 
         } catch (ValidationException e) {
-            System.out.println("Erro Capturado: " + e.getMessage());
+            System.out.println("Exceção capturada: " + e.getMessage());
+        }
+        
+        System.out.println("------------------------------------");
+
+        
+        try {
+            System.out.println("Tentativa 2: Número de série com 5 dígitos...");
+            Phone p2 = new Phone("Modelo X", "12345"); 
+            System.out.println("Sucesso: " + p2.getName()); 
+        } catch (ValidationException e) {
+            System.out.println("Exceção capturada: " + e.getMessage());
         }
 
-        System.out.println("\n----------------------------\n");
+        System.out.println("------------------------------------");
 
-        System.out.println("--- Teste 2: Serial inválido ---");
+        
         try {
-            Phone p2 = new Phone("Galaxy Z", "12345");
-            System.out.println("Sucesso (não deveria ocorrer): " + p2.getName());
+            System.out.println("Tentativa 3: Dados válidos...");
+            Phone p3 = new Phone("Modelo Y Pro", "ABCDEF0123456789");
+            System.out.println("Sucesso! Telefone criado: " + p3.getName() + " (S/N: " + p3.getSerialNumber() + ")");
         } catch (ValidationException e) {
-            System.out.println("Erro Capturado: " + e.getMessage());
-        }
-
-        System.out.println("\n----------------------------\n");
-
-        System.out.println("--- Teste 3: Dados Válidos ---");
-        try {
-            Phone p3 = new Phone("Xperia 10", "AABBCCDD11223344");
-            System.out.println("Sucesso: Telefone '" + p3.getName() + "' criado com sucesso!");
-        } catch (ValidationException e) {
-            System.out.println("Erro Inesperado: " + e.getMessage());
+            System.err.println("Erro inesperado: " + e.getMessage()); 
         }
     }
 }
