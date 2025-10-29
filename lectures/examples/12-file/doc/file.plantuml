@@ -1,0 +1,65 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+package "java.lang" {
+    interface AutoCloseable
+}
+
+package "java.io" {
+    interface Closeable
+
+    abstract class InputStream
+    abstract class OutputStream
+    abstract class Reader
+    abstract class Writer
+
+    class File
+    class FileInputStream
+    class FileOutputStream
+    class FileReader
+    class FileWriter
+    class BufferedInputStream
+    class BufferedOutputStream
+    class BufferedReader
+    class BufferedWriter
+    class RandomAccessFile
+}
+
+package "java.nio.file" {
+    interface Path
+    class Files
+}
+
+package "java.nio.channels" {
+    interface SeekableByteChannel
+    class FileChannel
+}
+
+AutoCloseable <|-- Closeable
+Closeable <|-- InputStream
+Closeable <|-- OutputStream
+Closeable <|-- Reader
+Closeable <|-- Writer
+Closeable <|-- RandomAccessFile
+
+InputStream <|-- FileInputStream
+InputStream <|-- BufferedInputStream
+OutputStream <|-- FileOutputStream
+OutputStream <|-- BufferedOutputStream
+Reader <|-- FileReader
+Reader <|-- BufferedReader
+Writer <|-- FileWriter
+Writer <|-- BufferedWriter
+SeekableByteChannel <|-- FileChannel
+
+FileInputStream ..> File
+FileOutputStream ..> File
+FileReader ..> File
+FileWriter ..> File
+RandomAccessFile ..> File
+RandomAccessFile ..> FileChannel
+Files ..> Path
+FileInputStream ..> Path
+FileOutputStream ..> Path
+FileChannel ..> Path
+@enduml
