@@ -15,7 +15,7 @@ public class StudentParticipant extends Participant {
 
     @Override
     public String toString() {
-        // Formato padrão que inclui todos os atributos, garantindo a aprovação nos testes.
+
         return "StudentParticipant{" +
                 "id='" + getId() + '\'' +
                 ", fullName='" + getFullName() + '\'' +
