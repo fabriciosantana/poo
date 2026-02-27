@@ -75,12 +75,11 @@ Se tudo isso é muito novo para você, invista um tempo em fortalecer sua base d
 |#|Conteúdo|Atividade em sala|
 |---|---|---|
 | 1 | [Apresentação da disciplina e contextualização](https://fabriciosantana.github.io/poo/01-introduction)| |
-| 2 | [Configuração de ambiente, visão geral do github e procedimento para submissão de tarefas](https://fabriciosantana.github.io/poo/01a-hello/1) | [Configuração do ambiente java](../howto/) e execução do [Hello, World!](./examples/00-hello) |
+| 2 | [Configuração de ambiente, visão geral do github e procedimento para submissão de tarefas](https://fabriciosantana.github.io/poo/01a-hello/) | [Configuração do ambiente java](../howto/) e execução do [Hello, World!](./examples/00-hello) |
 
 ### Slides apresentados em sala (em revisão)
 |#|Conteúdo|Atividade em sala|
 |---|---|---|
-
 | 2 | [Plataforma Java - ferramentas, jshell, java e javac](https://fabriciosantana.github.io/poo/02-platform)| [Execução de código no jshell](./examples/02a-elements-primitives-jshell/) |
 | 3 | [Elementos básicos da linguagem Java](https://fabriciosantana.github.io/poo/03-elements)| [Execução de código no jshell](./examples/02a-elements-primitives-jshell/) |
 | 4  | [Programação em Java - custom types, entrada e saída, operadores e controle de fluxo](https://1drv.ms/p/s!Avnn2LcOmn0Y3zPoINGBudmIix2X?e=H5Orac)| [Quizz: plataforma java, elementos da linguagem e tipos primitivos](https://idp2.vevox.com/#/share/AIMIDN010NEQOHBNNEZA/meetingdata/710808/session/714745/pollresults); <br> Análise de código: [estruturas de seleção](/lectures/examples/04-selection-statements/) e [estruturas de iteração](/lectures/examples/05-iteration-statements/)|

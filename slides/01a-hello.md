@@ -50,6 +50,81 @@ layout: default
 
 </div>
 
+---
+
+## Checklist de configuração de ambiente
+
+Revisar roteiro de instalação das ferramentas no diretório **howto** do [repositório da disciplina](https://github.com/fabriciosantana/poo)
+
+- [X]  VS Code instalado (ou a IDE de sua preferência)
+```bash
+@fabriciosantana ➜ /workspaces/poo (2026.1) $ code --version
+1.108.2
+c9d77990917f3102ada88be140d28b038d1dd7c7
+x64
+```
+
+- [X]  JDK 21 instalado
+```bash
+@fabriciosantana ➜ /workspaces/poo (2026.1) $ java --version
+openjdk 21.0.2 2024-01-16
+OpenJDK Runtime Environment (build 21.0.2+13-58)
+OpenJDK 64-Bit Server VM (build 21.0.2+13-58, mixed mode, sharing)
+```
+
+- [X]  Plugins do VS Code instalados
+
+---
+
+## Checklist de configuração de ambiente
+
+Revisar roteiro de instalação das ferramentas no diretório **howto** do [repositório da disciplina](https://github.com/fabriciosantana/poo)
+
+- [X]  git instalado
+```bash
+@fabriciosantana ➜ /workspaces/poo (2026.1) $ git --version
+git version 2.51.1
+```
+
+- [X]  git lfs instalado
+```bash
+@fabriciosantana ➜ /workspaces/poo (2026.1) $ git lfs --version
+git-lfs/3.4.1 (GitHub; linux amd64; go 1.22.2)
+```
+
+- [X]  GitHub client instalado (opcional, é possível usar a interface web em github.com)
+```bash
+@fabriciosantana ➜ /workspaces/poo (2026.1) $ gh --version
+gh version 2.87.0 (2026-02-18)
+https://github.com/cli/cli/releases/tag/v2.87.0
+```
+
+---
+
+## Checklist de configuração de ambiente
+
+Preparar repositório da disciplina.
+
+- [X]  Realizar **fork** do repositório da disciplina. Essa etapa pode ser realizar em [github.com](https://github.com)
+```bash
+/workspaces $ gh repo fork fabriciosantana/poo
+```
+
+- [X]  Clonar seu repositório que você acabou de clonar 
+  *  substituir **seu-usuario** por seu login no github
+```bash
+/workspaces $ git clone https://github.com/seu-usuario/poo.git
+```
+
+- [X] Verificar seu repositório
+```bash
+/workspaces $ cd poo/
+/workspaces/poo (2026.1) $ ls
+LICENSE    assignments  examples  scripts  sonar-project.properties
+README.md  docs         howto     slides
+```
+
+
 --- 
 
 ## Fluxo de trabalho para submissão de tarefas

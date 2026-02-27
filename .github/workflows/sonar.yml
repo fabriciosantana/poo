@@ -2,7 +2,7 @@ name: Build
 on:
   push:
     branches:
-      - 2025.2
+      - 2026.1
   pull_request:
     types: [opened, synchronize, reopened]
   workflow_dispatch:
@@ -20,18 +20,66 @@ jobs:
           distribution: temurin
           java-version: 21
           cache: maven
-      - name: Compile Java examples (binaries for Sonar)
+      - name: Compile Java code from lectures and assignments (binaries for Sonar)
         run: |
           set +e
-          find lectures -name pom.xml -print0 | while IFS= read -r -d '' pom; do
-            module_dir="$(dirname "$pom")"
-            echo "Compiling $module_dir"
-            if (cd "$module_dir" && mvn -B -DskipTests compile); then
-              echo "Compiled $module_dir"
-            else
-              echo "Skipping $module_dir (compile failed)"
+          mkdir -p .sonar-binaries
+
+          # JUnit é necessário para compilar classes de teste que importam org.junit.*
+          JUNIT_JAR=".sonar-binaries/junit-platform-console-standalone-1.11.4.jar"
+          curl -sSL -o "$JUNIT_JAR" \
+            https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.11.4/junit-platform-console-standalone-1.11.4.jar
+
+          compile_maven_modules() {
+            local base_dir="$1"
+            if [ ! -d "$base_dir" ]; then
+              echo "⚠️ Diretório '$base_dir' não encontrado. Pulando Maven."
+              return
             fi
-          done
+
+            find "$base_dir" -name pom.xml -print0 | while IFS= read -r -d '' pom; do
+              module_dir="$(dirname "$pom")"
+              echo "Compiling Maven module: $module_dir"
+              if (cd "$module_dir" && mvn -B -DskipTests compile); then
+                echo "✅ Compilado: $module_dir"
+              else
+                echo "⚠️ Falha ao compilar $module_dir (seguindo execução)"
+              fi
+            done
+          }
+
+          compile_plain_java() {
+            local base_dir="$1"
+            if [ ! -d "$base_dir" ]; then
+              echo "⚠️ Diretório '$base_dir' não encontrado. Pulando javac."
+              return
+            fi
+
+            find "$base_dir" -type f -name "*.java" -exec dirname {} \; | sort -u | while read -r source_dir; do
+              [ -z "$source_dir" ] && continue
+
+              mapfile -t JAVA_FILES < <(find "$source_dir" -maxdepth 1 -type f -name "*.java" | sort)
+              if [ "${#JAVA_FILES[@]}" -eq 0 ]; then
+                continue
+              fi
+
+              rel_dir="${source_dir#./}"
+              out_dir=".sonar-binaries/${rel_dir}"
+              mkdir -p "$out_dir"
+
+              echo "Compiling Java folder: $source_dir"
+              if javac -cp "$JUNIT_JAR:.sonar-binaries" -d "$out_dir" "${JAVA_FILES[@]}"; then
+                echo "✅ Compilado: $source_dir"
+              else
+                echo "⚠️ Falha ao compilar $source_dir (seguindo execução)"
+              fi
+            done
+          }
+
+          compile_maven_modules "lectures"
+          compile_maven_modules "assignments"
+          compile_plain_java "lectures"
+          compile_plain_java "assignments"
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v6
         env:

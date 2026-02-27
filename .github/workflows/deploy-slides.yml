@@ -2,11 +2,11 @@ name: Deploy Slides
 
 on:
   push:
-    branches: [ "2025.2" ]
+    branches: [ "2026.1" ]
     paths:
       - 'slides/**'
   pull_request:
-    branches: [ "2025.2" ]
+    branches: [ "2026.1" ]
     paths:
       - 'slides/**'
   workflow_dispatch:

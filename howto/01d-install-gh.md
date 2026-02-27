@@ -33,3 +33,8 @@ gh --version
 ```bash
 gh auth login
 ```
+
+6. **Verificar**
+```bash
+gh auth status
+```

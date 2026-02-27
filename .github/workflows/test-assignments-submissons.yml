@@ -24,7 +24,7 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Detect modified tasks and students
+    - name: Detect modified task/student pairs
       id: detect-tasks-students
       run: |
         echo "🔍 Verificando os arquivos alterados..."
@@ -40,23 +40,32 @@ jobs:
         echo "🔎 Diretório base: $BASE_REF"
     
         # Identifica arquivos modificados
-        MODIFIED_FILES=$(git diff --name-only $BASE_REF ${{ github.sha }})
-    
-        # Obtém todas as tarefas alteradas
-        MODIFIED_TASKS=($(echo "$MODIFIED_FILES" | grep -oE 'assignments/[^/]+' | cut -d '/' -f2 | sort -u))
-        MODIFIED_STUDENTS=($(echo "$MODIFIED_FILES" | grep -oE 'submissions/[^/]+' | cut -d '/' -f2 | sort -u))
-    
-        if [ ${#MODIFIED_TASKS[@]} -eq 0 ] || [ ${#MODIFIED_STUDENTS[@]} -eq 0 ]; then
-          echo "❌ Erro: Nenhuma alteração detectada no diretório correto (assignments/**/submissions/**)"
+        if [ "$BASE_REF" = "0000000000000000000000000000000000000000" ]; then
+          MODIFIED_FILES=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
+        else
+          MODIFIED_FILES=$(git diff --name-only "$BASE_REF" ${{ github.sha }})
+        fi
+
+        # Extrai pares únicos de tarefa/aluno no formato "task|student"
+        PAIRS_FILE="changed-submission-pairs.txt"
+        echo "$MODIFIED_FILES" \
+          | awk -F/ '/^assignments\/.*\/submissions\/[^\/]+\// {
+              student=$(NF-1)
+              task=""
+              for (i=2; i<=NF-3; i++) {
+                task = task (i==2 ? "" : "/") $i
+              }
+              if (task != "" && student != "") print task "|" student
+            }' \
+          | sort -u > "$PAIRS_FILE"
+
+        if [ ! -s "$PAIRS_FILE" ]; then
+          echo "❌ Erro: Nenhuma alteração detectada em assignments/**/submissions/**"
           exit 1
         fi
-    
-        echo "📂 Tarefas detectadas: ${MODIFIED_TASKS[*]}"
-        echo "🧑‍🎓 Alunos detectados: ${MODIFIED_STUDENTS[*]}"
-    
-        # recuperando a lista de diretórios separada por vírgula
-        echo "tasks=$(IFS=,; echo "${MODIFIED_TASKS[*]}")" >> $GITHUB_ENV
-        echo "students=$(IFS=,; echo "${MODIFIED_STUDENTS[*]}")" >> $GITHUB_ENV
+
+        echo "📦 Submissões alteradas:"
+        cat "$PAIRS_FILE"
 
     - name: Set up JDK 21
       uses: actions/setup-java@v2
@@ -77,61 +86,79 @@ jobs:
         echo "🚀 Iniciando testes para as tarefas alteradas..."
         TEST_FAILURES=0
 
-        IFS=","
-        eval "TASKS_LIST=(${{ env.tasks }})"
-        eval "STUDENTS_LIST=(${{ env.students }})"
-        echo "lista de tarefas $TASKS_LIST"
-        echo "lista de tarefas $STUDENTS_LIST"
-        
-        
-        for task in "${TASKS_LIST[@]}"; do
-          for student in "${STUDENTS_LIST[@]}"; do
-            echo "🔍 Testando: Tarefa '$task' | Aluno '$student'"
+        if [ ! -s changed-submission-pairs.txt ]; then
+          echo "❌ Arquivo de pares alterados não encontrado."
+          exit 1
+        fi
 
-            # Diretórios relevantes
-            TASK_DIR="assignments/$task"
-            STUDENT_DIR="$TASK_DIR/submissions/$student"
-            CODE_DIR="$STUDENT_DIR/src"
-            BIN_DIR="$STUDENT_DIR/bin"
-            LIB_DIR="$STUDENT_DIR/lib"
+        while IFS='|' read -r task student; do
+          [ -z "$task" ] && continue
+          [ -z "$student" ] && continue
 
-            # Valida se o diretório do aluno existe
-            if [ ! -d "$STUDENT_DIR" ]; then
-              echo "⚠️  O diretório do aluno '$student' não existe para a tarefa '$task'. Pulando..."
-              continue
-            fi
+          echo "🔍 Testando: Tarefa '$task' | Aluno '$student'"
 
-            # Verifica se há código-fonte para compilar
-            if [ ! -d "$CODE_DIR" ]; then
-              echo "⚠️  Nenhum código encontrado em '$CODE_DIR'. Pulando..."
-              continue
-            fi
+          # Diretórios relevantes
+          TASK_DIR="assignments/$task"
+          TEST_DIR="$TASK_DIR/test"
+          STUDENT_DIR="$TASK_DIR/submissions/$student"
+          CODE_DIR="$STUDENT_DIR/src"
+          BIN_DIR="$STUDENT_DIR/bin"
 
-            # Configura diretórios
-            mkdir -p "$BIN_DIR" "$LIB_DIR"
+          # Valida se os diretórios existem
+          if [ ! -d "$TASK_DIR" ]; then
+            echo "⚠️  Diretório da tarefa '$TASK_DIR' não encontrado. Pulando..."
+            continue
+          fi
 
-            # Copia a dependência para o diretório do estudante
-            cp test-libs/junit-platform-console-standalone-1.11.4.jar "$LIB_DIR/"
+          if [ ! -d "$STUDENT_DIR" ]; then
+            echo "⚠️  Diretório do aluno '$STUDENT_DIR' não encontrado. Pulando..."
+            continue
+          fi
 
-            # Compila os arquivos Java
-            echo "⚙️ Compilando código..."
-            if ! javac -cp "$LIB_DIR/*" -d "$BIN_DIR" "$CODE_DIR"/*.java "$TASK_DIR/test"/*.java; then
-              echo "❌ Erro na compilação do aluno '$student' na tarefa '$task'"
-              TEST_FAILURES=$((TEST_FAILURES + 1))
-              continue
-            fi
+          if [ ! -d "$CODE_DIR" ]; then
+            echo "⚠️  Nenhum código encontrado em '$CODE_DIR'. Pulando..."
+            continue
+          fi
 
-            # Executa os testes
-            echo "🧪 Executando testes..."
-            if ! java -jar "$LIB_DIR/junit-platform-console-standalone-1.11.4.jar" --class-path "$BIN_DIR" --scan-class-path; then
-              echo "❌ Falha nos testes para aluno '$student' na tarefa '$task'"
-              TEST_FAILURES=$((TEST_FAILURES + 1))
-              continue
-            fi
+          if [ ! -d "$TEST_DIR" ]; then
+            echo "⚠️  Nenhum diretório de testes encontrado em '$TEST_DIR'. Pulando..."
+            continue
+          fi
 
-            echo "✅ Testes bem-sucedidos para '$student' na tarefa '$task'!"
-          done
-        done
+          mapfile -t CODE_FILES < <(find "$CODE_DIR" -type f -name "*.java" | sort)
+          mapfile -t TEST_FILES < <(find "$TEST_DIR" -type f -name "*.java" | sort)
+
+          if [ ${#CODE_FILES[@]} -eq 0 ]; then
+            echo "⚠️  Nenhum arquivo .java encontrado em '$CODE_DIR'. Pulando..."
+            continue
+          fi
+
+          if [ ${#TEST_FILES[@]} -eq 0 ]; then
+            echo "⚠️  Nenhum arquivo de teste .java encontrado em '$TEST_DIR'. Pulando..."
+            continue
+          fi
+
+          rm -rf "$BIN_DIR"
+          mkdir -p "$BIN_DIR"
+
+          # Compila os arquivos Java
+          echo "⚙️ Compilando código..."
+          if ! javac -cp "test-libs/junit-platform-console-standalone-1.11.4.jar" -d "$BIN_DIR" "${CODE_FILES[@]}" "${TEST_FILES[@]}"; then
+            echo "❌ Erro na compilação do aluno '$student' na tarefa '$task'"
+            TEST_FAILURES=$((TEST_FAILURES + 1))
+            continue
+          fi
+
+          # Executa os testes
+          echo "🧪 Executando testes..."
+          if ! java -jar "test-libs/junit-platform-console-standalone-1.11.4.jar" execute --class-path "$BIN_DIR" --scan-class-path; then
+            echo "❌ Falha nos testes para aluno '$student' na tarefa '$task'"
+            TEST_FAILURES=$((TEST_FAILURES + 1))
+            continue
+          fi
+
+          echo "✅ Testes bem-sucedidos para '$student' na tarefa '$task'!"
+        done < changed-submission-pairs.txt
 
         if [ $TEST_FAILURES -gt 0 ]; then
           echo "❌ $TEST_FAILURES falha(s) nos testes. Verifique os logs!"
@@ -139,4 +166,4 @@ jobs:
         fi
 
     - name: Cleanup temporary files
-      run: rm -rf test-libs
+      run: rm -rf test-libs changed-submission-pairs.txt
