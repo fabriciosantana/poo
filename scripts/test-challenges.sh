@@ -1,8 +1,9 @@
 #!/bin/bash
+set -euo pipefail
 
-# Diretório base das tarefas (ancorado no diretório deste script)
+# Diretório base dos projetos (ancorado no diretório deste script)
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-BASE_DIR="$SCRIPT_DIR/../challenges"
+BASE_DIR="$SCRIPT_DIR/../assignments/06-projects"
 
 # Solicita a tarefa a ser testada uma única vez
 read -p "Digite o diretório da tarefa (ou pressione Enter para testar todas): " TASK_DIR

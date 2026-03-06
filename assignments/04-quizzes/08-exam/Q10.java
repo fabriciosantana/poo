@@ -7,9 +7,10 @@ import java.sql.SQLException;
 public class Q10 {
     public static void main(String[] args){
 
-        String url = "jdbc:postgresql://aws-0-sa-east-1.pooler.supabase.com:5432/postgres";
-        String user = "postgres.snghnxpdoffuasscqmms";
-        String password = "idpccpoo";
+        // Exemplo didatico: configure credenciais locais antes de executar.
+        String url = "jdbc:postgresql://<HOST>:<PORT>/<DATABASE>";
+        String user = "<USER>";
+        String password = "<PASSWORD>";
 
         final String SELECT_FILM_BY_FILM_ID = "Select title, rental_rate from film where film_id = ?";
         final int FILM_ID = 1000;

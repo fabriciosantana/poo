@@ -1,2 +1,0 @@
-float d = 10.25F;
-System.out.println(d);

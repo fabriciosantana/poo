@@ -2,7 +2,7 @@
 
 Seja bem-vindo(a)! 🤗
 
-Este repositório reúne materiais, tarefas, projetos, leituras e referências bibliográficas da disciplina **Programação Orientada a Objetos**, oferecida no **[Instituto Brasileiro de Ensino, Desenvolvimento e Pesquisa](http://idp.edu.br)** e ministrada pelo professor **[Fabricio Santana](https://github.com/fabriciosantana/)** no **2º semestre de 2025**. 
+Este repositório reúne materiais, tarefas, projetos, leituras e referências bibliográficas da disciplina **Programação Orientada a Objetos**, oferecida no **[Instituto Brasileiro de Ensino, Desenvolvimento e Pesquisa](http://idp.edu.br)** e ministrada pelo professor **[Fabricio Santana](https://github.com/fabriciosantana/)**. 
 
 Durante o curso, serão abordados tópicos fundamentais, como introdução à programação, classes, objetos, herança, polimorfismo, encapsulamento e persistência, além de outros conceitos essenciais para a construção de aplicações robustas e escaláveis. 
 
@@ -35,9 +35,9 @@ Independentemente do sistema operacional escolhido, seu código poderá ser exec
 
 Caso esteja utilizando o Windows, uma alternativa prática para desenvolver em um ambiente Linux é o **[Windows Subsystem for Linux (WSL)](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux)**, que permite rodar distribuições Linux diretamente no Windows com desempenho quase nativo. Outra opção é utilizar um **container de desenvolvimento na nuvem**, como o **[GitHub Codespaces](https://docs.github.com/codespaces/overview)**, garantindo um ambiente isolado, portátil e fácil de configurar, sem a necessidade de instalar todas as dependências no sistema operacional principal.
 
-Além de um computador e um sistema operacional, para desenvolvier software em Java, é necessário instalar uma distribuição do **[Java Development Kit (JDK)](https://en.wikipedia.org/wiki/Java_Development_Kit)**. Há várias distribuições do JDK disponíveis, este respositório utiliza **[OpenJDK](https://en.wikipedia.org/wiki/OpenJDK)**, versão 21.
+Além de um computador e um sistema operacional, para desenvolver software em Java, é necessário instalar uma distribuição do **[Java Development Kit (JDK)](https://en.wikipedia.org/wiki/Java_Development_Kit)**. Há várias distribuições do JDK disponíveis, este repositório utiliza **[OpenJDK](https://en.wikipedia.org/wiki/OpenJDK)**, versão 21.
 
-Embora seja possível desenvolver programas em Java utilizando qualquer **[editor de texto](https://en.wikipedia.org/wiki/Text_editor)** e um **[terminal](https://en.wikipedia.org/wiki/Terminal_emulator)**, recomenda-se o uso de um **[Ambiente de Desenvolvimento Integrado (Integrated Development Environment - IDE)](https://en.wikipedia.org/wiki/Integrated_development_environment)**. As IDEs tornam o desenvolvimento mais eficiente ao oferecer funcionalidades como edição avançada de código, compilação, testes, depuração, geração de pactoes e uma interface gráfica intuitiva.
+Embora seja possível desenvolver programas em Java utilizando qualquer **[editor de texto](https://en.wikipedia.org/wiki/Text_editor)** e um **[terminal](https://en.wikipedia.org/wiki/Terminal_emulator)**, recomenda-se o uso de um **[Ambiente de Desenvolvimento Integrado (Integrated Development Environment - IDE)](https://en.wikipedia.org/wiki/Integrated_development_environment)**. As IDEs tornam o desenvolvimento mais eficiente ao oferecer funcionalidades como edição avançada de código, compilação, testes, depuração, geração de pacotes e uma interface gráfica intuitiva.
 
 Existem diversas IDEs para programação em Java no mercado, todas compatíveis com o código deste repositório. No entanto, recomenda-se a utilização do **[Visual Studio Code (VS Code)](https://code.visualstudio.com/)** devido à sua simplicidade, flexibilidade, extensibilidade e possibilidade de execução online, sem necessidade de instalação. Além disso, o VS Code oferece integração nativa com o **[GitHub Codespaces](https://github.com/features/codespaces)**, tornando o ambiente de desenvolvimento ainda mais acessível e eficiente.
 
@@ -45,7 +45,7 @@ Desenvolver software é um processo contínuo que exige colaboração e organiza
 
 Em síntese, para aproveitar todo o conteúdo e praticar muito você precisa de no mínimo:
 * Um computador com o sistema operacional de sua escolha, recomenda-se utilizar Linux (Ubuntu), Windows com WSL ou o Github Codespaces
-* Instalar uma das distrições do Java Development Kit (JDK), recomenda-se o OpenJDK 21
+* Instalar uma das distribuições do Java Development Kit (JDK), recomenda-se o OpenJDK 21
 * Instalar uma IDE, recomenda-se o VS Code com os plugins para Java e Git
 
 Se tudo isso é muito novo para você, invista um tempo em fortalecer sua base de conhecimento com os seguintes recursos:
@@ -68,36 +68,36 @@ Se tudo isso é muito novo para você, invista um tempo em fortalecer sua base d
 1. [The Impact of AI on Computer Science Education](https://cacm.acm.org/news/the-impact-of-ai-on-computer-science-education/)
 1. [English will become the most popular development language in 6 years](https://blog.almaer.com/english-will-become-the-most-popular-development-language-in-6-years/)
 1. [Why Writing by Hand Is Better for Memory and Learning](https://www.scientificamerican.com/article/why-writing-by-hand-is-better-for-memory-and-learning/)
-1. [Prompt Enginnering](https://1drv.ms/b/c/187d9a0eb7d8e7f9/EdC4xMjHwO5HhxMNELjXqdsBmjfFcQzDVB9tFNcs7t7Z2A?e=hMOFg0)
+1. [Prompt Engineering](https://1drv.ms/b/c/187d9a0eb7d8e7f9/EdC4xMjHwO5HhxMNELjXqdsBmjfFcQzDVB9tFNcs7t7Z2A?e=hMOFg0)
 
 ### Slides apresentados em sala
 
 |#|Conteúdo|Atividade em sala|
 |---|---|---|
 | 1 | [Apresentação da disciplina e contextualização](https://fabriciosantana.github.io/poo/01-introduction)| |
-| 2 | [Configuração de ambiente, visão geral do github e procedimento para submissão de tarefas](https://fabriciosantana.github.io/poo/01a-hello/) | [Configuração do ambiente java](../howto/) e execução do [Hello, World!](./examples/00-hello) |
+| 2 | [Configuração de ambiente, visão geral do github e procedimento para submissão de tarefas](https://fabriciosantana.github.io/poo/01a-hello/) | [Configuração do ambiente java](./howto/) e execução do [Hello, World!](./examples/00-hello) |
+| 3 | [Plataforma Java - ferramentas, jshell, java e javac](https://fabriciosantana.github.io/poo/02-platform)| [Execução de código no jshell](./examples/02a-elements-primitives-jshell/) |
+| 4 | [Elementos básicos da linguagem Java](https://fabriciosantana.github.io/poo/03-elements)| [Execução de código no jshell](./examples/02a-elements-primitives-jshell/) |
 
 ### Slides apresentados em sala (em revisão)
 |#|Conteúdo|Atividade em sala|
 |---|---|---|
-| 2 | [Plataforma Java - ferramentas, jshell, java e javac](https://fabriciosantana.github.io/poo/02-platform)| [Execução de código no jshell](./examples/02a-elements-primitives-jshell/) |
-| 3 | [Elementos básicos da linguagem Java](https://fabriciosantana.github.io/poo/03-elements)| [Execução de código no jshell](./examples/02a-elements-primitives-jshell/) |
-| 4  | [Programação em Java - custom types, entrada e saída, operadores e controle de fluxo](https://1drv.ms/p/s!Avnn2LcOmn0Y3zPoINGBudmIix2X?e=H5Orac)| [Quizz: plataforma java, elementos da linguagem e tipos primitivos](https://idp2.vevox.com/#/share/AIMIDN010NEQOHBNNEZA/meetingdata/710808/session/714745/pollresults); <br> Análise de código: [estruturas de seleção](/lectures/examples/04-selection-statements/) e [estruturas de iteração](/lectures/examples/05-iteration-statements/)|
-| 5 | Continuação aula anterior | Análise de código: [estruturas de seleção](/lectures/examples/04-selection-statements/) e [estruturas de iteração](/lectures/examples/05-iteration-statements/)|
+| 4  | [Programação em Java - custom types, entrada e saída, operadores e controle de fluxo](https://1drv.ms/p/s!Avnn2LcOmn0Y3zPoINGBudmIix2X?e=H5Orac)| [Quizz: plataforma java, elementos da linguagem e tipos primitivos](https://idp2.vevox.com/#/share/AIMIDN010NEQOHBNNEZA/meetingdata/710808/session/714745/pollresults); <br> Análise de código: [estruturas de seleção](./examples/04-selection-statements/) e [estruturas de iteração](./examples/05-iteration-statements/)|
+| 5 | Continuação aula anterior | Análise de código: [estruturas de seleção](./examples/04-selection-statements/) e [estruturas de iteração](./examples/05-iteration-statements/)|
 | 6 | Continuação aula anterior | |
 | 7 | [Programação Orientada a Objetos em Java - classes, objetos e métodos](https://1drv.ms/p/s!Avnn2LcOmn0Y3z07tfmzQYKuLXJK?e=WDMEbX)| |
 | 8 | [Programação Orientada a Objetos em Java - classes, objetos, métodos, construtores, sobrecarga de construtores e métodos, modificadores de acesso, métodos get e set, encapsulamento, introdução ao tratamento de exceção, composição, membros de classe e instância](https://1drv.ms/p/s!Avnn2LcOmn0Y31s3uczqB-Lou_2O?e=q233L4) | |
 | 9 | [Programação Orientada a Objetos em Java - herança, extends, override, super, abstract, polimorfismo, encapsulamento, package, import](https://1drv.ms/p/s!Avnn2LcOmn0Y32GgrYpPTFA8lUHl?e=u7L4jb) | Análise de código do programa [payroll](./examples/09-inheritance/payroll/) | 
-| 10 | [Arrays](https://1drv.ms/p/s!Avnn2LcOmn0Y31mEsDxOHyKDT0OE?e=QwcIjL) | [Análise de código arrays](../lectures/examples/07-arrays) <br> |
+| 10 | [Arrays](https://1drv.ms/p/s!Avnn2LcOmn0Y31mEsDxOHyKDT0OE?e=QwcIjL) | [Análise de código arrays](./examples/07-arrays) <br> |
 | 11 | [ArrayList](https://1drv.ms/p/c/187d9a0eb7d8e7f9/Efnn2LcOmn0ggBjZLwAAAAABx1Nmn4wiFopjTu1n-YYpmw?e=YltGd9) | |
 | 12 | [Tratamento de Exceções](https://fabriciosantana.github.io/poo/11-exception/) | |
 | 16 | [Acesso a banco de dados com JDBC](https://fabriciosantana.github.io/poo/14-jdbc) | |
-| 8 | Continuação aula anterior | [Estudo de caso: IDP Bank (Semana 1)](../challenges/02-bank/) |
-| 10 | Continuação aula anterior | [Estudo de caso: IDP Bank (Semana 2)](../challenges/02-bank/) | Desenvolvimento do estudo de caso: IDP Bank (Semana 2)  |
-| 11 | Continuação aula anterior | [Estudo de caso: IDP Bank (Semana 2)](../challenges/02-bank/) | Desenvolvimento do estudo de caso: IDP Bank (Semana 2)  |
+| 8 | Continuação aula anterior | [Estudo de caso: IDP Bank (Semana 1)](./assignments/06-projects/02-bank/) |
+| 10 | Continuação aula anterior | [Estudo de caso: IDP Bank (Semana 2)](./assignments/06-projects/02-bank/) | Desenvolvimento do estudo de caso: IDP Bank (Semana 2)  |
+| 11 | Continuação aula anterior | [Estudo de caso: IDP Bank (Semana 2)](./assignments/06-projects/02-bank/) | Desenvolvimento do estudo de caso: IDP Bank (Semana 2)  |
 | 12 | Continuação aula anterior |  |
 | 14 | [Manipulação de arquivos em Java](https://1drv.ms/p/c/187d9a0eb7d8e7f9/ER83TNCSyDBEu5m2MiR-xDkBBf8nV7BOBS-IKMNyMY0WjQ?e=ZJDNe6) |  |
-| 15 | [Coleçõs genéricas](https://1drv.ms/p/c/187d9a0eb7d8e7f9/EYbQH0A4WUREhFlr7dQgdX8BhAmNnLaPjFtbud52zOkO6A?e=uXVltt) | | |
+| 15 | [Coleções genéricas](https://1drv.ms/p/c/187d9a0eb7d8e7f9/EYbQH0A4WUREhFlr7dQgdX8BhAmNnLaPjFtbud52zOkO6A?e=uXVltt) | |
 
 ### Outros Cursos
 

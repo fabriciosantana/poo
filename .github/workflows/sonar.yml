@@ -1,10 +1,5 @@
-name: Build
+name: SonarQube
 on:
-  push:
-    branches:
-      - 2026.1
-  pull_request:
-    types: [opened, synchronize, reopened]
   workflow_dispatch:
 jobs:
   sonarqube:
@@ -13,6 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          persist-credentials: false
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - name: Set up JDK 21
         uses: actions/setup-java@v4
@@ -20,7 +16,7 @@ jobs:
           distribution: temurin
           java-version: 21
           cache: maven
-      - name: Compile Java code from lectures and assignments (binaries for Sonar)
+      - name: Compile Java code from examples and assignments (binaries for Sonar)
         run: |
           set +e
           mkdir -p .sonar-binaries
@@ -76,12 +72,21 @@ jobs:
             done
           }
 
-          compile_maven_modules "lectures"
+          compile_maven_modules "examples"
           compile_maven_modules "assignments"
-          compile_plain_java "lectures"
+          compile_plain_java "examples"
           compile_plain_java "assignments"
       - name: SonarQube Scan
+        if: ${{ secrets.SONAR_TOKEN != '' && secrets.SONAR_HOST_URL != '' }}
         uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      - name: Validate Sonar secrets
+        if: ${{ !(secrets.SONAR_TOKEN != '' && secrets.SONAR_HOST_URL != '') }}
+        run: |
+          echo "❌ Secrets ausentes para Sonar."
+          echo "Configure em Settings > Secrets and variables > Actions:"
+          echo "- SONAR_TOKEN"
+          echo "- SONAR_HOST_URL (https://sonarcloud.io)"
+          exit 1
