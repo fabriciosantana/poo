@@ -16,7 +16,7 @@ jobs:
           distribution: temurin
           java-version: 21
           cache: maven
-      - name: Compile Java code from lectures and assignments (binaries for Sonar)
+      - name: Compile Java code from examples and assignments (binaries for Sonar)
         run: |
           set +e
           mkdir -p .sonar-binaries
@@ -72,9 +72,9 @@ jobs:
             done
           }
 
-          compile_maven_modules "lectures"
+          compile_maven_modules "examples"
           compile_maven_modules "assignments"
-          compile_plain_java "lectures"
+          compile_plain_java "examples"
           compile_plain_java "assignments"
       - name: SonarQube Scan
         if: ${{ secrets.SONAR_TOKEN != '' && secrets.SONAR_HOST_URL != '' }}
