@@ -1,4 +1,4 @@
-## Instalação do gh
+ do gh
 
 1. **Adicione o repositório oficial do GitHub CLI (https://cli.github.com/)**
 ```bash
