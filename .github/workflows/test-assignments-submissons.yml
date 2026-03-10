@@ -1,16 +1,12 @@
 name: Test Assignments Submissions
 
 on:
-  push:
-    branches:
-      - 2025.2
-    paths:
-      - 'assignments/**/submissions/**'
   pull_request:
+    types: [opened, synchronize, reopened]
     branches:
-      - 2025.2
+      - 2026.1
     paths:
-      - 'assignments/**/submissions/**'
+      - 'assignments/01-programming/**/submissions/**'
   workflow_dispatch:
 
 jobs:
@@ -28,39 +24,47 @@ jobs:
       id: detect-tasks-students
       run: |
         echo "🔍 Verificando os arquivos alterados..."
-    
+
         if [ "${{ github.event_name }}" = "pull_request" ]; then
-          echo "📥 Recuperando alterações do Pull Request"
-          BASE_REF="origin/${{ github.event.pull_request.base.ref }}"
-          git fetch origin ${{ github.event.pull_request.base.ref }} --depth=1
+          BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          HEAD_SHA="${{ github.event.pull_request.head.sha }}"
+          BASE_REF="${{ github.event.pull_request.base.ref }}"
         else
-          BASE_REF="${{ github.event.before }}"
+          BASE_SHA="$(git rev-parse HEAD~1)"
+          HEAD_SHA="$(git rev-parse HEAD)"
+          BASE_REF="${{ github.ref_name }}"
         fi
-    
-        echo "🔎 Diretório base: $BASE_REF"
-    
-        # Identifica arquivos modificados
-        if [ "$BASE_REF" = "0000000000000000000000000000000000000000" ]; then
-          MODIFIED_FILES=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
-        else
-          MODIFIED_FILES=$(git diff --name-only "$BASE_REF" ${{ github.sha }})
-        fi
+
+        echo "🔎 Base SHA: $BASE_SHA"
+        echo "🔎 Head SHA: $HEAD_SHA"
+
+        git fetch --no-tags --prune --depth=1 origin "$BASE_REF"
+
+        MODIFIED_FILES=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA")
 
         # Extrai pares únicos de tarefa/aluno no formato "task|student"
         PAIRS_FILE="changed-submission-pairs.txt"
         echo "$MODIFIED_FILES" \
-          | awk -F/ '/^assignments\/.*\/submissions\/[^\/]+\// {
-              student=$(NF-1)
+          | awk -F/ '/^assignments\/01-programming\/.*\/submissions\/[^\/]+\// {
+              submission_idx=0
+              student=""
+              for (j=1; j<=NF; j++) {
+                if ($j == "submissions") {
+                  submission_idx=j
+                  student=$(j+1)
+                  break
+                }
+              }
               task=""
-              for (i=2; i<=NF-3; i++) {
+              for (i=2; i<submission_idx; i++) {
                 task = task (i==2 ? "" : "/") $i
               }
-              if (task != "" && student != "") print task "|" student
+              if (submission_idx > 0 && task != "" && student != "") print task "|" student
             }' \
           | sort -u > "$PAIRS_FILE"
 
         if [ ! -s "$PAIRS_FILE" ]; then
-          echo "❌ Erro: Nenhuma alteração detectada em assignments/**/submissions/**"
+          echo "❌ Erro: Nenhuma alteração detectada em assignments/01-programming/**/submissions/**"
           exit 1
         fi
 
@@ -99,10 +103,17 @@ jobs:
 
           # Diretórios relevantes
           TASK_DIR="assignments/$task"
-          TEST_DIR="$TASK_DIR/test"
           STUDENT_DIR="$TASK_DIR/submissions/$student"
           CODE_DIR="$STUDENT_DIR/src"
           BIN_DIR="$STUDENT_DIR/bin"
+
+          if [ -d "$TASK_DIR/test" ]; then
+            TEST_DIR="$TASK_DIR/test"
+          elif [ -d "$TASK_DIR/tests" ]; then
+            TEST_DIR="$TASK_DIR/tests"
+          else
+            TEST_DIR=""
+          fi
 
           # Valida se os diretórios existem
           if [ ! -d "$TASK_DIR" ]; then
@@ -120,8 +131,8 @@ jobs:
             continue
           fi
 
-          if [ ! -d "$TEST_DIR" ]; then
-            echo "⚠️  Nenhum diretório de testes encontrado em '$TEST_DIR'. Pulando..."
+          if [ -z "$TEST_DIR" ]; then
+            echo "⚠️  Nenhum diretório de testes encontrado em '$TASK_DIR/test' ou '$TASK_DIR/tests'. Pulando..."
             continue
           fi
 
