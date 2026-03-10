@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class fortalecerSenha{
+public class FortalecerSenha{
 
     public static void main(String[] Args){
 

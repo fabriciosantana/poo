@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class passosElefante {
+public class PassosElefante {
 
     public static void main(String[] Args){
 

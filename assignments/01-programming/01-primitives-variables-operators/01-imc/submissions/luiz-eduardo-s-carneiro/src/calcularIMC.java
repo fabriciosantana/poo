@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class calculadoraIMC{
+public class calcularIMC{
 
     public static double calcularIMC(double peso, double altura){
 
