@@ -7,7 +7,7 @@ lesson: Plataforma Java - ferramenta, jshell, java e javac
 goals:
   - Compreender os aspectos introdutórios de programação de computadores
   - Conhecer a plataforma Java e suas principais ferramentas
-  - Executar código Java no jshell
+  - Experimentar código Java no jshell
 ---
 
 ---
@@ -253,7 +253,6 @@ $1 ==> "Hello, World!"
 jshell> /exit
 |  Goodbye
 ```
-
 ---
 
 ## jshell 
@@ -279,6 +278,17 @@ jshell>/help
   reference="https://docs.oracle.com/en/java/javase/21/docs/specs/man/jshell.html"
 />
 
+
+---
+
+## Por que usar o jshell?
+
+- Permite testar código Java sem criar arquivos `.java`
+- Feedback imediato para aprender sintaxe e semântica
+- Ideal para explorar tipos primitivos e operadores
+- Comandos úteis descritos em `README.md`
+- REPL segue ciclo *Read → Evaluate → Print → Loop*
+- Ambiente mantém estado entre comandos (variáveis, métodos e classes)
 
 ---
 layout: backcover

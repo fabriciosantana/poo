@@ -5,7 +5,9 @@ title: IDP - POO
 id: aula01b
 lesson: Entrada e saída de dados em programa Java
 goals:
+  - Introdução a orientação a objetos
   - Conhecer os principais mecanismos de entrada e saída de dados em aplicação console
+
 ---
 
 ---
@@ -83,3 +85,18 @@ String s = reader.readLine();  // lê uma linha inteira do console
 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 String s = reader.readLine();  // lê uma linha inteira do console
 ```
+
+---
+
+## Formatando saída
+
+- `System.out.printf` aceita especificadores como `%d`, `%.2f`, `%s`, `%b`
+- `System.out.println` imprime e adiciona `\n`
+- `System.out.printf("%-10s", valor)` alinha colunas
+- Caminho dos exemplos: `lectures/examples/02c-input-output`
+- `System.err` redireciona mensagens de erro (fluxo separado de `System.out`)
+- Locale influencia separador decimal (`1,5` vs `1.5`)
+
+---
+layout: backcover
+---

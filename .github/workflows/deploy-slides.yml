@@ -25,9 +25,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: 'lts/*'
 
@@ -39,14 +39,23 @@ jobs:
         run: |
           export SHELL=/bin/bash
           pnpm install
+
+      - name: Install Playwright Chromium
+        working-directory: slides
+        run: |
+          pnpm add -D playwright-chromium
+          pnpm exec playwright install chromium
+
       - name: Build slides
         working-directory: slides
         run: |
           # Criação da pasta de destino
           mkdir -p dist
+          mkdir -p dist/exports
 
           # Build da página principal
           pnpm slidev build slides.md --base /poo/ -o $(pwd)/dist
+          pnpm slidev export slides.md --output dist/exports/slides.pdf --wait-until load --wait 2000 --timeout 120000
 
           for file in ./*.md; do
             filename=$(basename "$file" .md)
@@ -59,12 +68,13 @@ jobs:
             output="dist/$filename"
             base="/poo/$filename/"
             pnpm slidev build "$file" --base "$base" -o "$output"
+            pnpm slidev export "$file" --output "dist/exports/${filename}.pdf" --wait-until load --wait 2000 --timeout 120000
           done
 
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: slides/dist
 
