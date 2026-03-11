@@ -99,6 +99,15 @@ Se tudo isso é muito novo para você, invista um tempo em fortalecer sua base d
 | 14 | [Manipulação de arquivos em Java](https://1drv.ms/p/c/187d9a0eb7d8e7f9/ER83TNCSyDBEu5m2MiR-xDkBBf8nV7BOBS-IKMNyMY0WjQ?e=ZJDNe6) |  |
 | 15 | [Coleções genéricas](https://1drv.ms/p/c/187d9a0eb7d8e7f9/EYbQH0A4WUREhFlr7dQgdX8BhAmNnLaPjFtbud52zOkO6A?e=uXVltt) | |
 
+Além dos links na tabela acima, os slides também ficam disponíveis para download em PDF.
+
+Use o padrão de URL:
+`https://fabriciosantana.github.io/poo/exports/<nome-do-slide>.pdf`
+
+Exemplos:
+* `https://fabriciosantana.github.io/poo/exports/01-introduction.pdf`
+* `https://fabriciosantana.github.io/poo/exports/02-platform.pdf`
+
 ### Outros Cursos
 
 https://www.cs.cornell.edu/courses/JavaAndDS/definitions.html
