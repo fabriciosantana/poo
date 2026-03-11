@@ -686,7 +686,7 @@ Elementos básicos
 jshell> 1 + 1 == 2 // igual a
 $1 ==> true
 
-jshell> 1 + 1 != 3 // diferente de
+jshell> 1 + 1 ! = 3 // diferente de  
 $2 ==> true
 
 jshell> 1 + 1 > 3 // maior que
@@ -695,10 +695,10 @@ $3 ==> false
 jshell> 1 + 1 < 3 // menor que
 $4 ==> true
 
-jshell> 1 + 1 >= 2 // maior ou igual que
+jshell> 1 + 1 > = 2 // maior ou igual que
 $5 ==> true
 
-jshell> 1 + 1 <= 2 // menor ou igual que
+jshell> 1 + 1 < = 2 // menor ou igual que
 $6 ==> true
 ```
 
