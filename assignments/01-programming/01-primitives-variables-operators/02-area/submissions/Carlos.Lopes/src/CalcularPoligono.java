@@ -28,4 +28,5 @@ A = \frac{1}{4} \times s^2 \times n \times \frac{1}{\tan(\pi / n)}
 - `n` → número de lados do polígono;
 - `s` → comprimento de um lado;
 - `π` → constante matemática (π ≈ 3.14159)
+
 */
