@@ -2,20 +2,19 @@
 import java.util.Scanner;
 public class CalculadoraIMC {
     public static void main(String[] args) {
-        Scanner teclado = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Digite seu Peso em Quilogramas(KG):" );
-        double peso = teclado.nextDouble();
+        double peso = scanner.nextDouble();
 
         System.out.println("Digite sua Altura em Metros(M):");
-        double altura = teclado.nextDouble();
+        double altura = scanner.nextDouble();
 
         // calcula e apresenta classificação
         double IMC = calcularIMC(peso, altura);
         classificarIMC(IMC);
         
     }
-
     public static double calcularIMC(double peso, double altura){
         double IMC = peso / (altura * altura);
         return IMC;
@@ -58,7 +57,6 @@ public class CalculadoraIMC {
 * Obesidade grau I: 30.0 ≤ IMC < 34.99
 * Obesidade grau II: 35.0 ≤ IMC < 39.99
 * Obesidade grau III: IMC ≥ 40.0
-
 
 */
 
