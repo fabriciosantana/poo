@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class password {
+public class FortalecerSenha {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
@@ -34,11 +34,10 @@ public class password {
     public static int calcularTempoDigitacao(String senha) {
         if (senha.isEmpty()) return 0;
         
-        int tempo = 2; // Primeiro caractere leva 2 segundos
-        
+        int tempo = 2; 
         for (int i = 1; i < senha.length(); i++) {
             if (senha.charAt(i) == senha.charAt(i - 1)) {
-                tempo += 1; // 
+                tempo += 1;  
             } else {
                 tempo += 2; 
             }
