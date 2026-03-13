@@ -59,4 +59,5 @@ public static String fortalecerSenha(String s){
 
         System.out.println("Senha Fortalecida: " + senhaforte);
         return senhaforte;
+        echo
 */

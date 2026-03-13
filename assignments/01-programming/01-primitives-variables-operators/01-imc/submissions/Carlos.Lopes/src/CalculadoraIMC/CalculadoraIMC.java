@@ -57,7 +57,7 @@ public class CalculadoraIMC {
 * Obesidade grau I: 30.0 ≤ IMC < 34.99
 * Obesidade grau II: 35.0 ≤ IMC < 39.99
 * Obesidade grau III: IMC ≥ 40.0
-
+alfa
 */
 
 
