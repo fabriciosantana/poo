@@ -24,7 +24,7 @@ Escreva um aplicativo Java que solicite as informações da pessoa, instancie um
    \[
    \text{Frequência Alvo Mínima} = \text{Frequência Cardíaca Máxima} \times 0.50
    \]
-   \[
+   \[ 
    \text{Frequência Alvo Máxima} = \text{Frequência Cardíaca Máxima} \times 0.85
    \]
 4. O programa deve solicitar as seguintes informações do usuário:
