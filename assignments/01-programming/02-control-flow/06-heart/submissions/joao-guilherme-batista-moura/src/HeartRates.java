@@ -19,53 +19,55 @@ public class HeartRates {
         return firstName;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public int getDayOfBirth() {
-        return dayOfBirth;
-    }
-
-    public int getMonthOfBirth() {
-        return monthOfBirth;
-    }
-
-    public int getYearOfBirth() {
-        return yearOfBirth;
-    }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    public int getDayOfBirth() {
+        return dayOfBirth;
+    }
+
     public void setDayOfBirth(int dayOfBirth) {
         this.dayOfBirth = dayOfBirth;
+    }
+
+    public int getMonthOfBirth() {
+        return monthOfBirth;
     }
 
     public void setMonthOfBirth(int monthOfBirth) {
         this.monthOfBirth = monthOfBirth;
     }
 
+    public int getYearOfBirth() {
+        return yearOfBirth;
+    }
+
     public void setYearOfBirth(int yearOfBirth) {
         this.yearOfBirth = yearOfBirth;
     }
 
-    public int calculateAge(int currentYear) {
+    public int calculateAge() {
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
         return currentYear - yearOfBirth;
     }
 
-    public int calculateMaxHeartRate(int age) {
-        return 220 - age;
+    public int calculateMaxHeartRate() {
+        return 220 - calculateAge();
     }
 
-    public String calculateTargetHeartRate(int maxHeartRate) {
-        double minTarget = maxHeartRate * 0.50;
-        double maxTarget = maxHeartRate * 0.85;
-        return String.format("%.0f bpm - %.0f bpm", minTarget, maxTarget);
+    public String calculateTargetHeartRate() {
+        int maxRate = calculateMaxHeartRate();
+        int lower = (int) Math.round(maxRate * 0.5);
+        int upper = (int) Math.round(maxRate * 0.85);
+        return lower + " bpm - " + upper + " bpm";
     }
 }

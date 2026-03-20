@@ -1,11 +1,8 @@
 import java.util.Scanner;
-import java.util.Calendar;
 
-class HeartRatesApp {
+public class HeartRatesApp {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-
-        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
 
         System.out.print("Digite seu primeiro nome: ");
         String firstName = input.nextLine();
@@ -20,17 +17,13 @@ class HeartRatesApp {
 
         HeartRates person = new HeartRates(firstName, lastName, day, month, year);
 
-        int age = person.calculateAge(currentYear);
-        int maxHR = person.calculateMaxHeartRate(age);
-        String targetHR = person.calculateTargetHeartRate(maxHR);
-
-        System.out.println("\n--- Resumo das Informações ---");
+        System.out.println("\n--- Informações ---");
         System.out.printf("Nome: %s %s%n", person.getFirstName(), person.getLastName());
         System.out.printf("Data de nascimento: %02d/%02d/%d%n",
                 person.getDayOfBirth(), person.getMonthOfBirth(), person.getYearOfBirth());
-        System.out.printf("Idade: %d anos%n", age);
-        System.out.printf("Frequência cardíaca máxima: %d bpm%n", maxHR);
-        System.out.printf("Faixa de frequência cardíaca alvo: %s%n", targetHR);
+        System.out.printf("Idade: %d anos%n", person.calculateAge());
+        System.out.printf("Frequência cardíaca máxima: %d bpm%n", person.calculateMaxHeartRate());
+        System.out.printf("Faixa de frequência cardíaca alvo: %s%n", person.calculateTargetHeartRate());
 
         input.close();
     }
