@@ -73,16 +73,20 @@ public List<Actor> findAll() {
 ## Fluxo principal
 
 ```java
-// Main.java (trecho)
+// HeartRatesTest.java (trecho)
 EntityManagerFactory emf = Persistence.createEntityManagerFactory("dvdrentalPU");
 EntityManager em = emf.createEntityManager();
 
 ActorDAO dao = new ActorDAO(em);
 Actor novo = new Actor("Joao", "Silva");
-dao.insert(novo);
+dao.
+
+insert(novo);
 
 List<Actor> allActors = dao.findAll();
-allActors.forEach(System.out::println);
+allActors.
+
+forEach(System.out::println);
 ```
 
 - `persistence.xml` define unidade de persistência e conexão
