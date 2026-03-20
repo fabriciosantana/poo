@@ -10,45 +10,36 @@ public class CollatzSequence {
         }
     }
 
-    public static long calculateCollatzSum(int n) {
-        long soma = 0;
-        int atual = n;
-
-        System.out.print("Sequência de Collatz: ");
-        
-        while (atual != 1) {
-            System.out.print(atual + " → ");
-            soma += atual;
-            atual = nextCollatz(atual);
+    public static int calculateCollatzSum(int n) {
+        int sum = 0;
+        int current = n;
+        while (current != 1) {
+            sum += current;
+            current = nextCollatz(current);
         }
-        
-        System.out.println(1);
-        soma += 1; 
-        
-        return soma;
+        sum += 1;
+        return sum;
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
         System.out.print("Digite um número inteiro positivo: ");
-        
-        if (!scanner.hasNextInt()) {
-            System.out.println("Erro: A entrada deve ser um número inteiro.");
-        } else {
-            int n = scanner.nextInt();
+        int n = scanner.nextInt();
 
-            if (n < 1) {
-                System.out.println("Erro: O número deve ser um inteiro positivo.");
-            } else if (n == 1) {
-                System.out.println("Sequência de Collatz: 1");
-                System.out.println("Soma dos termos: 1");
-            } else {
-                long somaTotal = calculateCollatzSum(n);
-                System.out.println("Soma dos termos: " + somaTotal);
-            }
+        if (n < 1) {
+            System.out.println("Erro: O número deve ser um inteiro positivo.");
+            return;
         }
 
-        scanner.close();
+        System.out.print("Sequência de Collatz: ");
+        int current = n;
+        while (current != 1) {
+            System.out.print(current + " → ");
+            current = nextCollatz(current);
+        }
+        System.out.println("1");
+
+        int sum = calculateCollatzSum(n);
+        System.out.println("Soma dos termos: " + sum);
     }
 }

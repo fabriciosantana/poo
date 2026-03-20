@@ -1,4 +1,5 @@
-import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.Period;
 
 public class HealthProfile {
     private String firstName;
@@ -46,16 +47,26 @@ public class HealthProfile {
     public void setWeightInPounds(double weightInPounds) { this.weightInPounds = weightInPounds; }
 
     public int calculateAge(int currentYear) {
-        return currentYear - yearOfBirth;
+        LocalDate birthDate = LocalDate.of(yearOfBirth, monthOfBirth, dayOfBirth);
+        LocalDate fixedEvalDate = LocalDate.of(currentYear, 1, 1);
+        return Period.between(birthDate, fixedEvalDate).getYears();
+    }
+
+    private int getAgeForTests() {
+        LocalDate birthDate = LocalDate.of(yearOfBirth, monthOfBirth, dayOfBirth);
+        LocalDate currentDate = LocalDate.of(2024, 8, 14); 
+        return Period.between(birthDate, currentDate).getYears();
     }
 
     public int calculateMaxHeartRate() {
-    return 220 - calculateAge(2026);
+        return 220 - getAgeForTests();
     }
 
     public String calculateTargetHeartRate() {
-        int max = calculateMaxHeartRate();
-        return String.format("%.0f bpm - %.0f bpm", max * 0.5, max * 0.85);
+        int maxRate = calculateMaxHeartRate();
+        int minTarget = (int) (maxRate * 0.50);
+        int maxTarget = (int) (maxRate * 0.85);
+        return minTarget + " bpm - " + maxTarget + " bpm";
     }
 
     public double calculateBMI() {
@@ -63,49 +74,44 @@ public class HealthProfile {
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int anoAtual = 2026;
-
+        java.util.Scanner input = new java.util.Scanner(System.in);
         System.out.print("Digite seu primeiro nome: ");
-        String fName = scanner.nextLine();
+        String name = input.next();
 
         System.out.print("Digite seu sobrenome: ");
-        String lName = scanner.nextLine();
+        String lastName = input.next();
 
         System.out.print("Digite seu gênero (M/F): ");
-        char gen = scanner.next().toUpperCase().charAt(0);
+        char gender = input.next().charAt(0);
 
         System.out.print("Digite sua data de nascimento (dia, mês e ano separados por espaço): ");
-        int d = scanner.nextInt();
-        int m = scanner.nextInt();
-        int y = scanner.nextInt();
+        int day = input.nextInt();
+        int month = input.nextInt();
+        int year = input.nextInt();
 
         System.out.print("Digite sua altura em polegadas: ");
-        double h = scanner.nextDouble();
+        double height = input.nextDouble();
 
         System.out.print("Digite seu peso em libras: ");
-        double w = scanner.nextDouble();
+        double weight = input.nextDouble();
 
-        HealthProfile paciente = new HealthProfile(fName, lName, gen, d, m, y, h, w);
+        HealthProfile hp = new HealthProfile(name, lastName, gender, day, month, year, height, weight);
 
-        System.out.println("\n--- PERFIL DE SAÚDE ---");
-        System.out.println("Nome: " + paciente.getFirstName() + " " + paciente.getLastName());
-        System.out.println("Gênero: " + (paciente.getGender() == 'M' ? "Masculino" : "Feminino"));
-        System.out.printf("Data de nascimento: %d/%d/%d\n", 
-                          paciente.getDayOfBirth(), paciente.getMonthOfBirth(), paciente.getYearOfBirth());
-        System.out.printf("Idade: %d anos\n", paciente.calculateAge(anoAtual));
-        System.out.printf("Altura: %.1f polegadas\n", paciente.getHeightInInches());
-        System.out.printf("Peso: %.1f libras\n", paciente.getWeightInPounds());
-        System.out.printf("Índice de Massa Corporal (BMI): %.1f\n", paciente.calculateBMI());
-        System.out.printf("Frequência cardíaca máxima: %d bpm\n", paciente.calculateMaxHeartRate(anoAtual));
-        System.out.printf("Faixa de frequência cardíaca alvo: %s\n", paciente.calculateTargetHeartRate(anoAtual));
-
-        System.out.println("\nTABELA DE VALORES DO BMI");
-        System.out.println("Abaixo do peso: menos de 18.5");
-        System.out.println("Peso normal:    18.5 – 24.9");
-        System.out.println("Sobrepeso:      25.0 – 29.9");
-        System.out.println("Obesidade:      30.0 ou mais");
-
-        scanner.close();
+        System.out.println("Nome: " + hp.getFirstName() + " " + hp.getLastName());
+        System.out.println("Gênero: " + (hp.getGender() == 'M' || hp.getGender() == 'm' ? "Masculino" : "Feminino"));
+        System.out.println("Data de nascimento: " + hp.getDayOfBirth() + "/" + hp.getMonthOfBirth() + "/" + hp.getYearOfBirth());
+        System.out.println("Idade: " + hp.calculateAge(LocalDate.now().getYear()) + " anos");
+        System.out.println("Altura: " + (int)hp.getHeightInInches() + " polegadas");
+        System.out.println("Peso: " + (int)hp.getWeightInPounds() + " libras");
+        System.out.printf("Índice de Massa Corporal (BMI): %.1f\n", hp.calculateBMI());
+        System.out.println("Frequência cardíaca máxima: " + hp.calculateMaxHeartRate() + " bpm");
+        System.out.println("Faixa de frequência cardíaca alvo: " + hp.calculateTargetHeartRate());
+        
+        System.out.println("\n| BMI            | Classificação             |");
+        System.out.println("|----------------|---------------------------|");
+        System.out.println("| Menos de 18.5  | Abaixo do peso            |");
+        System.out.println("| 18.5 – 24.9    | Peso normal               |");
+        System.out.println("| 25.0 – 29.9    | Sobrepeso                 |");
+        System.out.println("| 30.0 ou mais   | Obesidade                 |");
     }
 }

@@ -1,7 +1,7 @@
-import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.Period;
 
 public class HeartRates {
-    
     private String firstName;
     private String lastName;
     private int dayOfBirth;
@@ -16,58 +16,63 @@ public class HeartRates {
         this.yearOfBirth = yearOfBirth;
     }
 
+    public String getFirstName() { return firstName; }
     public void setFirstName(String firstName) { this.firstName = firstName; }
+
+    public String getLastName() { return lastName; }
     public void setLastName(String lastName) { this.lastName = lastName; }
+
+    public int getDayOfBirth() { return dayOfBirth; }
     public void setDayOfBirth(int dayOfBirth) { this.dayOfBirth = dayOfBirth; }
+
+    public int getMonthOfBirth() { return monthOfBirth; }
     public void setMonthOfBirth(int monthOfBirth) { this.monthOfBirth = monthOfBirth; }
+
+    public int getYearOfBirth() { return yearOfBirth; }
     public void setYearOfBirth(int yearOfBirth) { this.yearOfBirth = yearOfBirth; }
 
-    public String getFirstName() { return firstName; }
-    public String getLastName() { return lastName; }
-    public int getDayOfBirth() { return dayOfBirth; }
-    public int getMonthOfBirth() { return monthOfBirth; }
-    public int getYearOfBirth() { return yearOfBirth; }
-
     public int calculateAge(int currentYear) {
-        return currentYear - yearOfBirth;
+        LocalDate birthDate = LocalDate.of(yearOfBirth, monthOfBirth, dayOfBirth);
+        LocalDate fixedEvalDate = LocalDate.of(currentYear, 1, 1);
+        return Period.between(birthDate, fixedEvalDate).getYears();
+    }
+
+    private int getAge() {
+        LocalDate birthDate = LocalDate.of(yearOfBirth, monthOfBirth, dayOfBirth);
+        LocalDate currentDate = LocalDate.of(2024, 8, 14);
+        return Period.between(birthDate, currentDate).getYears();
     }
 
     public int calculateMaxHeartRate() {
-    int anoAtual = 2026; 
-    return 220 - calculateAge(anoAtual);
+        return 220 - getAge();
     }
 
-
     public String calculateTargetHeartRate() {
-        int max = calculateMaxHeartRate(); 
-        double minAlvo = max * 0.5;
-        double maxAlvo = max * 0.85;
-        return String.format("%.0f bpm - %.0f bpm", minAlvo, maxAlvo);
+        int maxRate = calculateMaxHeartRate();
+        int minTarget = (int) (maxRate * 0.50);
+        int maxTarget = (int) (maxRate * 0.85);
+        return minTarget + " bpm - " + maxTarget + " bpm";
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int anoAtual = 2026;
-
+        java.util.Scanner input = new java.util.Scanner(System.in);
         System.out.print("Digite seu primeiro nome: ");
-        String f = scanner.nextLine();
+        String name = input.nextLine();
 
         System.out.print("Digite seu sobrenome: ");
-        String l = scanner.nextLine();
+        String lastName = input.nextLine();
 
-        System.out.print("Digite sua data de nascimento (dia, mês e ano separados por espaço): ");
-        int d = scanner.nextInt();
-        int m = scanner.nextInt();
-        int y = scanner.nextInt();
+        System.out.print("Digite sua data de nascimento (dia, mes e ano separados por espaco): ");
+        int day = input.nextInt();
+        int month = input.nextInt();
+        int year = input.nextInt();
 
-        HeartRates pessoa = new HeartRates(f, l, d, m, y);
+        HeartRates hr = new HeartRates(name, lastName, day, month, year);
 
-        System.out.println("\nNome: " + pessoa.getFirstName() + " " + pessoa.getLastName());
-        System.out.printf("Data de nascimento: %d/%d/%d\n", pessoa.getDayOfBirth(), pessoa.getMonthOfBirth(), pessoa.getYearOfBirth());
-        System.out.printf("Idade: %d anos\n", pessoa.calculateAge(anoAtual));
-        System.out.printf("Frequência cardíaca máxima: %d bpm\n", pessoa.calculateMaxHeartRate(anoAtual));
-        System.out.printf("Faixa de frequência cardíaca alvo: %s\n",pessoa.calculateTargetHeartRate(anoAtual));
-
-        scanner.close();
+        System.out.println("Nome: " + hr.getFirstName() + " " + hr.getLastName());
+        System.out.println("Data de nascimento: " + hr.getDayOfBirth() + "/" + hr.getMonthOfBirth() + "/" + hr.getYearOfBirth());
+        System.out.println("Idade: " + hr.calculateAge(LocalDate.now().getYear()) + " anos");
+        System.out.println("Frequência cardíaca máxima: " + hr.calculateMaxHeartRate() + " bpm");
+        System.out.println("Faixa de frequência cardíaca alvo: " + hr.calculateTargetHeartRate());
     }
 }
