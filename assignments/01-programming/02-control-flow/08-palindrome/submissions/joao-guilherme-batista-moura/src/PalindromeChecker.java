@@ -5,12 +5,14 @@ public class PalindromeChecker {
     }
 
     public static boolean isPalindrome(String input) {
-        String cleanInput = input.toLowerCase();
+
+        input = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+
         int left = 0;
-        int right = cleanInput.length() - 1;
+        int right = input.length() - 1;
 
         while (left < right) {
-            if (cleanInput.charAt(left) != cleanInput.charAt(right)) {
+            if (input.charAt(left) != input.charAt(right)) {
                 return false;
             }
             left++;

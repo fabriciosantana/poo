@@ -1,3 +1,5 @@
+import java.util.Calendar;
+
 public class HeartRates {
     private String firstName;
     private String lastName;
@@ -12,58 +14,61 @@ public class HeartRates {
         this.monthOfBirth = monthOfBirth;
         this.yearOfBirth = yearOfBirth;
     }
-
+    
     public String getFirstName() {
         return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public int getDayOfBirth() {
         return dayOfBirth;
-    }
-
-    public void setDayOfBirth(int dayOfBirth) {
-        this.dayOfBirth = dayOfBirth;
     }
 
     public int getMonthOfBirth() {
         return monthOfBirth;
     }
 
-    public void setMonthOfBirth(int monthOfBirth) {
-        this.monthOfBirth = monthOfBirth;
-    }
-
     public int getYearOfBirth() {
         return yearOfBirth;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setDayOfBirth(int dayOfBirth) {
+        this.dayOfBirth = dayOfBirth;
+    }
+
+    public void setMonthOfBirth(int monthOfBirth) {
+        this.monthOfBirth = monthOfBirth;
     }
 
     public void setYearOfBirth(int yearOfBirth) {
         this.yearOfBirth = yearOfBirth;
     }
 
-    public int calculateAge(int currentYear) {
+    public int calculateAge() {
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
         return currentYear - yearOfBirth;
     }
 
-    public int calculateMaxHeartRate(int age) {
-        return 220 - age;
+    public int calculateMaxHeartRate() {
+        return 220 - calculateAge();
     }
 
-    public String calculateTargetHeartRate(int maxHeartRate) {
+    public String calculateTargetHeartRate() {
+        int maxHeartRate = calculateMaxHeartRate();
         double minTarget = maxHeartRate * 0.50;
         double maxTarget = maxHeartRate * 0.85;
+
         return String.format("%.0f bpm - %.0f bpm", minTarget, maxTarget);
     }
 }

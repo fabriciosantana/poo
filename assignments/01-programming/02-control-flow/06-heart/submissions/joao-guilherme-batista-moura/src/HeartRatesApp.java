@@ -1,11 +1,8 @@
 import java.util.Scanner;
-import java.util.Calendar;
 
-public class HeartRatesTest {
+class HeartRatesApp {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-
-        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
 
         System.out.print("Digite seu primeiro nome: ");
         String firstName = input.nextLine();
@@ -20,9 +17,9 @@ public class HeartRatesTest {
 
         HeartRates person = new HeartRates(firstName, lastName, day, month, year);
 
-        int age = person.calculateAge(currentYear);
-        int maxHR = person.calculateMaxHeartRate(age);
-        String targetHR = person.calculateTargetHeartRate(maxHR);
+        int age = person.calculateAge();
+        int maxHR = person.calculateMaxHeartRate();
+        String targetHR = person.calculateTargetHeartRate();
 
         System.out.println("\n--- Resumo das Informações ---");
         System.out.printf("Nome: %s %s%n", person.getFirstName(), person.getLastName());
