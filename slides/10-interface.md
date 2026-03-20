@@ -77,17 +77,24 @@ public class SalariedEmployee extends Employee implements Payable {
 ## Processando polimorficamente
 
 ```java
-// Main.java (trecho)
+// HeartRatesTest.java (trecho)
 Payable[] payableObjects = {
-    new Invoice("01234", "seat", 2, 375.00),
-    new SalariedEmployee("John", "Smith", "111-11-1111", 800.00)
-};
+                new Invoice("01234", "seat", 2, 375.00),
+                new SalariedEmployee("John", "Smith", "111-11-1111", 800.00)
+        };
 
-for (Payable currentPayable : payableObjects) {
-    System.out.printf("%n%s %npayment due: $%,.2f%n",
-        currentPayable.toString(), currentPayable.getPaymentAmount());
-    System.out.println(currentPayable.metodoDefault());
-}
+for(
+Payable currentPayable :payableObjects){
+        System.out.
+
+printf("%n%s %npayment due: $%,.2f%n",
+       currentPayable.toString(),currentPayable.
+
+getPaymentAmount());
+        System.out.
+
+println(currentPayable.metodoDefault());
+        }
 ```
 
 - Arrays de `Payable` tratam objetos distintos de forma uniforme

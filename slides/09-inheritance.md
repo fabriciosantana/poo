@@ -62,20 +62,27 @@ public abstract class Employee {
 ## Polimorfismo em ação
 
 ```java
-// Main.java (trecho)
-Employee[] employees = { salariedEmployee, hourlyEmployee,
-    commissionEmployee, basePlusCommissionEmployee };
+// HeartRatesTest.java (trecho)
+Employee[] employees = {salariedEmployee, hourlyEmployee,
+                commissionEmployee, basePlusCommissionEmployee};
 
-for (Employee currentEmployee : employees) {
-    System.out.println(currentEmployee);
+for(
+Employee currentEmployee :employees){
+        System.out.
 
-    if (currentEmployee instanceof BasePlusCommissionEmployee) {
-        BasePlusCommissionEmployee employee = (BasePlusCommissionEmployee) currentEmployee;
-        employee.setBaseSalary(1.10 * employee.getBaseSalary());
-    }
+println(currentEmployee);
 
-    System.out.printf("earned $%,.2f%n%n", currentEmployee.earnings());
-}
+    if(currentEmployee instanceof BasePlusCommissionEmployee){
+BasePlusCommissionEmployee employee = (BasePlusCommissionEmployee) currentEmployee;
+        employee.
+
+setBaseSalary(1.10*employee.getBaseSalary());
+        }
+
+        System.out.
+
+printf("earned $%,.2f%n%n",currentEmployee.earnings());
+        }
 ```
 
 - `instanceof` garante tipo antes do cast
