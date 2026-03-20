@@ -7,7 +7,7 @@ public class PalindromeChecker {
     }
 
     public static boolean isPalindrome(String input) {
-        String cleanInput = input.toLowerCase();
+        String cleanInput = input.toLowerCase().replace(" ", "");
         int left = 0;
         int right = cleanInput.length() - 1;
 

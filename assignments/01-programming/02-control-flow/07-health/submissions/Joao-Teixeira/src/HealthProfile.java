@@ -49,12 +49,12 @@ public class HealthProfile {
         return currentYear - yearOfBirth;
     }
 
-    public int calculateMaxHeartRate(int currentYear) {
-        return 220 - calculateAge(currentYear);
+    public int calculateMaxHeartRate() {
+    return 220 - calculateAge(2026);
     }
 
-    public String calculateTargetHeartRate(int currentYear) {
-        int max = calculateMaxHeartRate(currentYear);
+    public String calculateTargetHeartRate() {
+        int max = calculateMaxHeartRate();
         return String.format("%.0f bpm - %.0f bpm", max * 0.5, max * 0.85);
     }
 

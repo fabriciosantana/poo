@@ -32,15 +32,16 @@ public class HeartRates {
         return currentYear - yearOfBirth;
     }
 
-    public int calculateMaxHeartRate(int currentYear) {
-        return 220 - calculateAge(currentYear);
+    public int calculateMaxHeartRate() {
+    int anoAtual = 2026; 
+    return 220 - calculateAge(anoAtual);
     }
 
-    public String calculateTargetHeartRate(int currentYear) {
-        int max = calculateMaxHeartRate(currentYear);
-        double minAlvo = max * 0.50;
+
+    public String calculateTargetHeartRate() {
+        int max = calculateMaxHeartRate(); 
+        double minAlvo = max * 0.5;
         double maxAlvo = max * 0.85;
-        
         return String.format("%.0f bpm - %.0f bpm", minAlvo, maxAlvo);
     }
 
