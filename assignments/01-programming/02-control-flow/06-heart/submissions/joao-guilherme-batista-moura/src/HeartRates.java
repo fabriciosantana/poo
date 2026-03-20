@@ -14,7 +14,7 @@ public class HeartRates {
         this.monthOfBirth = monthOfBirth;
         this.yearOfBirth = yearOfBirth;
     }
-    
+
     public String getFirstName() {
         return firstName;
     }
@@ -55,20 +55,17 @@ public class HeartRates {
         this.yearOfBirth = yearOfBirth;
     }
 
-    public int calculateAge() {
-        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+    public int calculateAge(int currentYear) {
         return currentYear - yearOfBirth;
     }
 
-    public int calculateMaxHeartRate() {
-        return 220 - calculateAge();
+    public int calculateMaxHeartRate(int age) {
+        return 220 - age;
     }
 
-    public String calculateTargetHeartRate() {
-        int maxHeartRate = calculateMaxHeartRate();
+    public String calculateTargetHeartRate(int maxHeartRate) {
         double minTarget = maxHeartRate * 0.50;
         double maxTarget = maxHeartRate * 0.85;
-
         return String.format("%.0f bpm - %.0f bpm", minTarget, maxTarget);
     }
 }
