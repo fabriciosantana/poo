@@ -1,10 +1,11 @@
-
 - Criar diretório para armazenar as dependências
+
 ```bash
 mkdir lib
 ```
 
 - Baixar manualmente as dependências do JPA
+
 ```bash
 wget https://jdbc.postgresql.org/download/postgresql-42.7.7.jar -P lib
 wget https://repo1.maven.org/maven2/jakarta/persistence/jakarta.persistence-api/3.2.0/jakarta.persistence-api-3.2.0.jar -P lib
@@ -24,7 +25,7 @@ wget https://repo1.maven.org/maven2/com/sun/istack/istack-commons-runtime/4.1.1/
 ```
 
 ```bash
-javac -cp "lib/*" -d bin src/main/java/br/edu/idp/cc/poo/dvdrental/Main.java src/main/java/br/edu/idp/cc/poo/dvdrental/dao/ActorDAO.java src/main/java/br/edu/idp/cc/poo/dvdrental/model/Actor.java src/main/java/br/edu/idp/cc/poo/dvdrental/util/AuditLogger.java
+javac -cp "lib/*" -d bin src/main/java/br/edu/idp/cc/poo/dvdrental/HeartRatesTest.java src/main/java/br/edu/idp/cc/poo/dvdrental/dao/ActorDAO.java src/main/java/br/edu/idp/cc/poo/dvdrental/model/Actor.java src/main/java/br/edu/idp/cc/poo/dvdrental/util/AuditLogger.java
 ```
 
 ```bash
