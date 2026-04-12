@@ -10,9 +10,10 @@ public class SavingsAccount {
     }
 
     public void calculateMonthlyInterest() {
-        double monthlyInterestRate = annualInterestRate / 12.0;
+        double monthlyInterestRate = (annualInterestRate / 100.0) / 12.0;
         double interest = savingsBalance * monthlyInterestRate;
         savingsBalance += interest;
+
         savingsBalance = Math.round(savingsBalance * 100.0) / 100.0;
     }
 
@@ -20,7 +21,7 @@ public class SavingsAccount {
         if (newAnnualInterestRate < 0.0) {
             throw new IllegalArgumentException("A taxa de juros não pode ser negativa.");
         }
-        SavingsAccount.annualInterestRate = newAnnualInterestRate;
+        annualInterestRate = newAnnualInterestRate;
     }
 
     public static double getAnnualInterestRate() {
