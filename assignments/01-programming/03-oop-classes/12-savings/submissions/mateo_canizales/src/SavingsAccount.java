@@ -27,6 +27,6 @@ public class SavingsAccount {
     }
 
     public double getSavingsBalance() {
-        return savingsBalance;
-    }
+    return Math.round(savingsBalance * 100.0) / 100.0;
+  }
 }
