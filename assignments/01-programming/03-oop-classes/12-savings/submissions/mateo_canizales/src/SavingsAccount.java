@@ -1,4 +1,3 @@
-
 public class SavingsAccount {
     private double savingsBalance;
     private static double annualInterestRate;
@@ -11,21 +10,27 @@ public class SavingsAccount {
     }
 
     public void calculateMonthlyInterest() {
+
         double monthlyInterestRate = annualInterestRate / 12.0;
+        
         double interest = savingsBalance * monthlyInterestRate;
+        
         savingsBalance += interest;
+        
+        savingsBalance = Math.round(savingsBalance * 100.0) / 100.0;
     }
 
-    public static void setAnnualInterestRate(double annualInterestRate) {
-        if (annualInterestRate < 0.0) {
+    public static void setAnnualInterestRate(double newAnnualInterestRate) {
+        if (newAnnualInterestRate < 0.0) {
             throw new IllegalArgumentException("A taxa de juros não pode ser negativa.");
         }
-        SavingsAccount.annualInterestRate = annualInterestRate;
+        SavingsAccount.annualInterestRate = newAnnualInterestRate;
     }
 
     public static double getAnnualInterestRate() {
         return annualInterestRate;
     }
+
     public double getSavingsBalance() {
         return savingsBalance;
     }
