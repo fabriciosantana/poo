@@ -10,15 +10,9 @@ public class SavingsAccount {
     }
 
     public void calculateMonthlyInterest() {
-        if (annualInterestRate == 0.0) {
-            return; // evita divisão por zero ou comportamento estranho
-        }
-
-        double monthlyInterestRate = annualInterestRate / 12.0;
-
+        double monthlyInterestRate = (annualInterestRate / 100.0) / 12.0;
         double interest = savingsBalance * monthlyInterestRate;
         savingsBalance += interest;
-
         savingsBalance = Math.round(savingsBalance * 100.0) / 100.0;
     }
 
