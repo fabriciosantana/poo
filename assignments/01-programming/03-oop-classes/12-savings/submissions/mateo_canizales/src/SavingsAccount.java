@@ -1,6 +1,6 @@
 public class SavingsAccount {
     private double savingsBalance;
-    private static double annualInterestRate;  
+    private static double annualInterestRate;
 
     public SavingsAccount(double savingsBalance) {
         if (savingsBalance < 0.0) {
@@ -10,9 +10,11 @@ public class SavingsAccount {
     }
 
     public void calculateMonthlyInterest() {
-        double monthlyInterestRate = (annualInterestRate / 100.0) / 12.0;
-        double interest = savingsBalance * monthlyInterestRate;
-        savingsBalance += interest;
+        double annualRateDecimal = annualInterestRate / 100.0;
+
+        double monthlyRate = Math.pow(1 + annualRateDecimal, 1.0 / 12.0) - 1;
+
+        savingsBalance += savingsBalance * monthlyRate;
     }
 
     public static void setAnnualInterestRate(double newAnnualInterestRate) {
@@ -27,6 +29,6 @@ public class SavingsAccount {
     }
 
     public double getSavingsBalance() {
-    return Math.round(savingsBalance * 100.0) / 100.0;
-  }
+        return Math.round(savingsBalance * 100.0) / 100.0;
+    }
 }

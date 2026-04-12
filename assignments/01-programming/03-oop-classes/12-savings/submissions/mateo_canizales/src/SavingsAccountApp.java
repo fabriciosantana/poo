@@ -15,17 +15,18 @@ public class SavingsAccountApp {
         SavingsAccount.setAnnualInterestRate(taxaPercent);
 
         System.out.printf("Saldos com taxa de juros de %.1f%%:%n", taxaPercent);
+
         for (int mes = 1; mes <= 12; mes++) {
             conta.calculateMonthlyInterest();
             System.out.printf("Mês %d: R$%.2f%n", mes, conta.getSavingsBalance());
         }
 
         System.out.print("Informe a nova taxa de juros anual: ");
-        double novaTaxaPercent = input.nextDouble();
+        double novaTaxa = input.nextDouble();
 
-        System.out.printf("Alterando taxa de juros anual para %.1f%%...%n", novaTaxaPercent);
+        System.out.printf("Alterando taxa de juros anual para %.1f%%...%n", novaTaxa);
 
-        SavingsAccount.setAnnualInterestRate(novaTaxaPercent);
+        SavingsAccount.setAnnualInterestRate(novaTaxa);
 
         conta.calculateMonthlyInterest();
         System.out.printf("Mês 13: R$%.2f%n", conta.getSavingsBalance());
