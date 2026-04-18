@@ -51,4 +51,4 @@ O cálculo das taxas de estacionamento deve ser feito por meio do método **`cal
 3. O programa deve aceitar **valores fracionários** para o número de horas estacionadas.  
 4. O programa deve **encerrar** quando o usuário digitar **-1** como entrada.  
 5. Utilizar a **classe `Scanner`** para ler as entradas do usuário.  
-6. O cálculo da taxa deve ser feito **exclusivamente pelo método `calculateCharges`**, garantindo modularidade.  
+6. O cálculo da taxa deve ser feito **exclusivamente pelo método `calculateCharges`**, garantindo modularidade.   
