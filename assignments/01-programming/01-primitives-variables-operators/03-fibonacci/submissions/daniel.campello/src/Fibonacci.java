@@ -4,30 +4,33 @@ public class Fibonacci {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
         System.out.print("Digite um número inteiro não negativo: ");
         int n = scanner.nextInt();
-        long resultado = calcularFibonacci(n);
-        String saida = formatarSaida(resultado, n);
+
+        long fibonacciNumber = calcularFibonacci(n);
+        String saida = formatarSaida(fibonacciNumber, n);
+
         System.out.println(saida);
+
+        scanner.close();
     }
 
     public static long calcularFibonacci(int n) {
-        if (n == 0) {
-            return 0;
-        } else if (n == 1) {
-            return 1;
-        } else {
-            long a = 0, b = 1, c;
-            for (int i = 2; i <= n; i++) {
-                c = a + b;
-                a = b;
-                b = c;
-            }
-            return b;
+        if (n <= 1) {
+            return n;
         }
+        long a = 0;
+        long b = 1;
+        for (int i = 2; i <= n; i++) {
+            long temp = a + b;
+            a = b;
+            b = temp;
+        }
+        return b;
     }
 
-    public static String formatarSaida(long numero, int n) {
-        return "O " + n + "º número de Fibonacci é: " + numero;
+    public static String formatarSaida(long fib, int n) {
+        return String.format("O %dº número de Fibonacci é: %d", n, fib);
     }
 }
