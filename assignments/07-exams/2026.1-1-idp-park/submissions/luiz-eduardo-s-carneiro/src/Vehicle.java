@@ -18,7 +18,7 @@ public abstract class Vehicle{
     public String getBrand(){ return brand; }
     public String getModel(){ return model; }
 
-    public abstract String calculateParkingFee(int hours);
+    public abstract double calculateParkingFee(int hours);
 
     @Override
     public String toString(){

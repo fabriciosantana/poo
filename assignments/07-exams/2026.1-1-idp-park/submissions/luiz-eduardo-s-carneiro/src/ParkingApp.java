@@ -1,17 +1,16 @@
+import java.util.ArrayList;
+
 public class ParkingApp{
     public static void main(String[] args){
-        Car car = new Car("ABC-1234", "Toyota", "Corolla");
-        Truck truck = new Truck("KLM-9090", "Volvo", "FH 540");
-        Motorcycle moto = new Motorcycle("XYZ-5678", "Honda", "CG 160");
-        
-        Vehicle[] vehicles = new Vehicle[3];
-        vehicles[0] = car;
-        vehicles[1] = moto;
-        vehicles[2] = truck;
+
+        ArrayList<Vehicle> vehicles = new ArrayList<>();
+        vehicles.add(new Car(4, "ABC-1234", "Toyota", "Corolla"));
+        vehicles.add(new Truck(4, "KLM-9090", "Volvo", "FH 540"));
+        vehicles.add(new Motorcycle(4, "XYZ-5678", "Honda", "CG 160"));
 
         for(Vehicle currentVehicle: vehicles){
             System.out.println(currentVehicle);
-            System.out.println(currentVehicle.calculateParkingFee(4));
         }
+        
     }
 }

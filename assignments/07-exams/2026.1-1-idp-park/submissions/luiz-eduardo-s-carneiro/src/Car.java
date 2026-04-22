@@ -1,17 +1,20 @@
 public class Car extends Vehicle{
 
-    public Car(String plate, String brand, String model){
+    private int hours;
+
+    public Car(int hours, String plate, String brand, String model){
         super(plate, brand, model);
+
+        this.hours = hours;
     }
 
     @Override
-    public String calculateParkingFee(int hours){
-        double calc = hours * 5.00;
-        return String.format("Valor a pagar por %dh: R$ %.2f\n", hours, calc);
+    public double calculateParkingFee(int hours){
+        return hours * 5.00;
     }
 
     @Override
     public String toString(){
-        return String.format("Carro - %s", super.toString());
+        return String.format("Carro - %s\nValor a pagar por %dh: R$ %.2f\n", super.toString(), hours, calculateParkingFee(hours));
     }
 }
