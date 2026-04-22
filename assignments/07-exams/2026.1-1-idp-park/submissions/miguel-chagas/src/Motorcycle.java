@@ -1,5 +1,5 @@
-public class Motocycle extends Vehicle{
-    public Motocycle(String plate, String brand, String model) {
+public class Motorcycle extends Vehicle{
+    public Motorcycle(String plate, String brand, String model) {
         super(plate, brand, model);
     }
     
