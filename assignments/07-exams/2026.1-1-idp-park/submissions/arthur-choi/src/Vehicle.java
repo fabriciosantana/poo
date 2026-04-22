@@ -1,0 +1,30 @@
+public abstract class Vehicle {
+    private String plate;
+    private String brand;
+    private String model;
+
+    //construtor
+    Vehicle(String plate, String brand, String model) {
+        this.plate = plate;
+        this.brand = brand;
+        this.model = model;
+    }
+
+    //getters
+    public String getPlate() {return plate;}
+    public String getBrand() {return brand;}
+    public String getModel() {return model;}
+
+    //setters
+    public void setPlate(String plate) {this.plate = plate;}
+    public void setBrand(String brand) {this.brand = brand;}
+    public void setModel(String model) {this.model = model;}
+
+    //métodos
+    public abstract double calculateParkingFee(int hours);
+
+    @Override
+    public String toString() {
+        return "Placa: " + plate + ", Marca: " + brand + ", Modelo: " + model;
+    }
+}
