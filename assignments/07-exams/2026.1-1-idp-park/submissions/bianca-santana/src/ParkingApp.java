@@ -8,6 +8,7 @@ class ParkingApp {
         Vehicle truck = new Truck("KLM-9090 ", "Volvo", "FH 540", 4);
 
         vehicles.add(car);
+
         vehicles.add(motorcycle);
         vehicles.add(truck);
 
