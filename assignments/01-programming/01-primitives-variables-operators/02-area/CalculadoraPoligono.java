@@ -20,7 +20,6 @@ public class CalculadoraPoligono {
 
         scanner.close();
     }
-
     public static double calcularArea(int n, double s) {
         return (1.0 / 4.0) * s * s * n * (1.0 / Math.tan(Math.PI / n));
     }

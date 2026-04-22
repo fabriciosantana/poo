@@ -30,7 +30,6 @@ public class Fibonacci{
 
         return atual;
     }
-
     public static String formatarSaida(long f, int n){
 
         String texto_exibicao = String.format("O %dº número de Fibonacci é: %d",n,f);
