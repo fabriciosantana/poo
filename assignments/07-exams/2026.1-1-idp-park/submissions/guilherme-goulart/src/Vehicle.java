@@ -9,7 +9,6 @@ public abstract class Vehicle {
         this.model = model;
     }
 
-    // Getters e Setters
     public String getPlate() { return plate; }
     public void setPlate(String plate) { this.plate = plate; }
 
@@ -19,7 +18,6 @@ public abstract class Vehicle {
     public String getModel() { return model; }
     public void setModel(String model) { this.model = model; }
 
-    // Método abstrato a ser implementado pelas subclasses
     public abstract double calculateParkingFee(int hours);
 
     @Override
@@ -28,7 +26,6 @@ public abstract class Vehicle {
     }
 }
 
-// Classe Carro
 class Car extends Vehicle {
     public Car(String plate, String brand, String model) {
         super(plate, brand, model);
@@ -45,7 +42,6 @@ class Car extends Vehicle {
     }
 }
 
-// Classe Moto
 class Motorcycle extends Vehicle {
     public Motorcycle(String plate, String brand, String model) {
         super(plate, brand, model);
@@ -62,7 +58,6 @@ class Motorcycle extends Vehicle {
     }
 }
 
-// Classe Caminhão
 class Truck extends Vehicle {
     public Truck(String plate, String brand, String model) {
         super(plate, brand, model);
