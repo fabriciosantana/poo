@@ -2,30 +2,26 @@ import java.util.Scanner;
 
 public class ParkingGarage {
     public static double calculateCharges(double hours) {
-    double fee = 2.0;
-    
-    if (hours > 3.0) {
-        fee = 2.0 + (int)(hours - 3) * 0.5;
-    }
-    if (fee > 10.0) {
-        fee = 10.0;
-    }
-    
-    return fee;
-}
-    private static class Cliente{
-        private int id;
-        private double charge;
-
-        public Cliente(int id, double hours){
-            this.id = id;
-            this.charge = calculateCharges(hours);
-        }
-        public void display(){
-            System.out.printf("Cliente %d: Taxa de estacionamento: $%.2f%n", id, charge);
+        if (hours <= 0) {
+            return 2.0;
         }
 
-        public double getCharge() {return charge;}
+        if (hours >= 24) {
+            return 10.0;
+        }
+
+        if (hours <= 3.0) {
+            return 2.0;
+        }
+
+        double roundedHours = Math.ceil(hours);
+        double charge = 2.0 + ((roundedHours - 3.0) * 0.5);
+
+        if (charge > 10.0) {
+            return 10.0;
+        }
+
+        return charge;
     }
 
     public static void main(String[] args) {
@@ -34,26 +30,26 @@ public class ParkingGarage {
         int clientCount = 0;
 
         while (true) {
-            System.out.print("Digite o número de horas estacionadas para o cliente (ou -1 para sair): ");
-            if(!scanner.hasNextDouble()){
-                System.out.println("Entrada inválida. Por favor, digite um número.");
+            System.out.print("Enter parked hours for client (or -1 to stop): ");
+
+            if (!scanner.hasNextDouble()) {
                 scanner.next();
                 continue;
             }
-            double input = scanner.nextDouble();
 
-            if (input == -1) {
+            double hours = scanner.nextDouble();
+            if (hours == -1.0) {
                 break;
             }
 
             clientCount++;
-            Cliente c = new Cliente(clientCount, input);
-            c.display();
-            
-            totalCollected += c.getCharge();
-        }
-            System.out.printf("Total arrecadado ontem: $%.2f%n", totalCollected);
+            double charge = calculateCharges(hours);
+            totalCollected += charge;
 
-            scanner.close();
+            System.out.printf("Client %d: Parking charge: $%.2f%n", clientCount, charge);
+        }
+
+        System.out.printf("Total collected: $%.2f%n", totalCollected);
+        scanner.close();
     }
 }

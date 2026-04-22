@@ -5,27 +5,25 @@ public class SavingsAccountApp {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Informe o saldo inicial: ");
-        double balance = scanner.nextDouble();
+        double initialBalance = scanner.nextDouble();
 
-        SavingsAccount account = new SavingsAccount(balance);
+        SavingsAccount account = new SavingsAccount(initialBalance);
 
-        while (true) {
-            System.out.print("\nInforme a nova taxa de juros anual (%) ou -1 para sair: ");
-            double rateInput = scanner.nextDouble();
+        System.out.print("Informe a taxa de juros anual (%): ");
+        double rate = scanner.nextDouble();
+        SavingsAccount.setAnnualInterestRate(rate);
 
-            if (rateInput == -1) {
-                System.out.println("Programa encerrado.");
-                break;
-            }
-
-            double rate = rateInput / 100;
-            SavingsAccount.modifyInterestRate(rate);
-
-            for (int month = 1; month <= 12; month++) {
-                account.calculateMonthlyInterest();
-                System.out.printf("Mês %d: R$%.2f%n", month, account.getSavingsBalance());
-            }
+        for (int month = 1; month <= 12; month++) {
+            account.calculateMonthlyInterest();
+            System.out.printf("Mes %d: R$%.2f%n", month, account.getSavingsBalance());
         }
+
+        System.out.print("Informe a nova taxa de juros anual (%): ");
+        double newRate = scanner.nextDouble();
+        SavingsAccount.setAnnualInterestRate(newRate);
+
+        account.calculateMonthlyInterest();
+        System.out.printf("Mes 13: R$%.2f%n", account.getSavingsBalance());
 
         scanner.close();
     }
