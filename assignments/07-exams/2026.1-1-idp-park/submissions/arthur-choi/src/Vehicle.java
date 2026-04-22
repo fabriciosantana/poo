@@ -16,18 +16,9 @@ public abstract class Vehicle {
     public String getModel() {return model;}
 
     //setters
-    public String setPlate(String plate) {
-        this.plate = plate;
-        return plate;
-    }
-    public String setBrand(String brand) {
-        this.brand = brand;
-        return brand;
-    }
-    public String setModel(String model) {
-        this.model = model;
-        return model;
-    }
+    public void setPlate(String plate) {this.plate = plate;}
+    public void setBrand(String brand) {this.brand = brand;}
+    public void setModel(String model) {this.model = model;}
 
     //métodos
     public abstract double calculateParkingFee(int hours);
