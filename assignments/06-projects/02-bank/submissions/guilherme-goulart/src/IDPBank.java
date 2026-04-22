@@ -7,35 +7,29 @@ public class IDPBank {
         int options = 0;
         ArrayList<Customer> customers = new ArrayList<>();
 
-        while (options != 5) {
+        while (options != 6) {
             System.out.println("Seja bem-vindo ao IDP Bank! Escolha uma das opções abaixo:\r\n" + //
                         "\r\n" + //
                         "1. Abrir conta\r\n" + //
                         "2. Consultar cliente\r\n" + //
                         "3. Depositar\r\n" + //
                         "4. Sacar\r\n" + //
-                        "5. Sair\r\n" + //
+                        "5. Transferir\r\n" + //
+                        "6. Sair\r\n" + //
                         "\r\n" + //
                         "Digite o número correspondente à opção desejada: ");
 
             int option = sc.nextInt();
 
             if(option == 1){
-                System.out.println("Digite os dados para a abertura da conta.\n");
-                System.out.print("Primeiro nome: ");
-                String firstName = sc.next();
-                System.out.print("Sobrenome: ");
-                String lastName = sc.next();
-                System.out.print("CPF: ");
-                String CPF = sc.next();
+                System.out.println("Qual tipo de conta deseja abrir?\r\n"+
+                "1. Conta Corrente\r\n" +
+                "2. Conta Poupança\r\n" +
+                "3. Conta Salário\r\n"+
+                "\nDigite o número da opção desejada: ");
 
-                customer = createCustomer(firstName, lastName, CPF);
-                Account account = openAccount(customer);
-                customer.setAccount(account);
-                customers.add(customer);
-
-                System.out.println("\nCliente cadastrado com sucesso! Informações do cliente:\n");
-                System.out.println(customer.displayInformation() + "\n");
+                int opt = sc.nextInt();
+                // Continuar implementando
             } else if (option == 2) {
                 for(Customer c : customers){
                     System.out.println(c.displayInformation() + "\n");
@@ -56,7 +50,10 @@ public class IDPBank {
                 double amount = sc.nextDouble();
                 double newBalance = customer.getAccount().withdraw(amount);
                 System.out.println("Valor sacado com sucesso da conta do Cliente! Novo saldo: R$ " + newBalance);
-            } else if (option == 5) {
+
+            } else if(option == 5) {
+
+            } else if (option == 6) {
                 System.out.println("Obrigado por usar o IDP Bank! Até a próxima!");
                 break;
             } else {

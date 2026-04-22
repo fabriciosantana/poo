@@ -1,4 +1,4 @@
-public class Account {
+public abstract class Account {
     private int id = 0;
     private double balance;
     private static int accountCounter = 0;
@@ -28,5 +28,28 @@ public class Account {
             this.balance -= amount;
             return this.balance;
         }
+    }
+}
+
+class CheckingAccount extends Account {
+
+    public CheckingAccount(Customer customer) {
+        super(customer);
+        // Saques, depósitos e taxa mensal de manutenção
+    }
+}
+
+class SavingsAccount extends Account {
+    public SavingsAccount(Customer customer){
+        super(customer);
+        // Conta que rende juros mensalmente sobre saldo disponível
+    }
+}
+
+class SalaryAccount extends Account {
+    public SalaryAccount(Customer customer) {
+        super(customer);
+        // Conta para recebimento de salário
+        // Apenas saques e transferências para outra conta
     }
 }
