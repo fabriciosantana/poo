@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class passosElefante {
+public class PassosElefante {
     public static void main(String[] args) {
         Scanner ler = new Scanner(System.in);
         System.out.print("Digite a posição da casa do amigo: ");
