@@ -10,9 +10,7 @@ public class SavingsAccount {
     }
 
     public void calculateMonthlyInterest() {
-        double monthlyRate = Math.pow(1 + annualInterestRate, 1.0 / 12) - 1;
-        savingsBalance += savingsBalance * monthlyRate;
-    }
+        savingsBalance += savingsBalance * (annualInterestRate / 12); 
 
     public static void setAnnualInterestRate(double rate) {
         if (rate < 0)
@@ -28,4 +26,3 @@ public class SavingsAccount {
         return savingsBalance;
     }
 }
-    
