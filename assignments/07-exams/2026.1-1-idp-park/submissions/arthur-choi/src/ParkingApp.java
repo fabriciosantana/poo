@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class VehicleApp {
+public class ParkingApp {
     public static void main(String[] args) {
         Car car = new Car("ABC-1234", "Toyota", "Corolla");
         Truck truck = new Truck("XYZ-5678", "Volvo", "FH16");
