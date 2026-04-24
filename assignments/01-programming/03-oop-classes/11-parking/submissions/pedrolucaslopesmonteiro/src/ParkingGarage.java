@@ -7,13 +7,10 @@ public class ParkingGarage {
             return 2.00;
         }
 
-        double charge = 2.00 + (hours - 3) * 0.50;
+        double extraHours = Math.ceil(hours - 3);
+        double charge = 2.00 + extraHours * 0.50;
 
-        if (charge > 10.00) {
-            return 10.00;
-        }
-
-        return charge;
+        return Math.min(charge, 10.00);
     }
 
     public static void main(String[] args) {
@@ -22,7 +19,7 @@ public class ParkingGarage {
         int customer = 1;
 
         while (true) {
-            System.out.print("Digite o número de horas estacionadas para o cliente (ou -1 para sair): ");
+            System.out.print("Digite o numero de horas estacionadas para o cliente (ou -1 para sair): ");
             double hours = scanner.nextDouble();
 
             if (hours == -1) {
