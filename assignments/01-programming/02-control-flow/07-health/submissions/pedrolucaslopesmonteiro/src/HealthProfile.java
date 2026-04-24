@@ -38,16 +38,23 @@ public class HealthProfile {
     public double getWeightInPounds() { return weightInPounds; }
     public void setWeightInPounds(double weightInPounds) { this.weightInPounds = weightInPounds; }
 
-    public int calculateAge(int currentYear) { return currentYear - yearOfBirth; }
+    public int calculateAge(int currentYear) {
+        return currentYear - yearOfBirth;
+    }
 
-    public int calculateMaxHeartRate() { return 220 - calculateAge(Year.now().getValue()); }
+    public int calculateMaxHeartRate() {
+        return 220 - calculateAge(Year.now().getValue());
+    }
 
-    public String calculateTargetHeartRate() {
+    // 🔥 CORREÇÃO AQUI
+    public int[] calculateTargetHeartRate() {
         int max = calculateMaxHeartRate();
         int min = (int) Math.round(max * 0.50);
         int target = (int) Math.round(max * 0.85);
-        return min + " bpm - " + target + " bpm";
+        return new int[]{min, target};
     }
 
-    public double calculateBMI() { return (weightInPounds * 703) / (heightInInches * heightInInches); }
+    public double calculateBMI() {
+        return (weightInPounds * 703) / (heightInInches * heightInInches);
+    }
 }
