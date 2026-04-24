@@ -1,5 +1,4 @@
-public class Truck {
-    public class Truck extends Vehicle{
+public class Truck extends Vehicle{
         public Truck(String plate, String brand, String model){
             super(plate, brand, model);
         }
@@ -12,4 +11,4 @@ public class Truck {
             }
         }
     
-}
+
