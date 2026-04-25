@@ -87,14 +87,14 @@ public class HealthProfile {
     }
 
     // calcular frequência cardíaca máxima
-    public int calculateMaxHeartRate(int anoAtual) {
-        return 220 - calculateAge(anoAtual);
+    public int calculateMaxHeartRate() {
+        return 220 - calculateAge(2026);
     }
 
     // calcular frequência cardíaca alvo
-    public String calculateTargetHeartRate(int anoAtual) {
-        int heartRateMin = (int) (calculateMaxHeartRate(anoAtual) * 0.5);
-        int heartRateMax = (int) (calculateMaxHeartRate(anoAtual) * 0.85);
+    public String calculateTargetHeartRate() {
+        int heartRateMin = (int) (calculateMaxHeartRate() * 0.5);
+        int heartRateMax = (int) (calculateMaxHeartRate() * 0.85);
         return String.format("Frequência Cardíaca Alvo: %d bpm - %d bpm", heartRateMin,
                 heartRateMax);
     }
