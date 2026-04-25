@@ -5,7 +5,7 @@ public class ParkingGarage {
     private int cliente;
     private double horas;
 
-    public static double calculateCharges(int hours) {
+    public static double calculateCharges(double hours) {
         double rate = 0.5; // $0.50 por hora
         if(hours <= 3) {
             return 2; // $2 para as primeiras 3 horas
