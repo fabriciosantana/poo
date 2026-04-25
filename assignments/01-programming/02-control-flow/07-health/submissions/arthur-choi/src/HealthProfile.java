@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class HealthProfile {
@@ -82,13 +83,17 @@ public class HealthProfile {
 
     // funcionalidades:
     // calcular idade
-    public int calculateAge(int anoAtual) {
-        return anoAtual - this.yearOfBirth;
+    public int calculateAge(int currentYear) {
+        int age = currentYear - yearOfBirth;
+        LocalDate today = LocalDate.now();
+        if (monthOfBirth > today.getMonthValue() || (monthOfBirth == today.getMonthValue() && dayOfBirth > today.getDayOfMonth())) {
+            age--;
+        }
+        return Math.max(age, 0);
     }
-
     // calcular frequência cardíaca máxima
     public int calculateMaxHeartRate() {
-        return 220 - calculateAge(2024);
+        return 220 - calculateAge(2025);
     }
 
     // calcular frequência cardíaca alvo
@@ -132,7 +137,7 @@ public class HealthProfile {
         System.out.printf("Nome: %s %s%n", pessoa.getFirstName(), pessoa.getLastName());
         System.out.printf("Gênero: %s%n", pessoa.getGender());
         System.out.printf("Data de nascimento: %02d/%02d/%d%n", pessoa.getDayOfBirth(), pessoa.getMonthOfBirth(), pessoa.getYearOfBirth());
-        System.out.printf("Idade: %d anos%n", pessoa.calculateAge(2024));
+        System.out.printf("Idade: %d anos%n", pessoa.calculateAge(2025));
         System.out.printf("Altura: %.2f polegadas%n", pessoa.heightInInches);
         System.out.printf("Peso: %.2f libras%n", pessoa.weightInPounds);
         System.out.printf("Índice de Massa Corporal (BMI): %.2f%n", pessoa.calculateBMI());
