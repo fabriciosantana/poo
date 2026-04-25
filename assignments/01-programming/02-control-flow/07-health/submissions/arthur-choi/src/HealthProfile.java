@@ -93,9 +93,9 @@ public class HealthProfile {
 
     // calcular frequência cardíaca alvo
     public String calculateTargetHeartRate(int anoAtual) {
-        double heartRateMin = (calculateMaxHeartRate(anoAtual) * 0.5);
-        double heartRateMax = (calculateMaxHeartRate(anoAtual) * 0.85);
-        return String.format("Frequência Cardíaca Alvo: %.2f - %.2f bpm", heartRateMin,
+        int heartRateMin = (int) (calculateMaxHeartRate(anoAtual) * 0.5);
+        int heartRateMax = (int) (calculateMaxHeartRate(anoAtual) * 0.85);
+        return String.format("Frequência Cardíaca Alvo: %d - %d bpm", heartRateMin,
                 heartRateMax);
     }
 
