@@ -43,6 +43,10 @@ public class HealthProfile {
         return yearOfBirth;
     }
 
+    public int getGender() {
+        return gender;
+    }
+
     // setters
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -78,25 +82,25 @@ public class HealthProfile {
 
     // funcionalidades:
     // calcular idade
-    public int calcularIdade(int anoAtual) {
+    public int calculateAge(int anoAtual) {
         return anoAtual - this.yearOfBirth;
     }
 
     // calcular frequência cardíaca máxima
-    public int calcularFrequenciaCardiacaMaxima(int anoAtual) {
+    public int calculateMaxHeartRate(int anoAtual) {
         return 220 - calcularIdade(anoAtual);
     }
 
     // calcular frequência cardíaca alvo
-    public String calcularFrequenciaCardiacaAlvo(int anoAtual) {
-        double frequenciaCardiacaAlvoMin = (calcularFrequenciaCardiacaMaxima(anoAtual) * 0.5);
-        double frequenciaCardiacaAlvoMax = (calcularFrequenciaCardiacaMaxima(anoAtual) * 0.85);
+    public String calculateTargetHeartRate(int anoAtual) {
+        double heartRateMin = (calculateMaxHeartRate(anoAtual) * 0.5);
+        double heartRateMax = (calculateMaxHeartRate(anoAtual) * 0.85);
         return String.format("Frequência Cardíaca Alvo: %.2f - %.2f bpm", frequenciaCardiacaAlvoMin,
                 frequenciaCardiacaAlvoMax);
     }
 
     //calcular BMI
-    public float calcularBMI() {
+    public float calculateBMI() {
         float heightInMeters = this.heightInInches * 0.0254f;
         return this.weightInPounds * 0.453592f / (heightInMeters * heightInMeters);
     }
@@ -126,13 +130,13 @@ public class HealthProfile {
 
         HealthProfile pessoa = new HealthProfile(primeiroNome, ultimoNome, genero, diaNascimento, mesNascimento, anoNascimento, altura, peso);
         System.out.printf("Nome: %s %s%n", pessoa.getFirstName(), pessoa.getLastName());
-        System.out.printf("Gênero: %s%n", (genero == 'M' ? "Masculino" : "Feminino"));
+        System.out.printf("Gênero: %s%n", pessoa.getGender());
         System.out.printf("Data de nascimento: %02d/%02d/%d%n", pessoa.getDayOfBirth(), pessoa.getMonthOfBirth(), pessoa.getYearOfBirth());
-        System.out.printf("Idade: %d anos%n", pessoa.calcularIdade(2026));
+        System.out.printf("Idade: %d anos%n", pessoa.calculateAge(2026));
         System.out.printf("Altura: %.2f polegadas%n", pessoa.heightInInches);
         System.out.printf("Peso: %.2f libras%n", pessoa.weightInPounds);
-        System.out.printf("Índice de Massa Corporal (BMI): %.2f%n", pessoa.calcularBMI());
-        System.out.printf("Frequência cardíaca máxima: %d bpm%n", pessoa.calcularFrequenciaCardiacaMaxima(2026));
-        System.out.println(pessoa.calcularFrequenciaCardiacaAlvo(2026));
+        System.out.printf("Índice de Massa Corporal (BMI): %.2f%n", pessoa.calculateBMI());
+        System.out.printf("Frequência cardíaca máxima: %d bpm%n", pessoa.calculateMaxHeartRate(2026));
+        System.out.println(pessoa.calculateTargetHeartRate(2026));
     }
 }
