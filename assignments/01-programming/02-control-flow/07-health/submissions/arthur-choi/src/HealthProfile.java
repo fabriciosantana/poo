@@ -88,7 +88,7 @@ public class HealthProfile {
 
     // calcular frequência cardíaca máxima
     public int calculateMaxHeartRate() {
-        return 220 - calculateAge(2025);
+        return 220 - calculateAge(2024);
     }
 
     // calcular frequência cardíaca alvo
@@ -132,7 +132,7 @@ public class HealthProfile {
         System.out.printf("Nome: %s %s%n", pessoa.getFirstName(), pessoa.getLastName());
         System.out.printf("Gênero: %s%n", pessoa.getGender());
         System.out.printf("Data de nascimento: %02d/%02d/%d%n", pessoa.getDayOfBirth(), pessoa.getMonthOfBirth(), pessoa.getYearOfBirth());
-        System.out.printf("Idade: %d anos%n", pessoa.calculateAge(2026));
+        System.out.printf("Idade: %d anos%n", pessoa.calculateAge(2024));
         System.out.printf("Altura: %.2f polegadas%n", pessoa.heightInInches);
         System.out.printf("Peso: %.2f libras%n", pessoa.weightInPounds);
         System.out.printf("Índice de Massa Corporal (BMI): %.2f%n", pessoa.calculateBMI());
