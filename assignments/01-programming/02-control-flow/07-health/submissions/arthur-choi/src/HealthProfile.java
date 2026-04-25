@@ -24,27 +24,27 @@ public class HealthProfile {
 
     // getters
     public String getFirstName() {
-        return firstName;
+        return this.firstName;
     }
 
     public String getLastName() {
-        return lastName;
+        return this.lastName;
     }
 
     public int getDayOfBirth() {
-        return dayOfBirth;
+        return this.dayOfBirth;
     }
 
     public int getMonthOfBirth() {
-        return monthOfBirth;
+        return this.monthOfBirth;
     }
 
     public int getYearOfBirth() {
-        return yearOfBirth;
+        return this.yearOfBirth;
     }
 
     public int getGender() {
-        return gender;
+        return this.gender;
     }
 
     // setters
@@ -95,7 +95,7 @@ public class HealthProfile {
     public String calculateTargetHeartRate() {
         int heartRateMin = (int) (calculateMaxHeartRate() * 0.5);
         int heartRateMax = (int) (calculateMaxHeartRate() * 0.85);
-        return String.format("Frequência Cardíaca Alvo: %d bpm - %d bpm", heartRateMin,
+        return String.format("%d bpm - %d bpm", heartRateMin,
                 heartRateMax);
     }
 
@@ -137,6 +137,6 @@ public class HealthProfile {
         System.out.printf("Peso: %.2f libras%n", pessoa.weightInPounds);
         System.out.printf("Índice de Massa Corporal (BMI): %.2f%n", pessoa.calculateBMI());
         System.out.printf("Frequência cardíaca máxima: %d bpm%n", pessoa.calculateMaxHeartRate());
-        System.out.println(pessoa.calculateTargetHeartRate());
+        System.out.printf("Faixa de Frequência Cardíaca Alvo: %s%n", pessoa.calculateTargetHeartRate());
     }
 }
