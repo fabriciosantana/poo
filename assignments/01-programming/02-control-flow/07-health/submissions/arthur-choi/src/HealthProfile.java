@@ -88,7 +88,7 @@ public class HealthProfile {
 
     // calcular frequência cardíaca máxima
     public int calculateMaxHeartRate() {
-        return 220 - calculateAge(2026);
+        return 220 - calculateAge(2025);
     }
 
     // calcular frequência cardíaca alvo
