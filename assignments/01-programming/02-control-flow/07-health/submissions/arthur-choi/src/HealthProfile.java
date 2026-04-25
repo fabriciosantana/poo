@@ -136,7 +136,7 @@ public class HealthProfile {
         System.out.printf("Altura: %.2f polegadas%n", pessoa.heightInInches);
         System.out.printf("Peso: %.2f libras%n", pessoa.weightInPounds);
         System.out.printf("Índice de Massa Corporal (BMI): %.2f%n", pessoa.calculateBMI());
-        System.out.printf("Frequência cardíaca máxima: %d bpm%n", pessoa.calculateMaxHeartRate(2026));
-        System.out.println(pessoa.calculateTargetHeartRate(2026));
+        System.out.printf("Frequência cardíaca máxima: %d bpm%n", pessoa.calculateMaxHeartRate());
+        System.out.println(pessoa.calculateTargetHeartRate());
     }
 }
