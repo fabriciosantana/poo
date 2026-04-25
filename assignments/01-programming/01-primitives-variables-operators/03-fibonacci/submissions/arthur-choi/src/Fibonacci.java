@@ -26,6 +26,6 @@ public class Fibonacci {
     }
 
     public static String formatarSaida(long resultado, int n) {
-        return String.format("O %dº termo da sequência de Fibonacci é: %d", n, resultado);
+        return String.format("O %dº número de Fibonacci é: %d", n, resultado);
     }
 }
