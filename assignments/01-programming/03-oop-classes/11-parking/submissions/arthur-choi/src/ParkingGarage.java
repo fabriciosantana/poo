@@ -26,7 +26,7 @@ public class ParkingGarage {
             if(horas == -1) {
                 break;
             }
-            double charge = calculateCharges((int) horas);
+            double charge = calculateCharges(horas);
             total += charge;
             System.out.println("Cliente " + cliente + ": Taxa de estacionamento: $" + String.format("%.2f", charge));
             cliente++;
