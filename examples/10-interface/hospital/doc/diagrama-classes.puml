@@ -1,0 +1,79 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam linetype ortho
+
+title Exemplo Hospital - Heranca, Interfaces e Polimorfismo
+
+interface MeioPagamento {
+  +pagar(valor: double): double
+}
+
+abstract class Pagamento {
+  #taxa: double
+  #valor: double
+  #percentualPagamento: double = 100.0
+  +pagar(valor: double): double
+  +toString(): String
+}
+
+class PagamentoCartao {
+  +PagamentoCartao()
+  +PagamentoCartao(percentualPagamento: double)
+  +toString(): String
+}
+
+class PagamentoPix {
+  +PagamentoPix()
+  +PagamentoPix(percentualPagamento: double)
+  +toString(): String
+}
+
+class PagamentoDinheiro {
+  +PagamentoDinheiro()
+  +PagamentoDinheiro(percentualPagamento: double)
+  +toString(): String
+}
+
+class Atendimento {
+  -{static} contadorAtendimento: int
+  -idAtendimento: int
+  -paciente: Paciente
+  -procedimentos: Procedimento[]
+  -idProcedimentoAdicionado: int
+  -pagamento: Pagamento[]
+  -percentualTotalPagamento: double
+  -valorTotalPagamento: double
+  +Atendimento()
+  +Atendimento(qtdProcedimentos: int)
+  +getPaciente(): Paciente
+  +setPaciente(p: Paciente): void
+  +faturarAtendimento(): void
+  +adicionarProcedimento(p: Procedimento): void
+  +adicionarPagamento(pagamento: Pagamento...): void
+  -calcularValorTotalProcedimentos(): double
+  +toString(): String
+}
+
+class Paciente {
+  +nome: String
+  +Paciente(n: String)
+}
+
+class Procedimento {
+  -nome: String
+  -valor: double
+  +Procedimento(n: String, v: double)
+  +getValor(): double
+  +toString(): String
+}
+
+MeioPagamento <|.. Pagamento
+Pagamento <|-- PagamentoCartao
+Pagamento <|-- PagamentoPix
+Pagamento <|-- PagamentoDinheiro
+
+Atendimento "1" --> "1" Paciente : paciente
+Atendimento "1" --> "0..*" Procedimento : procedimentos
+Atendimento "1" --> "0..*" Pagamento : pagamentos
+@enduml
