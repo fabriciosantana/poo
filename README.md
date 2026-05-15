@@ -91,7 +91,7 @@ Se tudo isso é muito novo para você, invista um tempo em fortalecer sua base d
 | 10 | [Arrays](https://1drv.ms/p/s!Avnn2LcOmn0Y31mEsDxOHyKDT0OE?e=QwcIjL) | [Análise de código arrays](./examples/07-arrays) <br> |
 | 11 | [ArrayList](https://1drv.ms/p/c/187d9a0eb7d8e7f9/Efnn2LcOmn0ggBjZLwAAAAABx1Nmn4wiFopjTu1n-YYpmw?e=YltGd9) | |
 | 12 | [Tratamento de Exceções](https://fabriciosantana.github.io/poo/11-exception/) | |
-| 13 | [Coleções genéricas]([https://1drv.ms/p/c/187d9a0eb7d8e7f9/EYbQH0A4WUREhFlr7dQgdX8BhAmNnLaPjFtbud52zOkO6A?e=uXVltt](https://fabriciosantana.github.io/idp-marp-slides/html/poo-11-collections.html)) | |
+| 13 | [Coleções genéricas](https://fabriciosantana.github.io/idp-marp-slides/html/poo-11-collections.html) | |
 | 14 | [Manipulação de arquivos em Java](https://1drv.ms/p/c/187d9a0eb7d8e7f9/ER83TNCSyDBEu5m2MiR-xDkBBf8nV7BOBS-IKMNyMY0WjQ?e=ZJDNe6) |  |
 | 15 | [Acesso a banco de dados com JDBC](https://fabriciosantana.github.io/poo/14-jdbc) | |
 |  | Continuação aula anterior | [Estudo de caso: IDP Bank (Semana 1)](./assignments/06-projects/02-bank/) |
