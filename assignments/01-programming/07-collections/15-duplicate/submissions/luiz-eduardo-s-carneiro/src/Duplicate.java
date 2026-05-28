@@ -40,14 +40,13 @@ public class Duplicate{
             if(search.equalsIgnoreCase("SAIR")){
                 break;
             }
-            
-            if(lowerNames.add(search.toLowerCase())){
-                System.out.println("Nome não encontrado.");
-            } else{
-                System.out.println("Nome encontrado.");
-            }
 
-            
+            if(lowerNames.contains(search.toLowerCase())){
+                System.out.println("Nome encontrado.");
+            } else{
+                System.out.println("Nome não encontrado.");
+            }
         }
+        scanner.close();
     }
 }
