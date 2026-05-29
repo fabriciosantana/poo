@@ -89,20 +89,6 @@ Distribuição de notas:
 9. Caso uma entrada inválida seja informada, o programa deve solicitar novamente o valor.
 10. O programa deve utilizar arrays (`int[]`) para armazenar as notas e para armazenar a distribuição de frequência.
 
-#### Exemplos de uso dos métodos
-
-```java
-int[] grades = {85, 70, 100, 55, 70, 90};
-
-GradeAnalyzer.calculateAverage(grades); // 78.333...
-GradeAnalyzer.findHighestGrade(grades); // 100
-GradeAnalyzer.findLowestGrade(grades); // 55
-GradeAnalyzer.countGradesAtOrAboveAverage(grades); // 3
-GradeAnalyzer.calculateFrequency(grades); // {0, 0, 0, 0, 0, 1, 0, 2, 1, 1, 1}
-GradeAnalyzer.formatFrequencyLine(7, 2); // "70-79: 2"
-GradeAnalyzer.formatFrequencyLine(10, 1); // "100: 1"
-```
-
 #### Envio
 
 1. Sincronize seu repositório com o repositório principal da disciplina.
