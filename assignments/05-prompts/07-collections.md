@@ -1,106 +1,458 @@
-## Coleções Genéricas em Java (Java Generic Collections)
+# Java Collections Framework
 
-### Introdução às Coleções em Java
+Fontes oficiais usadas como base:
+- Oracle Collections Framework: https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/doc-files/coll-index.html
+- Overview: https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/doc-files/coll-overview.html
+- Outline: https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/doc-files/coll-reference.html
 
-```
-Explique o que são coleções e por que são úteis, respondendo detalhadamente as questões abaixo:
+---
 
-1. O que são coleções em Java? Por que usamos coleções ao invés de arrays tradicionais?
-2. Quais são as principais interfaces da hierarquia de coleções em Java (`List`, `Set`, `Map`)?
-3. Crie um exemplo simples que use `ArrayList` para armazenar nomes de alunos.
-4. Quais são as vantagens e limitações do uso de coleções?
-```
+## Parte 1: Visão Geral do Framework
 
-### Manipulação de Arrays com a classe `Arrays`
+Explique:
 
-```
-Explique como utilizar a classe `java.util.Arrays`, abordando detalhadamente os seguintes pontos:
+1. O que é o Java Collections Framework.
+2. Por que ele é uma arquitetura unificada.
+3. Por que usamos coleções em vez de arrays em muitos problemas.
+4. A diferença entre interface e implementação.
+5. Por que é comum declarar pela interface, por exemplo:
 
-1. O que é a classe `Arrays` e como ela auxilia na manipulação de arrays?
-2. Dê exemplos do uso dos métodos `sort`, `fill`, `copyOf` e `binarySearch`.
-3. Qual é a diferença entre `Arrays.equals()` e `==` ao comparar arrays?
-```
-
-### Wrapper Classes
-
-```
-Apresente as classes wrapper de tipos primitivos, apresentando detalhadamente informações para os seguintes itens:
-
-1. O que são as classes wrapper (`Integer`, `Double`, `Boolean`, etc)? Por que elas são necessárias?
-2. Mostre um exemplo de como transformar um valor primitivo em objeto (`int` → `Integer`) e vice-versa.
-3. Crie um programa que receba valores como `int` e armazene em uma `ArrayList<Integer>`.
+```java
+List<String> nomes = new ArrayList<>();
+Set<Integer> codigos = new HashSet<>();
+Map<String, Aluno> alunos = new HashMap<>();
 ```
 
-### Autoboxing e Unboxing
+Inclua uma pergunta ao final para verificar se eu entendi a diferença entre contrato e implementação.
 
+---
+
+## Parte 2: Interfaces Principais
+
+Explique e compare as interfaces:
+
+- `Collection`
+- `List`
+- `Set`
+- `Queue`
+- `Deque`
+- `Map`
+- `SortedSet`
+- `NavigableSet`
+- `SortedMap`
+- `NavigableMap`
+- `SequencedCollection`
+- `SequencedSet`
+- `SequencedMap`
+
+Deixe claro que:
+
+- `Map` faz parte do Collections Framework, mas não herda de `Collection`;
+- `List` representa sequência por posição;
+- `Set` não permite duplicados;
+- `Queue` representa uma fila;
+- `Deque` representa uma fila de duas pontas;
+- interfaces `Sequenced*` representam coleções/mapas com ordem de iteração definida ou previsível.
+
+Depois, gere uma tabela com:
+
+| Interface | Ideia principal | Exemplo de implementação |
+
+---
+
+## Parte 3: Ordem vs Ordenação
+
+Explique cuidadosamente a diferença entre **ordem** e **ordenação**.
+
+Use esta ideia central:
+
+> Nem toda coleção que mantém uma ordem está ordenada. “Ordem” é como os elementos aparecem; “ordenação” é uma regra de comparação que organiza os elementos.
+
+Compare:
+
+- `ArrayList`
+- `LinkedList`
+- `ArrayDeque`
+- `PriorityQueue`
+- `HashSet`
+- `LinkedHashSet`
+- `TreeSet`
+- `HashMap`
+- `LinkedHashMap`
+- `TreeMap`
+
+Explique especialmente:
+
+1. Por que `HashSet` e `HashMap` não devem ser usados quando a ordem importa.
+2. Por que `PriorityQueue` garante prioridade na cabeça, mas não garante iteração ordenada.
+3. Por que `TreeSet` e `TreeMap` são estruturas ordenadas por comparação.
+
+Ao final, faça 5 perguntas de verdadeiro ou falso sobre ordem e ordenação.
+
+---
+
+## Parte 4: Critérios Para Escolher a Coleção
+
+Monte um guia de decisão para escolher entre:
+
+- `ArrayList`
+- `LinkedList`
+- `ArrayDeque`
+- `PriorityQueue`
+- `HashSet`
+- `LinkedHashSet`
+- `TreeSet`
+- `HashMap`
+- `LinkedHashMap`
+- `TreeMap`
+
+Use os critérios:
+
+1. Preciso de acesso por índice?
+2. Preciso permitir duplicados?
+3. Preciso remover duplicados?
+4. Preciso preservar ordem de inserção?
+5. Preciso manter elementos ordenados?
+6. Preciso associar chave e valor?
+7. Preciso de fila, pilha ou prioridade?
+8. Preciso de desempenho eficiente em busca, inserção ou remoção?
+
+Gere uma tabela com:
+
+| Situação | Melhor escolha | Justificativa | Cuidado |
+
+Depois proponha 5 cenários e peça para eu escolher a coleção adequada.
+
+---
+
+## Parte 5: Listas
+
+Explique `ArrayList` e `LinkedList`.
+
+Para `ArrayList`, aborde:
+
+- array redimensionável;
+- ordem por posição;
+- permite duplicados;
+- permite `null`;
+- acesso por índice eficiente;
+- inserção/remoção no meio com custo maior;
+- uso com generics.
+
+Para `LinkedList`, aborde:
+
+- lista duplamente encadeada;
+- também implementa `Deque`;
+- acesso por índice menos eficiente;
+- operações nas extremidades;
+- uso como lista, fila ou pilha.
+
+Crie exemplos pequenos com:
+
+```java
+ArrayList<String>
+LinkedList<String>
 ```
-Explique como Java trata automaticamente conversões entre primitivos e objetos wrapper.
 
-1. O que é autoboxing? O que é unboxing? Quando ocorrem?
-2. Mostre um exemplo com `List<Double>` onde o compilador faz autoboxing automaticamente.
-3. Quais problemas podem ocorrer com unboxing automático? Dê um exemplo.
+Depois crie um exemplo com tipo complexo, como:
+
+```java
+class Produto
 ```
 
-### Uso de Estruturas de Dados Genéricas
+Mostre pelo menos:
 
-```
-Explique como Aplicar estruturas do Java Collections Framework com generics.
+- adicionar;
+- remover;
+- buscar;
+- alterar;
+- iterar;
+- remover com `Iterator`.
 
-1. O que são generics em Java? Por que são importantes nas coleções?
-2. Crie uma `HashSet<String>` e insira alguns nomes. Por que `Set` não permite elementos duplicados?
-3. Compare `ArrayList`, `LinkedList`, `HashSet`, `TreeSet` e `HashMap` com exemplos de uso simples.
-```
+Ao final, gere um exercício prático usando `ArrayList` ou `LinkedList`.
 
-### Algoritmos da classe `Collections`
+---
 
-```
-Explique os principais métodos utilitários da classe `Collections`.
+## Parte 6: Queue, Deque e PriorityQueue
 
-1. O que é a classe `Collections` e qual sua função?
-2. Mostre exemplos dos métodos `sort`, `reverse`, `shuffle`, `max` e `min`.
-3. Crie um programa que embaralhe uma lista de palavras e as ordene novamente.
-```
+Explique:
 
-### Iteradores e Navegação em Coleções
+1. O que é `Queue`.
+2. O que é `Deque`.
+3. Quando usar `ArrayDeque`.
+4. Quando usar `PriorityQueue`.
 
-```
-Demonstre como utilizar `Iterator` e `ListIterator` para percorrer coleções e apresente detalhadamente informações para os seguintes tópicos:
+Para `ArrayDeque`, mostre exemplos como:
 
-1. O que é um `Iterator` e por que ele é usado?
-2. Crie um programa que percorra uma `List<Integer>` com `Iterator`, imprimindo apenas os valores pares.
-3. O que diferencia `ListIterator` de `Iterator`? Mostre um exemplo com `ListIterator`.
-```
+- fila FIFO;
+- pilha LIFO;
+- operações nas extremidades;
+- cuidado com `null`.
 
-### Wrappers de Sincronização e Imutabilidade
+Para `PriorityQueue`, explique:
 
-```
-Demonstre como usar coleções seguras e imutáveis.
+- a cabeça da fila;
+- ordem natural;
+- uso de `Comparator`;
+- uso de `Comparable`;
+- por que a iteração não garante ordem de prioridade.
 
-1. O que é uma coleção sincronizada? Quando e por que usá-la?
-2. Mostre como criar uma `List` sincronizada com `Collections.synchronizedList(...)`.
-3. O que são coleções imutáveis? Crie exemplos com `Collections.unmodifiableList(...)`.
-```
+Crie um exemplo com `PriorityQueue<String>` e outro com tipo complexo, como:
 
-### Fábricas de Coleções Imutáveis no Java 9+
-
-```
-Demostre como utilizar os métodos fábrica do Java 9 para criar listas, conjuntos e mapas imutáveis.
-
-1. Quais são os novos métodos `List.of()`, `Set.of()` e `Map.of()` introduzidos no Java 9?
-2. Crie exemplos práticos de `List`, `Set` e `Map` usando esses métodos.
-3. Compare essas abordagens com `Arrays.asList()` e `Collections.unmodifiableList()`.
+```java
+class Atendimento implements Comparable<Atendimento>
 ```
 
-### Projeto Prático
+Depois proponha um exercício em que a solução natural envolva `PriorityQueue`.
 
+---
+
+## Parte 7: Set
+
+Explique e compare:
+
+- `HashSet`
+- `LinkedHashSet`
+- `TreeSet`
+
+Aborde:
+
+1. Como cada um trata duplicados.
+2. Qual ordem cada um garante ou não garante.
+3. Se permite `null`.
+4. Qual contrato é importante:
+   - `equals`/`hashCode` para `HashSet` e `LinkedHashSet`;
+   - `Comparable`/`Comparator` para `TreeSet`.
+5. Complexidade aproximada das principais operações.
+
+Explique com cuidado:
+
+- `HashSet` não garante ordem;
+- `LinkedHashSet` preserva ordem de inserção;
+- `TreeSet` mantém os elementos ordenados;
+- em `TreeSet`, se `compareTo` ou `Comparator` retorna `0`, os objetos são tratados como equivalentes para a coleção.
+
+Crie um exemplo com `String` e outro com tipo complexo.
+
+Depois gere 5 perguntas de previsão de saída.
+
+---
+
+## Parte 8: Map
+
+Explique e compare:
+
+- `HashMap`
+- `LinkedHashMap`
+- `TreeMap`
+
+Aborde:
+
+1. Chaves e valores.
+2. Chaves duplicadas.
+3. `null`.
+4. Ordem ou ordenação.
+5. Uso de `keySet`, `values` e `entrySet`.
+6. Complexidade aproximada.
+7. Quando usar cada implementação.
+
+Explique:
+
+- `HashMap` não garante ordem;
+- `LinkedHashMap` preserva ordem de inserção ou acesso;
+- `TreeMap` ordena pelas chaves;
+- em `TreeMap`, a comparação das chaves define equivalência e duplicidade.
+
+Crie exemplos usando:
+
+```java
+Map<String, Integer>
+Map<String, Produto>
 ```
-Consolide os conceitos apresentando um projeto real.
 
-1. Desenvolva um programa que armazene notas de alunos em diferentes turmas usando um `Map<String, List<Double>>`.
-2. Implemente funcionalidades como:
-   * Inserir notas
-   * Calcular média por aluno
-   * Listar alunos com média maior que 7
-   * Ordenar os alunos por média
-3. Use iteradores, métodos da classe `Collections`, e boas práticas com generics.
+Depois proponha um exercício envolvendo catálogo, estoque, ranking ou índice por código.
+
+---
+
+## Parte 9: Contratos Importantes
+
+Explique com exemplos:
+
+1. `equals`
+2. `hashCode`
+3. `Comparable`
+4. `Comparator`
+
+Mostre por que esses contratos afetam:
+
+- `HashSet`
+- `HashMap`
+- `LinkedHashSet`
+- `LinkedHashMap`
+- `TreeSet`
+- `TreeMap`
+- `PriorityQueue`
+
+Inclua alertas sobre:
+
+- não alterar atributos usados em `equals`/`hashCode` depois que o objeto foi inserido em `HashSet` ou usado como chave em `HashMap`;
+- não alterar atributos usados na comparação depois de inserir objetos em `TreeSet` ou chaves em `TreeMap`;
+- manter comparação consistente com a ideia de igualdade lógica.
+
+Depois gere um mini questionário com 5 perguntas.
+
+---
+
+## Parte 10: Classe Collections
+
+Explique a classe `java.util.Collections`.
+
+Aborde os métodos:
+
+- `sort`
+- `binarySearch`
+- `reverse`
+- `shuffle`
+- `min`
+- `max`
+- `frequency`
+- `disjoint`
+- `addAll`
+- `unmodifiableList`
+- `synchronizedList`
+- `checkedList`
+- `emptyList`
+- `singletonList`
+- `nCopies`
+
+Explique também:
+
+- o que são wrappers;
+- o que são coleções não modificáveis;
+- por que algumas operações podem lançar `UnsupportedOperationException`.
+
+Crie um exemplo pequeno usando uma lista de notas.
+
+Depois proponha um exercício que use pelo menos 4 métodos de `Collections`.
+
+---
+
+## Parte 11: Fábricas Modernas
+
+Explique os métodos:
+
+- `List.of`
+- `Set.of`
+- `Map.of`
+
+Mostre exemplos e destaque:
+
+1. Criam coleções pequenas e imutáveis.
+2. Não aceitam `null`.
+3. Não permitem `add`, `remove` ou `clear`.
+4. `Set.of` e `Map.of` não aceitam duplicados.
+5. Para modificar depois, é necessário criar uma coleção modificável, por exemplo:
+
+```java
+List<String> nomes = new ArrayList<>(List.of("Ana", "Bruno"));
+```
+
+Compare brevemente com `Collections.emptyList`, `singletonList`, `nCopies` e `unmodifiableList`.
+
+---
+
+## Parte 12: Casos de Borda e Erros Comuns
+
+Explique e exemplifique:
+
+1. Remover elementos de uma coleção durante `for-each`.
+2. Usar `Iterator.remove`.
+3. Depender da ordem de `HashSet` ou `HashMap`.
+4. Achar que `PriorityQueue` itera em ordem de prioridade.
+5. Usar objetos mutáveis como chave de `HashMap`.
+6. Usar `TreeSet` com `Comparator` que considera objetos diferentes como equivalentes.
+7. Tentar modificar coleção imutável ou não modificável.
+8. Inserir `null` em coleções que não aceitam `null`.
+
+Para cada erro, mostre:
+
+- código problemático;
+- explicação;
+- versão corrigida.
+
+---
+
+## Parte 13: Prática Guiada
+
+Crie uma sequência de exercícios progressivos:
+
+1. Exercício com `ArrayList`.
+2. Exercício com `LinkedList`.
+3. Exercício com `ArrayDeque`.
+4. Exercício com `PriorityQueue`.
+5. Exercício com `HashSet`.
+6. Exercício com `LinkedHashSet`.
+7. Exercício com `TreeSet`.
+8. Exercício com `HashMap`.
+9. Exercício com `LinkedHashMap`.
+10. Exercício com `TreeMap`.
+11. Exercício com `Collections`.
+
+Para cada exercício, forneça:
+
+- enunciado;
+- entrada;
+- saída esperada;
+- restrições;
+- 3 dicas progressivas;
+- 5 casos de teste;
+- explicação da estrutura escolhida;
+- solução apenas se eu pedir explicitamente.
+
+---
+
+## Parte 14: Revisão Ativa
+
+Faça uma revisão final no formato de entrevista.
+
+Pergunte uma questão por vez sobre:
+
+- escolha da coleção adequada;
+- ordem vs ordenação;
+- duplicidade;
+- `null`;
+- desempenho;
+- `equals`/`hashCode`;
+- `Comparable`/`Comparator`;
+- `Collections`;
+- `List.of`, `Set.of`, `Map.of`.
+
+Espere minha resposta antes de continuar.
+
+Quando eu errar:
+
+1. explique o erro;
+2. mostre um contraexemplo;
+3. faça uma nova pergunta parecida.
+
+Quando eu acertar:
+
+1. confirme;
+2. complemente com um detalhe importante;
+3. avance para a próxima pergunta.
+
+---
+
+## Regras Para Suas Respostas
+
+- Use Java 21.
+- Use exemplos curtos e executáveis.
+- Prefira `List`, `Set`, `Map`, `Queue` e `Deque` como tipo da variável quando fizer sentido.
+- Explique a escolha da implementação concreta.
+- Não use APIs fora do escopo da aula, a menos que eu peça.
+- Não resolva exercícios imediatamente; primeiro dê dicas.
+- Sempre destaque cuidados com ordem, duplicidade, `null`, mutabilidade e desempenho.
+- Quando comparar estruturas, use tabelas.
+- Quando eu pedir um exercício, inclua casos de teste.
+- Quando eu pedir revisão, faça perguntas uma de cada vez.
 ```
