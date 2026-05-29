@@ -14,29 +14,24 @@ public class CadastroNomes {
         while (true) {
             System.out.print("> ");
             String entrada = scanner.nextLine().trim();
-            
-            // Verifica a condição de parada
+
             if (entrada.equalsIgnoreCase("fim")) {
                 break;
             }
-            
-            // Adiciona o nome caso não seja uma string vazia
+
             if (!entrada.isEmpty()) {
                 nomes.add(entrada);
             }
         }
 
-        //Exibição dos Nomes
         System.out.println("\nNomes cadastrados:");
         System.out.println(nomes);
 
-        //Pesquisa de Nomes
         System.out.println("\nPesquisar nomes (digite 'sair' para encerrar):");
         while (true) {
             System.out.print("> ");
             String busca = scanner.nextLine().trim();
-            
-            //Verifica a condição de parada
+
             if (busca.equalsIgnoreCase("sair")) {
                 break;
             }
