@@ -71,4 +71,12 @@ public class GradeAnalyzer{
 
         return qnd;
     }
+
+    public static String formatFrequencyLine(int index, int frequency){
+        if(index == 10){
+            return String.format("%d: %d", index * 10, frequency);
+        } else{
+            return String.format("%d - %d: %d", index * 10, index * 10 + 9, frequency);
+        }
+    }
 }

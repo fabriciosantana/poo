@@ -25,13 +25,9 @@ public class Main{
         int[] frequency = ga.calculateFrequency(grades);
         
         for(int i = 0; i < frequency.length; i++){
-            if(i == 10){
-                System.out.printf("%d: %d\n", i * 10, frequency[i]);
-            } else{
-                System.out.printf("%d - %d: %d\n", i * 10, i * 10 + 9, frequency[i]);
-            }
+                System.out.println(ga.formatFrequencyLine(i, frequency[i]));
         }
-        
+
         scanner.close();
     }
 }
