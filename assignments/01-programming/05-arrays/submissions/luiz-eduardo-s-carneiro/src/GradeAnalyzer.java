@@ -76,7 +76,7 @@ public class GradeAnalyzer{
         if(index == 10){
             return String.format("%d: %d", index * 10, frequency);
         } else{
-            return String.format("%d - %d: %d", index * 10, index * 10 + 9, frequency);
+            return String.format("%02d-%02d: %d", index * 10, index * 10 + 9, frequency);
         }
     }
 }

@@ -1,0 +1,7 @@
+João,ProdutoA,100.0
+Maria,ProdutoB,200.0
+João,ProdutoC,50.0
+Maria,ProdutoD,150.0
+LinhaInvalida,ProdutoE
+João,ProdutoF,25.50
+Maria,ProdutoG,Invalido
