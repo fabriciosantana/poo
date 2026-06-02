@@ -1,0 +1,4 @@
+Bananas=10
+Laranjas=7
+Maçãs=5
+Pêras=12
