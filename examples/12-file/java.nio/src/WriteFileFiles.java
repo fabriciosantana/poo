@@ -9,9 +9,10 @@ public class WriteFileFiles {
         try {
 
             Path p = Paths.get("data/hello.txt");
+            //Path p = Path.of("data/hello.txt");
 
             String conteudo = Files.readString(p);
-            conteudo += "\nHello, World!";
+            conteudo += "\n" + args[0];
             
             Files.write(p, conteudo.getBytes());
 

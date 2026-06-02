@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class HelloStudentWithScanner {
     public static void main(String[] args){
 
-        Path file = Path.of("data/students.txt");
-        //Path file = Path.of(args[0]);
+        //Path file = Path.of("data/students.txt");
+        Path file = Path.of(args[0]);
 
         try(Scanner input = new Scanner(file)){
 
