@@ -8,7 +8,7 @@ public class EmployeeBinaryDeserializationApp {
     
     public static void main(String[] args) {
         
-        try (InputStream inputStream = Files.newInputStream(Path.of("data/employee.txt"))){
+        try (InputStream inputStream = Files.newInputStream(Path.of("data/employee.ser"))){
 
             ObjectInputStream objectStream = new ObjectInputStream(inputStream);
 
