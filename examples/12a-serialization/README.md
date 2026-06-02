@@ -16,4 +16,14 @@ javac -d bin -cp "lib/*" src/*.java
 
 ```bash
 java -cp bin:lib/* EmployeeBinaryDeserializationApp 
+
+# Exemplo de Serialização de Coleção
+
+Este exemplo usa apenas a API padrão do Java SE para serializar e desserializar uma coleção de objetos `Employee`.
+
+```bash
+javac -d bin -cp "lib/*" src/*.java
+java -cp bin:lib/* EmployeeCollectionSerializationApp
+java -cp bin:lib/* EmployeeCollectionDeserializationApp
+```
 ```
