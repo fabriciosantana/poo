@@ -25,7 +25,7 @@ public class FormatterCreateTextFile {
             } 
         } 
         catch (SecurityException | FileNotFoundException | FormatterClosedException e) { 
-            e.printStackTrace(); 
+            System.out.println(e);
         } 
     } 
 }
