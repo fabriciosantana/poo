@@ -16,7 +16,7 @@ public class BankAccount {
             openNewAccounts();
         } 
         catch (IOException e) {//(SecurityException |  | FormatterClosedException e) { 
-            e.printStackTrace(); 
+            System.out.println(e);
         } 
     }
 
