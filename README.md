@@ -92,7 +92,7 @@ Se tudo isso é muito novo para você, invista um tempo em fortalecer sua base d
 | 11 | [ArrayList](https://1drv.ms/p/c/187d9a0eb7d8e7f9/Efnn2LcOmn0ggBjZLwAAAAABx1Nmn4wiFopjTu1n-YYpmw?e=YltGd9) | |
 | 12 | [Tratamento de Exceções](https://fabriciosantana.github.io/poo/11-exception/) | |
 | 13 | [Coleções genéricas](https://fabriciosantana.github.io/idp-marp-slides/html/poo-11-collections.html) | |
-| 14 | [Manipulação de arquivos em Java](https://1drv.ms/p/c/187d9a0eb7d8e7f9/ER83TNCSyDBEu5m2MiR-xDkBBf8nV7BOBS-IKMNyMY0WjQ?e=ZJDNe6) |  |
+| 14 | [Manipulação de arquivos em Java](https://fabriciosantana.github.io/idp-marp-slides/html/poo-12-file.html) |  |
 | 15 | [Acesso a banco de dados com JDBC](https://fabriciosantana.github.io/poo/14-jdbc) | |
 |  | Continuação aula anterior | [Estudo de caso: IDP Bank (Semana 1)](./assignments/06-projects/02-bank/) |
 |  | Continuação aula anterior | [Estudo de caso: IDP Bank (Semana 2)](./assignments/06-projects/02-bank/) | Desenvolvimento do estudo de caso: IDP Bank (Semana 2)  |
