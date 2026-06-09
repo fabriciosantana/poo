@@ -10,6 +10,18 @@ java -cp target/classes:lib/* br.edu.idp.cc.poo.dvdrental.Main
 
 ### Rodar o projeto com maven
 
+As configuracoes de conexao com o banco ficam em:
+
+```text
+src/main/resources/application.properties
+```
+
+```properties
+database.url=jdbc:postgresql://localhost:5432/postgres
+database.user=postgres
+database.password=postgres
+```
+
 ```bash
 mvn install
 ```

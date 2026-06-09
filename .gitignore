@@ -31,6 +31,7 @@ bin/
 
 .qodo/
 *.properties
+!examples/14-jdbc/src/demo/dvdrentalapp/src/main/resources/application.properties
 *.properties.local
 *.properties.supabase.DS_Store
 .DS_Store
