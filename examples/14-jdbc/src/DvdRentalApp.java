@@ -89,7 +89,7 @@ public class DvdRentalApp {
             System.out.println("\nRollback executado. Categoria não foi salva.");
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Erro ao conectar no banco de dados: " + e);
         }
     }
 }
