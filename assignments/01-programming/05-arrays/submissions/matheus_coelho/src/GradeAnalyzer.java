@@ -62,7 +62,13 @@ public class GradeAnalyzer {
         } else {
             linha = "" + inicio;
         }
-        linha = linha + "-" + fim + ": " + frequency;
+        String fimStr = "";
+        if (fim < 10) {
+            fimStr = "0" + fim;
+        } else {
+            fimStr = "" + fim;
+        }
+        linha = linha + "-" + fimStr + ": " + frequency;
         return linha;
     }
 
