@@ -5,13 +5,12 @@ public class GradeAnalyzer{
     public static double calculateAverage(int[]notasAlunos){
 
         int qtdsEstudantes = notasAlunos.length;
-        int soma = 0;
+        float soma = 0;
         for(int i =0; i< notasAlunos.length; i++){
             soma = soma+ notasAlunos[i];
         }
         double mediaNotas = soma/qtdsEstudantes;
 
-    
         return mediaNotas;
     }
 
