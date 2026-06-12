@@ -40,7 +40,7 @@ public class Main {
             if (nomes.contains(pesquisa)) {
                 System.out.println("Nome encontrado.");
             } else {
-                System.out.println("Nome nao encontrado.");
+                System.out.println("Nome nã o encontrado.");
             }
         }
 
