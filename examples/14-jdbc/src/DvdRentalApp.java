@@ -1,6 +1,7 @@
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,7 +16,7 @@ public class DvdRentalApp {
     public static void main(String[] args) {
         Properties props = new Properties();
 
-        try (var input = Files.newInputStream(Paths.get("db.properties"))) {
+        try (InputStream input = Files.newInputStream(Path.of("db.properties"))) {
             props.load(input);
         } catch (IOException e) {
             System.err.println("Erro ao carregar arquivo de configuração: " + e.getMessage());
