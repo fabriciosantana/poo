@@ -14,15 +14,19 @@ import java.util.Properties;
 public class DvdRentalApp {
 
     public static void main(String[] args) {
+        // declaracao de variavel do tipo Properties
         Properties props = new Properties();
 
+
         try (InputStream input = Files.newInputStream(Path.of("db.properties"))) {
+
             props.load(input);
         } catch (IOException e) {
             System.err.println("Erro ao carregar arquivo de configuração: " + e.getMessage());
             return;
         }
 
+        // Atribui o valor de cada linha ao que seria sua respectivas variaveis
         String url = props.getProperty("url");
         String user = props.getProperty("user");
         String password = props.getProperty("password");
