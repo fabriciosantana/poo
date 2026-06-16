@@ -61,6 +61,9 @@ public class GradeAnalyzer {
         if (index == 10) {
             return String.format("100: %d", frequency);
         }
+        if (index == 0) {
+            return String.format("00-09: %d", frequency);
+        }
         return String.format("%d-%d: %d", index * 10, index * 10 + 9, frequency);
     }
 
