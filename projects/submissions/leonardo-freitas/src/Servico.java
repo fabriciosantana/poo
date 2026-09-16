@@ -10,8 +10,8 @@ public abstract class Servico {
         if (descricao == null || descricao.isBlank()) {
             throw new IllegalArgumentException("A descrição do serviço é obrigatória.");
         }
-        if (valorBase <= 0) {
-            throw new IllegalArgumentException("O valor base deve ser positivo.");
+        if (!Double.isFinite(valorBase) || valorBase <= 0) {
+            throw new IllegalArgumentException("O valor base deve ser positivo e finito.");
         }
         this.id = proximoId++;
         this.descricao = descricao;
