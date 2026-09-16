@@ -27,9 +27,19 @@ public class Projeto {
         if (servico == null || quantidadeServicos >= CAPACIDADE_MAXIMA || "CONCLUIDO".equals(status)) {
             return false;
         }
-        if (calcularTotal() + servico.calcularValorFinal() > cliente.getLimiteOrcamento()) {
+
+        double totalAtual = calcularTotal();
+        double valorServico = servico.calcularValorFinal();
+        double novoTotal = totalAtual + valorServico;
+
+        if (!Double.isFinite(totalAtual)
+                || !Double.isFinite(valorServico)
+                || valorServico <= 0
+                || !Double.isFinite(novoTotal)
+                || novoTotal > cliente.getLimiteOrcamento()) {
             return false;
         }
+
         servicos[quantidadeServicos++] = servico;
         status = "EM_EXECUCAO";
         return true;
