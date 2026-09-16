@@ -6,8 +6,8 @@ public class Cliente {
         if (nome == null || nome.isBlank()) {
             throw new IllegalArgumentException("O nome do cliente é obrigatório.");
         }
-        if (limiteOrcamento <= 0) {
-            throw new IllegalArgumentException("O limite de orçamento deve ser positivo.");
+        if (!Double.isFinite(limiteOrcamento) || limiteOrcamento <= 0) {
+            throw new IllegalArgumentException("O limite de orçamento deve ser positivo e finito.");
         }
         this.nome = nome;
         this.limiteOrcamento = limiteOrcamento;
