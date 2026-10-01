@@ -59,3 +59,7 @@ mkdir -p bin
 javac -d bin src/*.java
 java -cp bin AgenciaFlowApp
 ```
+
+## Apresentação
+
+O roteiro de demonstração e o mapa dos requisitos para a apresentação oral estão em [APRESENTACAO.md](APRESENTACAO.md).
