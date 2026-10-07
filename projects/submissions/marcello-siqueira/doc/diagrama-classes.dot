@@ -1,0 +1,42 @@
+digraph G {
+  rankdir=TB; node [shape=plaintext fontname="Helvetica" fontsize=11]; edge [fontname="Helvetica" fontsize=10];
+  Reserva [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="3">
+   <tr><td bgcolor="#dde8f0"><i><b>Reserva</b></i> «abstract»</td></tr>
+   <tr><td align="left" balign="left">+ MAX_CRIANCAS: int = 3 {static}<br/>+ MIN_HORAS: int = 3 {static}<br/>+ MAX_HORAS: int = 12 {static}<br/>- totalCriadas: int {static}<br/>- id: int<br/>- familia: Familia<br/>- baba: Baba<br/>- criancas: Crianca[]<br/>- inicio, fim: LocalDateTime<br/>- cancelada: boolean<br/>- multa: double</td></tr>
+   <tr><td align="left" balign="left">+ calcularValor(): double «abstract»<br/>+ getTipo(): String «abstract»<br/>+ conflitaCom(outra: Reserva): boolean<br/>+ cancelar(agora: LocalDateTime): double<br/>+ getHoras(): double<br/>+ getTotalCriadas(): int {static}<br/>+ toString(): String</td></tr></table>>];
+  Diurna [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="3">
+   <tr><td bgcolor="#dde8f0"><b>ReservaDiurna</b></td></tr>
+   <tr><td align="left" balign="left">+ calcularValor(): double<br/>+ getTipo(): String</td></tr></table>>];
+  Noturna [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="3">
+   <tr><td bgcolor="#dde8f0"><b>ReservaNoturna</b></td></tr>
+   <tr><td align="left" balign="left">- ADICIONAL_NOTURNO: double = 0.25 {static}</td></tr>
+   <tr><td align="left" balign="left">+ calcularValor(): double<br/>+ getTipo(): String<br/>- exigirPernoite(baba: Baba): Baba {static}</td></tr></table>>];
+  Agenda [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="3">
+   <tr><td bgcolor="#dde8f0"><b>Agenda</b></td></tr>
+   <tr><td align="left" balign="left">- reservas: Reserva[]<br/>- quantidade: int</td></tr>
+   <tr><td align="left" balign="left">+ adicionar(nova: Reserva)<br/>+ buscar(id: int): Reserva<br/>+ daBaba(baba: Baba): Reserva[]<br/>+ faturamentoTotal(): double<br/>+ todas(): Reserva[]</td></tr></table>>];
+  Baba [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="3">
+   <tr><td bgcolor="#dde8f0"><b>Baba</b></td></tr>
+   <tr><td align="left" balign="left">- nome: String<br/>- valorHora: double<br/>- habilitadaPernoite: boolean</td></tr>
+   <tr><td align="left" balign="left">+ getNome(): String<br/>+ getValorHora(): double<br/>+ isHabilitadaPernoite(): boolean<br/>+ toString(): String</td></tr></table>>];
+  Familia [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="3">
+   <tr><td bgcolor="#dde8f0"><b>Familia</b></td></tr>
+   <tr><td align="left" balign="left">- nome: String</td></tr>
+   <tr><td align="left" balign="left">+ getNome(): String</td></tr></table>>];
+  Crianca [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="3">
+   <tr><td bgcolor="#dde8f0"><b>Crianca</b></td></tr>
+   <tr><td align="left" balign="left">+ IDADE_MAXIMA: int = 12 {static}<br/>- nome: String<br/>- idade: int</td></tr></table>>];
+  App [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="3">
+   <tr><td bgcolor="#eeeeee"><b>BBsitinApp</b></td></tr>
+   <tr><td align="left" balign="left">+ main(args: String[]) {static}</td></tr></table>>];
+
+  Diurna -> Reserva [arrowhead=empty];
+  Noturna -> Reserva [arrowhead=empty];
+  Agenda -> Reserva [arrowtail=odiamond dir=back label="  0..*" headlabel=""];
+  Reserva -> Baba [arrowhead=vee label=" 1"];
+  Reserva -> Familia [arrowhead=vee label=" 1"];
+  Reserva -> Crianca [arrowtail=odiamond dir=back arrowhead=vee label=" 1..3"];
+  App -> Agenda [style=dashed arrowhead=vee label=" usa"];
+  {rank=same; Diurna; Noturna}
+  {rank=same; Baba; Familia; Crianca}
+}
