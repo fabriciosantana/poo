@@ -52,7 +52,7 @@ public class BankAccount {
             
             while (input.hasNext()) {
                 try { 
-                    String account = String.format("%d %s %s %.2f%n", input.nextInt(), input.next(), input.next(), input.nextDouble());
+                    String account = String.format("%d %s %s %.2f", input.nextInt(), input.next(), input.next(), input.nextDouble());
                     //Files.write(path, account.getBytes(), StandardOpenOption.APPEND);
                     newAccounts.add(account);
                 } 
